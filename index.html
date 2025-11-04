@@ -354,7 +354,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-12-08 15:30:09" itemprop="dateModified" datetime="2024-12-08T15:30:09+08:00">2024-12-08</time>
+      <time title="修改时间：2025-11-04 14:57:09" itemprop="dateModified" datetime="2025-11-04T14:57:09+08:00">2025-11-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -405,27 +405,14 @@
 <p>vivado 和 vitis的安装在网上一搜一大把这里就不多说了，petalinux的安装博主另开一篇博客再讲</p>
 <h2 id="开发要求"><a href="#开发要求" class="headerlink" title="开发要求"></a>开发要求</h2><p>如果你使用的是XC7Z010芯片，那么就不用再往下看了，因为XC7Z010只有1个核心，因此是没办法使用AMP的，如果你既想使用Linux，又想使用裸机，可以考虑在PL端使用microblaze,利用软核来实现实时控制。<br>博主这里使用XC7Z020，这个芯片拥有双核A9，因此可以一个核使用Linux，另一个核使用裸机。</p>
 <p>博主目前有一个需求是，使用一个核心来响应外设的中断，完成实时的控制，用另一个核心来运行Linux，主要是在USB端接了一个USB网卡，裸机实现基本没可能，所以只能用Linux，但是Linux又不能实时响应中断，因此就有了这篇博客。</p>
-<h2 id="3-实现思路"><a href="#3-实现思路" class="headerlink" title="3. 实现思路"></a>3. 实现思路</h2><p>CPU0负责运行Linux系统，CPU1负责运行裸机控制程序。</p>
-<h3 id="3-1-vivado构建工程"><a href="#3-1-vivado构建工程" class="headerlink" title="3.1 vivado构建工程"></a>3.1 vivado构建工程</h3><p>petalinux需要vivado导出的xsa硬件工程来生成设备树和驱动程序，因此需要首先在vivado中构建硬件工程。</p>
-<p>构建工程可以参考正点原子vitis开发教程，配置好DDR，UART,USB等外设，然后生成bitstream文件，最后导出硬件工程，工程文件即xsa后缀的文件。</p>
-<h3 id="3-2-构建fsbl"><a href="#3-2-构建fsbl" class="headerlink" title="3.2 构建fsbl"></a>3.2 构建fsbl</h3><p>ZYNQ启动时，会首先运行一段BOOTROM程序，这是出厂就写死的，BOOTROM程序在完成一些芯片初始化工作之后会启动FSBL程序，FSBL程序会初始化DDR，UART等外设，然后根据启动引脚配置，选择启动方式，包括从JTAG启动，从SD卡启动，从FLASH启动等。本博客选择从SD卡启动，FSBL会从SD卡的BOOT分区读取BOOT.BIN文件，然后读取打包进BOOT.BIN的文件，将这些文件依次写入对应的地址，然后加载并运行uboot程序，uboot程序会加载并运行Linux内核。<br>因此我们需要构建一个FSBL程序，来加载CPU1的程序，并启动CPU1。</p>
-<p>如何启动CPU1请参考ug585 chapter6，这里就不再赘述了，这里主要讲一下如何构建FSBL程序。</p>
-<p>FSBL程序需要使用Vitis来构建，Vitis的安装可以参考正点原子vitis开发教程，构建过程如下：</p>
-<ol>
-<li>打开Vitis，根据先前从vivado导出的xsa文件创建平台，创建过程参考正点原子vitis开发教程。</li>
-<li>创建应用工程，模板选择zynq FSBL</li>
-<li>在main.c中添加CPU1启动代码，参考ug585 chapter6</li>
-</ol>
-<h3 id="3-3-CPU1运行裸机程序"><a href="#3-3-CPU1运行裸机程序" class="headerlink" title="3.3 CPU1运行裸机程序"></a>3.3 CPU1运行裸机程序</h3><h3 id="3-4-CPU0运行Linux"><a href="#3-4-CPU0运行Linux" class="headerlink" title="3.4 CPU0运行Linux"></a>3.4 CPU0运行Linux</h3><p>在使用amp之前请一定首先要自己尝试配置好一个可以在芯片上正常运行的Linux系统，因为amp的配置和Linux的配置是差不多的，以下就默认你知道如何配置一个可以正常运行的Linux系统。</p>
-<p>CPU0使用的linux系统通过petalinux来制作，将vivado导出的xsa后缀工程文件拷贝到Ubuntu系统下，构建过程参考ug1144，petalinux命令查询可以参考ug1157.</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">petalinux-create -t project --template zynq -n linux_amp</span><br><span class="line">petalinux-config --get-hw-description linux_amp.xsa</span><br></pre></td></tr></table></figure>
-
-<p>-n 指定工程名，–template zynq指定使用zynq模板，–get-hw-description 指定硬件工程文件。</p>
-<p>运行petalinux-config 进入配置界面<br>进入DTG Settings -&gt; kernel Bootargs -&gt; 取消选中generate boot args automatically,然后手动添加<code>console=ttyPS0,115200 maxcpus=1 clk_ignore_unused root=/dev/mmcblk0p2 rw earlyprintk rootwait</code>，然后保存退出。<br>maxcpus&#x3D;1表示只使用一个核心,防止linux同时使用两个核心，抢占CPU1裸机程序的核心<br>clk_ignore_unused表示忽略未使用的时钟，Linux的电源管理策略会默认关闭未使用的时钟，导致CPU1使用的部分外设时钟被关闭，无法运行，<br>root&#x3D;&#x2F;dev&#x2F;mmcblk0p2表示根文件系统在mmcblk0p2分区，<br>rw表示可读可写，<br>earlyprintk表示在内核启动时打印信息，<br>rootwait表示等待根文件系统挂载。</p>
-<p>配置完成后，运行以下命令生成Linux系统</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">petalinux-build</span><br></pre></td></tr></table></figure>
-<p>等待构建完成</p>
-<h3 id="3-2-CPU1运行裸机程序"><a href="#3-2-CPU1运行裸机程序" class="headerlink" title="3.2 CPU1运行裸机程序"></a>3.2 CPU1运行裸机程序</h3>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2024/12/07/ZYNQ-AMP-Linux-%E8%A3%B8%E6%9C%BA/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -696,7 +683,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-11-04 14:55:01" itemprop="dateModified" datetime="2025-11-04T14:55:01+08:00">2025-11-04</time>
+      <time title="修改时间：2025-11-04 15:02:23" itemprop="dateModified" datetime="2025-11-04T15:02:23+08:00">2025-11-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -734,7 +721,9 @@
     
     <div class="post-body" itemprop="articleBody">
           <h1 id="使用ZYNQ解码高速ADCLVDS输出"><a href="#使用ZYNQ解码高速ADCLVDS输出" class="headerlink" title="使用ZYNQ解码高速ADCLVDS输出"></a>使用ZYNQ解码高速ADCLVDS输出</h1><h2 id="1-LVDS简介"><a href="#1-LVDS简介" class="headerlink" title="1. LVDS简介"></a>1. LVDS简介</h2><p>LVDS（Low Voltage Differential Signaling）是一种差分信号传输技术，广泛应用于高速数据传输中。如图所示，</p>
-<p><img src="/./%E4%BD%BF%E7%94%A8ZYNQ%E8%A7%A3%E7%A0%81%E9%AB%98%E9%80%9FADCLVDS%E8%BE%93%E5%87%BA/lvds.svg" alt="lvds"></p>
+<!-- ![lvds](./使用ZYNQ解码高速ADCLVDS输出/lvds.svg) -->
+
+
 <p>LVDS信号通过两个差分对进行传输，每个差分对由一个正信号和一个负信号组成。这种信号传输方式具有低功耗、低噪声和高速传输的特点，因此在高速数据传输中得到了广泛应用。</p>
 <h2 id="2-AFE5832简介"><a href="#2-AFE5832简介" class="headerlink" title="2.AFE5832简介"></a>2.AFE5832简介</h2><p>AFE5832是一款高性能的模拟前端（AFE）芯片，用于高速ADC（模数转换器）的输出。它支持LVDS接口，可以将模拟信号转换为数字信号，并输出到外部设备。AFE5832具有以下特点：</p>
 <ul>
