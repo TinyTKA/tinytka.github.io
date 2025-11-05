@@ -19,12 +19,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"tinytka.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.26.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="ZYNQ AMP Linux + 裸机1. 硬件准备 Xilinx ZYNQ7020 SoC开发板 : 笔者这里使用的是微相的ZYNQ7020开发板,当然只要是ZYNQ7020的开发板都可以 串口线: 用于连接开发板和电脑，登录Linux系统和监视cpu1的输出 JTAG线:用于调试裸机程序  2. 软件准备 Vivado 2020.2 Vitis 2020.2 petalinux 2020.2">
+    <meta name="description" content="ZYNQ AMP Linux + 裸机 1. 硬件准备   Xilinx ZYNQ7020 SoC开发板 : 笔者这里使用的是微相的ZYNQ7020开发板,当然只要是ZYNQ7020的开发板都可以   串口线: 用于连接开发板和电脑，登录Linux系统和监视cpu1的输出   JTAG线:用于调试裸机程序   2. 软件准备   Vivado 2020.2   Vitis 2020.2   pet">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ZYNQ AMP Linux + 裸机">
 <meta property="og:url" content="https://tinytka.github.io/2024/12/07/ZYNQ-AMP-Linux-%E8%A3%B8%E6%9C%BA/index.html">
 <meta property="og:site_name" content="TinyTka&#39;s Blog">
-<meta property="og:description" content="ZYNQ AMP Linux + 裸机1. 硬件准备 Xilinx ZYNQ7020 SoC开发板 : 笔者这里使用的是微相的ZYNQ7020开发板,当然只要是ZYNQ7020的开发板都可以 串口线: 用于连接开发板和电脑，登录Linux系统和监视cpu1的输出 JTAG线:用于调试裸机程序  2. 软件准备 Vivado 2020.2 Vitis 2020.2 petalinux 2020.2">
+<meta property="og:description" content="ZYNQ AMP Linux + 裸机 1. 硬件准备   Xilinx ZYNQ7020 SoC开发板 : 笔者这里使用的是微相的ZYNQ7020开发板,当然只要是ZYNQ7020的开发板都可以   串口线: 用于连接开发板和电脑，登录Linux系统和监视cpu1的输出   JTAG线:用于调试裸机程序   2. 软件准备   Vivado 2020.2   Vitis 2020.2   pet">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-12-07T11:13:00.000Z">
 <meta property="article:modified_time" content="2025-11-04T07:37:38.646Z">
@@ -163,7 +163,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ZYNQ-AMP-Linux-%E8%A3%B8%E6%9C%BA"><span class="nav-number">1.</span> <span class="nav-text">ZYNQ AMP Linux + 裸机</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E7%A1%AC%E4%BB%B6%E5%87%86%E5%A4%87"><span class="nav-number">1.1.</span> <span class="nav-text">1. 硬件准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E8%BD%AF%E4%BB%B6%E5%87%86%E5%A4%87"><span class="nav-number">1.2.</span> <span class="nav-text">2. 软件准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%8F%91%E8%A6%81%E6%B1%82"><span class="nav-number">1.3.</span> <span class="nav-text">开发要求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%AE%9E%E7%8E%B0%E6%80%9D%E8%B7%AF"><span class="nav-number">1.4.</span> <span class="nav-text">3. 实现思路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-vivado%E6%9E%84%E5%BB%BA%E5%B7%A5%E7%A8%8B"><span class="nav-number">1.4.1.</span> <span class="nav-text">3.1 vivado构建工程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E6%9E%84%E5%BB%BAfsbl"><span class="nav-number">1.4.2.</span> <span class="nav-text">3.2 构建fsbl</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-CPU1%E8%BF%90%E8%A1%8C%E8%A3%B8%E6%9C%BA%E7%A8%8B%E5%BA%8F"><span class="nav-number">1.4.3.</span> <span class="nav-text">3.3 CPU1运行裸机程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-CPU0%E8%BF%90%E8%A1%8CLinux"><span class="nav-number">1.4.4.</span> <span class="nav-text">3.4 CPU0运行Linux</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-CPU1%E8%BF%90%E8%A1%8C%E8%A3%B8%E6%9C%BA%E7%A8%8B%E5%BA%8F"><span class="nav-number">1.4.5.</span> <span class="nav-text">3.2 CPU1运行裸机程序</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">ZYNQ AMP Linux + 裸机</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E7%A1%AC%E4%BB%B6%E5%87%86%E5%A4%87"><span class="nav-number">1.1.</span> <span class="nav-text">1. 硬件准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E8%BD%AF%E4%BB%B6%E5%87%86%E5%A4%87"><span class="nav-number">1.2.</span> <span class="nav-text">2. 软件准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%8F%91%E8%A6%81%E6%B1%82"><span class="nav-number">1.3.</span> <span class="nav-text">开发要求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%AE%9E%E7%8E%B0%E6%80%9D%E8%B7%AF"><span class="nav-number">1.4.</span> <span class="nav-text">3. 实现思路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-vivado%E6%9E%84%E5%BB%BA%E5%B7%A5%E7%A8%8B"><span class="nav-number">1.4.1.</span> <span class="nav-text">3.1 vivado构建工程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E6%9E%84%E5%BB%BAfsbl"><span class="nav-number">1.4.2.</span> <span class="nav-text">3.2 构建fsbl</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-CPU1%E8%BF%90%E8%A1%8C%E8%A3%B8%E6%9C%BA%E7%A8%8B%E5%BA%8F"><span class="nav-number">1.4.3.</span> <span class="nav-text">3.3 CPU1运行裸机程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-CPU0%E8%BF%90%E8%A1%8CLinux"><span class="nav-number">1.4.4.</span> <span class="nav-text">3.4 CPU0运行Linux</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-CPU1%E8%BF%90%E8%A1%8C%E8%A3%B8%E6%9C%BA%E7%A8%8B%E5%BA%8F"><span class="nav-number">1.4.5.</span> <span class="nav-text">3.2 CPU1运行裸机程序</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -290,7 +290,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>2.1k</span>
+      <span>1.2k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -307,43 +307,77 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h1 id="ZYNQ-AMP-Linux-裸机"><a href="#ZYNQ-AMP-Linux-裸机" class="headerlink" title="ZYNQ AMP Linux + 裸机"></a>ZYNQ AMP Linux + 裸机</h1><h2 id="1-硬件准备"><a href="#1-硬件准备" class="headerlink" title="1. 硬件准备"></a>1. 硬件准备</h2><ul>
-<li>Xilinx ZYNQ7020 SoC开发板 : 笔者这里使用的是微相的ZYNQ7020开发板,当然只要是ZYNQ7020的开发板都可以</li>
-<li>串口线: 用于连接开发板和电脑，登录Linux系统和监视cpu1的输出</li>
-<li>JTAG线:用于调试裸机程序</li>
+    <div class="post-body" itemprop="articleBody"><h1>ZYNQ AMP Linux + 裸机</h1>
+<h2 id="1-硬件准备">1. 硬件准备</h2>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>Xilinx ZYNQ7020 SoC开发板 : 笔者这里使用的是微相的ZYNQ7020开发板,当然只要是ZYNQ7020的开发板都可以</p>
+</li>
+<li class="lvl-2">
+<p>串口线: 用于连接开发板和电脑，登录Linux系统和监视cpu1的输出</p>
+</li>
+<li class="lvl-2">
+<p>JTAG线:用于调试裸机程序</p>
+</li>
 </ul>
-<h2 id="2-软件准备"><a href="#2-软件准备" class="headerlink" title="2. 软件准备"></a>2. 软件准备</h2><ul>
-<li>Vivado 2020.2</li>
-<li>Vitis 2020.2</li>
-<li>petalinux 2020.2</li>
-<li>ubuntu 18.04</li>
+<h2 id="2-软件准备">2. 软件准备</h2>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>Vivado 2020.2</p>
+</li>
+<li class="lvl-2">
+<p>Vitis 2020.2</p>
+</li>
+<li class="lvl-2">
+<p>petalinux 2020.2</p>
+</li>
+<li class="lvl-2">
+<p>ubuntu 18.04</p>
+</li>
 </ul>
 <p>vivado 和 vitis的安装在网上一搜一大把这里就不多说了，petalinux的安装博主另开一篇博客再讲</p>
-<h2 id="开发要求"><a href="#开发要求" class="headerlink" title="开发要求"></a>开发要求</h2><p>如果你使用的是XC7Z010芯片，那么就不用再往下看了，因为XC7Z010只有1个核心，因此是没办法使用AMP的，如果你既想使用Linux，又想使用裸机，可以考虑在PL端使用microblaze,利用软核来实现实时控制。<br>博主这里使用XC7Z020，这个芯片拥有双核A9，因此可以一个核使用Linux，另一个核使用裸机。</p>
+<h2 id="开发要求">开发要求</h2>
+<p>如果你使用的是XC7Z010芯片，那么就不用再往下看了，因为XC7Z010只有1个核心，因此是没办法使用AMP的，如果你既想使用Linux，又想使用裸机，可以考虑在PL端使用microblaze,利用软核来实现实时控制。博主这里使用XC7Z020，这个芯片拥有双核A9，因此可以一个核使用Linux，另一个核使用裸机。</p>
 <p>博主目前有一个需求是，使用一个核心来响应外设的中断，完成实时的控制，用另一个核心来运行Linux，主要是在USB端接了一个USB网卡，裸机实现基本没可能，所以只能用Linux，但是Linux又不能实时响应中断，因此就有了这篇博客。</p>
 <span id="more"></span>
-
-<h2 id="3-实现思路"><a href="#3-实现思路" class="headerlink" title="3. 实现思路"></a>3. 实现思路</h2><p>CPU0负责运行Linux系统，CPU1负责运行裸机控制程序。</p>
-<h3 id="3-1-vivado构建工程"><a href="#3-1-vivado构建工程" class="headerlink" title="3.1 vivado构建工程"></a>3.1 vivado构建工程</h3><p>petalinux需要vivado导出的xsa硬件工程来生成设备树和驱动程序，因此需要首先在vivado中构建硬件工程。</p>
+<h2 id="3-实现思路">3. 实现思路</h2>
+<p>CPU0负责运行Linux系统，CPU1负责运行裸机控制程序。</p>
+<h3 id="3-1-vivado构建工程">3.1 vivado构建工程</h3>
+<p>petalinux需要vivado导出的xsa硬件工程来生成设备树和驱动程序，因此需要首先在vivado中构建硬件工程。</p>
 <p>构建工程可以参考正点原子vitis开发教程，配置好DDR，UART,USB等外设，然后生成bitstream文件，最后导出硬件工程，工程文件即xsa后缀的文件。</p>
-<h3 id="3-2-构建fsbl"><a href="#3-2-构建fsbl" class="headerlink" title="3.2 构建fsbl"></a>3.2 构建fsbl</h3><p>ZYNQ启动时，会首先运行一段BOOTROM程序，这是出厂就写死的，BOOTROM程序在完成一些芯片初始化工作之后会启动FSBL程序，FSBL程序会初始化DDR，UART等外设，然后根据启动引脚配置，选择启动方式，包括从JTAG启动，从SD卡启动，从FLASH启动等。本博客选择从SD卡启动，FSBL会从SD卡的BOOT分区读取BOOT.BIN文件，然后读取打包进BOOT.BIN的文件，将这些文件依次写入对应的地址，然后加载并运行uboot程序，uboot程序会加载并运行Linux内核。<br>因此我们需要构建一个FSBL程序，来加载CPU1的程序，并启动CPU1。</p>
+<h3 id="3-2-构建fsbl">3.2 构建fsbl</h3>
+<p>ZYNQ启动时，会首先运行一段BOOTROM程序，这是出厂就写死的，BOOTROM程序在完成一些芯片初始化工作之后会启动FSBL程序，FSBL程序会初始化DDR，UART等外设，然后根据启动引脚配置，选择启动方式，包括从JTAG启动，从SD卡启动，从FLASH启动等。本博客选择从SD卡启动，FSBL会从SD卡的BOOT分区读取BOOT.BIN文件，然后读取打包进BOOT.BIN的文件，将这些文件依次写入对应的地址，然后加载并运行uboot程序，uboot程序会加载并运行Linux内核。因此我们需要构建一个FSBL程序，来加载CPU1的程序，并启动CPU1。</p>
 <p>如何启动CPU1请参考ug585 chapter6，这里就不再赘述了，这里主要讲一下如何构建FSBL程序。</p>
 <p>FSBL程序需要使用Vitis来构建，Vitis的安装可以参考正点原子vitis开发教程，构建过程如下：</p>
 <ol>
-<li>打开Vitis，根据先前从vivado导出的xsa文件创建平台，创建过程参考正点原子vitis开发教程。</li>
-<li>创建应用工程，模板选择zynq FSBL</li>
-<li>在main.c中添加CPU1启动代码，参考ug585 chapter6</li>
+<li class="lvl-3">
+<p>打开Vitis，根据先前从vivado导出的xsa文件创建平台，创建过程参考正点原子vitis开发教程。</p>
+</li>
+<li class="lvl-3">
+<p>创建应用工程，模板选择zynq FSBL</p>
+</li>
+<li class="lvl-3">
+<p>在main.c中添加CPU1启动代码，参考ug585 chapter6</p>
+</li>
 </ol>
-<h3 id="3-3-CPU1运行裸机程序"><a href="#3-3-CPU1运行裸机程序" class="headerlink" title="3.3 CPU1运行裸机程序"></a>3.3 CPU1运行裸机程序</h3><h3 id="3-4-CPU0运行Linux"><a href="#3-4-CPU0运行Linux" class="headerlink" title="3.4 CPU0运行Linux"></a>3.4 CPU0运行Linux</h3><p>在使用amp之前请一定首先要自己尝试配置好一个可以在芯片上正常运行的Linux系统，因为amp的配置和Linux的配置是差不多的，以下就默认你知道如何配置一个可以正常运行的Linux系统。</p>
+<h3 id="3-3-CPU1运行裸机程序">3.3 CPU1运行裸机程序</h3>
+<h3 id="3-4-CPU0运行Linux">3.4 CPU0运行Linux</h3>
+<p>在使用amp之前请一定首先要自己尝试配置好一个可以在芯片上正常运行的Linux系统，因为amp的配置和Linux的配置是差不多的，以下就默认你知道如何配置一个可以正常运行的Linux系统。</p>
 <p>CPU0使用的linux系统通过petalinux来制作，将vivado导出的xsa后缀工程文件拷贝到Ubuntu系统下，构建过程参考ug1144，petalinux命令查询可以参考ug1157.</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">petalinux-create -t project --template zynq -n linux_amp</span><br><span class="line">petalinux-config --get-hw-description linux_amp.xsa</span><br></pre></td></tr></table></figure>
-
 <p>-n 指定工程名，–template zynq指定使用zynq模板，–get-hw-description 指定硬件工程文件。</p>
-<p>运行petalinux-config 进入配置界面<br>进入DTG Settings -&gt; kernel Bootargs -&gt; 取消选中generate boot args automatically,然后手动添加<code>console=ttyPS0,115200 maxcpus=1 clk_ignore_unused root=/dev/mmcblk0p2 rw earlyprintk rootwait</code>，然后保存退出。<br>maxcpus&#x3D;1表示只使用一个核心,防止linux同时使用两个核心，抢占CPU1裸机程序的核心<br>clk_ignore_unused表示忽略未使用的时钟，Linux的电源管理策略会默认关闭未使用的时钟，导致CPU1使用的部分外设时钟被关闭，无法运行，<br>root&#x3D;&#x2F;dev&#x2F;mmcblk0p2表示根文件系统在mmcblk0p2分区，<br>rw表示可读可写，<br>earlyprintk表示在内核启动时打印信息，<br>rootwait表示等待根文件系统挂载。</p>
+<p>运行petalinux-config 进入配置界面进入DTG Settings -&gt; kernel Bootargs -&gt; 取消选中generate boot args automatically,然后手动添加<code>console=ttyPS0,115200 maxcpus=1 clk_ignore_unused root=/dev/mmcblk0p2 rw earlyprintk rootwait</code>，然后保存退出。<br>
+maxcpus=1表示只使用一个核心,防止linux同时使用两个核心，抢占CPU1裸机程序的核心<br>
+clk_ignore_unused表示忽略未使用的时钟，Linux的电源管理策略会默认关闭未使用的时钟，导致CPU1使用的部分外设时钟被关闭，无法运行，<br>
+root=/dev/mmcblk0p2表示根文件系统在mmcblk0p2分区，<br>
+rw表示可读可写，<br>
+earlyprintk表示在内核启动时打印信息，<br>
+rootwait表示等待根文件系统挂载。</p>
 <p>配置完成后，运行以下命令生成Linux系统</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">petalinux-build</span><br></pre></td></tr></table></figure>
 <p>等待构建完成</p>
-<h3 id="3-2-CPU1运行裸机程序"><a href="#3-2-CPU1运行裸机程序" class="headerlink" title="3.2 CPU1运行裸机程序"></a>3.2 CPU1运行裸机程序</h3>
+<h3 id="3-2-CPU1运行裸机程序">3.2 CPU1运行裸机程序</h3>
+
     </div>
 
     
@@ -417,13 +451,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">10k</span>
+    <span title="站点总字数">5k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">18 分钟</span>
+    <span title="站点阅读时长">19 分钟</span>
   </span>
 </div>
 <div class="busuanzi-count">

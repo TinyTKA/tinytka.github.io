@@ -19,12 +19,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"tinytka.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.26.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="STM32H7指定从外部Flash启动程序代码启动流程单片机默认上电之后会从0x80000000处开始执行代码，也就是从内部flash启动。首先我们来看启动流程。 在开始之前，首先得确保你可以找得到.s文件，比如startup_stm32h7b0xx.s，这个文件是启动文件，在STM32CubeMX生成的代码中，这个文件位于MDK_ARM目录下。 然后，找到如下代码： 12345678910111">
+    <meta name="description" content="STM32H7指定从外部Flash启动程序 代码启动流程 单片机默认上电之后会从0x80000000处开始执行代码，也就是从内部flash启动。首先我们来看启动流程。 在开始之前，首先得确保你可以找得到.s文件，比如startup_stm32h7b0xx.s，这个文件是启动文件，在STM32CubeMX生成的代码中，这个文件位于MDK_ARM目录下。 然后，找到如下代码： 123456789101">
 <meta property="og:type" content="article">
 <meta property="og:title" content="STM32H7指定从外部Flash启动程序">
 <meta property="og:url" content="https://tinytka.github.io/2024/09/27/STM32H7%E6%8C%87%E5%AE%9A%E4%BB%8E%E5%A4%96%E9%83%A8Flash%E5%90%AF%E5%8A%A8%E7%A8%8B%E5%BA%8F/index.html">
 <meta property="og:site_name" content="TinyTka&#39;s Blog">
-<meta property="og:description" content="STM32H7指定从外部Flash启动程序代码启动流程单片机默认上电之后会从0x80000000处开始执行代码，也就是从内部flash启动。首先我们来看启动流程。 在开始之前，首先得确保你可以找得到.s文件，比如startup_stm32h7b0xx.s，这个文件是启动文件，在STM32CubeMX生成的代码中，这个文件位于MDK_ARM目录下。 然后，找到如下代码： 12345678910111">
+<meta property="og:description" content="STM32H7指定从外部Flash启动程序 代码启动流程 单片机默认上电之后会从0x80000000处开始执行代码，也就是从内部flash启动。首先我们来看启动流程。 在开始之前，首先得确保你可以找得到.s文件，比如startup_stm32h7b0xx.s，这个文件是启动文件，在STM32CubeMX生成的代码中，这个文件位于MDK_ARM目录下。 然后，找到如下代码： 123456789101">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-09-27T13:04:27.000Z">
 <meta property="article:modified_time" content="2025-11-04T07:37:24.494Z">
@@ -162,7 +162,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#STM32H7%E6%8C%87%E5%AE%9A%E4%BB%8E%E5%A4%96%E9%83%A8Flash%E5%90%AF%E5%8A%A8%E7%A8%8B%E5%BA%8F"><span class="nav-number">1.</span> <span class="nav-text">STM32H7指定从外部Flash启动程序</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B"><span class="nav-number">1.1.</span> <span class="nav-text">代码启动流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%87%E5%AE%9A%E4%BB%8E%E5%A4%96%E9%83%A8Flash%E5%90%AF%E5%8A%A8"><span class="nav-number">1.2.</span> <span class="nav-text">指定从外部Flash启动</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">STM32H7指定从外部Flash启动程序</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B"><span class="nav-number">1.1.</span> <span class="nav-text">代码启动流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%87%E5%AE%9A%E4%BB%8E%E5%A4%96%E9%83%A8Flash%E5%90%AF%E5%8A%A8"><span class="nav-number">1.2.</span> <span class="nav-text">指定从外部Flash启动</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -289,14 +289,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>3.7k</span>
+      <span>1.7k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>7 分钟</span>
+      <span>6 分钟</span>
     </span>
 </div>
 
@@ -306,39 +306,53 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h1 id="STM32H7指定从外部Flash启动程序"><a href="#STM32H7指定从外部Flash启动程序" class="headerlink" title="STM32H7指定从外部Flash启动程序"></a>STM32H7指定从外部Flash启动程序</h1><h2 id="代码启动流程"><a href="#代码启动流程" class="headerlink" title="代码启动流程"></a>代码启动流程</h2><p>单片机默认上电之后会从0x80000000处开始执行代码，也就是从内部flash启动。<br>首先我们来看启动流程。</p>
+    <div class="post-body" itemprop="articleBody"><h1>STM32H7指定从外部Flash启动程序</h1>
+<h2 id="代码启动流程">代码启动流程</h2>
+<p>单片机默认上电之后会从0x80000000处开始执行代码，也就是从内部flash启动。首先我们来看启动流程。</p>
 <p>在开始之前，首先得确保你可以找得到<code>.s</code>文件，比如<code>startup_stm32h7b0xx.s</code>，这个文件是启动文件，在STM32CubeMX生成的代码中，这个文件位于<code>MDK_ARM</code>目录下。</p>
 <p>然后，找到如下代码：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">__Vectors       DCD     __initial_sp                      ; Top of Stack</span><br><span class="line">                DCD     Reset_Handler                     ; Reset Handler</span><br><span class="line">                DCD     NMI_Handler                       ; NMI Handler</span><br><span class="line">                DCD     HardFault_Handler                 ; Hard Fault Handler</span><br><span class="line">                DCD     MemManage_Handler                 ; MPU Fault Handler</span><br><span class="line">                DCD     BusFault_Handler                  ; Bus Fault Handler</span><br><span class="line">                DCD     UsageFault_Handler                ; Usage Fault Handler</span><br><span class="line">                DCD     0                                 ; Reserved</span><br><span class="line">                DCD     0                                 ; Reserved</span><br><span class="line">                DCD     0                                 ; Reserved</span><br><span class="line">                DCD     0                                 ; Reserved</span><br><span class="line">                DCD     SVC_Handler                       ; SVCall Handler</span><br><span class="line">                DCD     DebugMon_Handler                  ; Debug Monitor Handler</span><br><span class="line">                DCD     0                                 ; Reserved</span><br><span class="line">                DCD     PendSV_Handler                    ; PendSV Handler</span><br><span class="line">                DCD     SysTick_Handler                   ; SysTick Handler</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
 <span id="more"></span>
 <p><code>__Vectors</code>就是启动文件中定义的向量表，也就是中断向量表，在程序启动时，会根据这个向量表来跳转到相应的函数。</p>
-<p><code>DCD</code>指令定义一个32位的常量，这里定义了中断向量表中的各个中断处理函数的入口地址。<br><code>__initial_sp</code>,这是一个标签，就是栈顶地址，也就是程序启动时栈的初始地址。</p>
-<p>在这段汇编代码中，<code>Reset_Handler</code>就是程序启动时执行的第一个函数，<br>继续往下翻，找到下面这段代码</p>
+<p><code>DCD</code>指令定义一个32位的常量，这里定义了中断向量表中的各个中断处理函数的入口地址。<br>
+<code>__initial_sp</code>,这是一个标签，就是栈顶地址，也就是程序启动时栈的初始地址。</p>
+<p>在这段汇编代码中，<code>Reset_Handler</code>就是程序启动时执行的第一个函数，继续往下翻，找到下面这段代码</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">; Reset handler</span><br><span class="line">Reset_Handler    PROC</span><br><span class="line">        EXPORT  Reset_Handler                    [WEAK]</span><br><span class="line">        IMPORT  SystemInit</span><br><span class="line">        IMPORT  __main</span><br><span class="line"></span><br><span class="line">                 LDR     R0, =SystemInit</span><br><span class="line">                 BLX     R0</span><br><span class="line">                 LDR     R0, =__main</span><br><span class="line">                 BX      R0</span><br><span class="line">                 ENDP</span><br></pre></td></tr></table></figure>
-
-<p>这就是<code>Reset_Handler</code>函数的定义，它导入了别处定义的<code>SystemInit</code>函数和<code>__main</code>函数，首先<code>LDR</code>指令加载<code>SystemInit</code>函数地址到寄存器<code>R0</code>，然后使用<code>BLX</code>指令跳转到<code>R0</code>存储的地址去运行，<code>SystemInit</code>函数用于初始化系统时钟，然后<code>SystemInit</code>函数返回后继续调用<code>__main</code>函数，<code>__main</code>函数用于调用<code>main</code>函数，不用去找<code>__main</code>函数，因为这是编译器自动生成的，它会在<code>main</code>函数之前执行。<br><code>main</code>函数就是我们的主函数，从这里开始，程序就进入了我们自己的代码中。</p>
-<h2 id="指定从外部Flash启动"><a href="#指定从外部Flash启动" class="headerlink" title="指定从外部Flash启动"></a>指定从外部Flash启动</h2><p>现在我们知道了程序启动的流程，那么如何指定从外部Flash启动呢？<br>首先，按照文章开头所说，STM32上电默认从内部flash开始执行，因此需要在内部flash中写一个BOOT程序，这个程序的作用主要是，首先初始化QSPI接口，初始化外部Flash，然后将外部flash设置为内存映射模式，紧接着就可以跳转到QSPIFlash内程序的首地址开始运行外部程序，那么这个BOOT程序应该怎么写呢？</p>
+<p>这就是<code>Reset_Handler</code>函数的定义，它导入了别处定义的<code>SystemInit</code>函数和<code>__main</code>函数，首先<code>LDR</code>指令加载<code>SystemInit</code>函数地址到寄存器<code>R0</code>，然后使用<code>BLX</code>指令跳转到<code>R0</code>存储的地址去运行，<code>SystemInit</code>函数用于初始化系统时钟，然后<code>SystemInit</code>函数返回后继续调用<code>__main</code>函数，<code>__main</code>函数用于调用<code>main</code>函数，不用去找<code>__main</code>函数，因为这是编译器自动生成的，它会在<code>main</code>函数之前执行。<code>main</code>函数就是我们的主函数，从这里开始，程序就进入了我们自己的代码中。</p>
+<h2 id="指定从外部Flash启动">指定从外部Flash启动</h2>
+<p>现在我们知道了程序启动的流程，那么如何指定从外部Flash启动呢？首先，按照文章开头所说，STM32上电默认从内部flash开始执行，因此需要在内部flash中写一个BOOT程序，这个程序的作用主要是，首先初始化QSPI接口，初始化外部Flash，然后将外部flash设置为内存映射模式，紧接着就可以跳转到QSPIFlash内程序的首地址开始运行外部程序，那么这个BOOT程序应该怎么写呢？</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> W25Qxx_Mem_Addr 0x90000000</span></span><br><span class="line"><span class="keyword">typedef</span>  <span class="title function_">void</span> <span class="params">(*pFunction)</span><span class="params">(<span class="type">void</span>)</span>;<span class="comment">// 定义一个函数指针，这个指针指向一个无参数无返回值的函数</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义一个函数指针</span></span><br><span class="line">pFunction JumpToApplication;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="comment">//</span></span><br><span class="line">	SCB_EnableICache();		<span class="comment">// 使能ICache</span></span><br><span class="line">	SCB_EnableDCache();		<span class="comment">// 使能DCache</span></span><br><span class="line">	HAL_Init();					<span class="comment">// 初始化HAL库</span></span><br><span class="line">	SystemClock_Config();	<span class="comment">// 配置系统时钟，主频280MHz	</span></span><br><span class="line">		</span><br><span class="line">	OSPI_W25Qxx_Init();		<span class="comment">// 初始化OSPI和W25Q64</span></span><br><span class="line">	OSPI_W25Qxx_MemoryMappedMode(); 	 <span class="comment">// 配置QSPI为内存映射模式	</span></span><br><span class="line"></span><br><span class="line">	SCB_DisableICache();		<span class="comment">// 关闭ICache</span></span><br><span class="line">	SCB_DisableDCache();		<span class="comment">// 关闭Dcache</span></span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">	SysTick-&gt;CTRL = <span class="number">0</span>;		<span class="comment">// 关闭SysTick</span></span><br><span class="line">	SysTick-&gt;LOAD = <span class="number">0</span>;		<span class="comment">// 清零重载值</span></span><br><span class="line">	SysTick-&gt;VAL = <span class="number">0</span>;			<span class="comment">// 清零计数值</span></span><br><span class="line"></span><br><span class="line">	JumpToApplication = (pFunction) (*(__IO <span class="type">uint32_t</span>*) (W25Qxx_Mem_Addr + <span class="number">4</span>));	<span class="comment">// 设置起始地址</span></span><br><span class="line">	__set_MSP(*(__IO <span class="type">uint32_t</span>*) W25Qxx_Mem_Addr);	<span class="comment">// 设置主堆栈指针</span></span><br><span class="line"></span><br><span class="line">	JumpToApplication();			<span class="comment">// 执行跳转	</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">	&#123;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这是一段简单的代码，首先初始化了HAL库和系统时钟，然后初始化了QSPI和外部Flash，接着将外部Flash设置为内存映射模式，关闭ICache和DCache，最后设置主堆栈指针，并跳转到外部Flash的程序入口地址开始执行。<br>注意，这里需要将外部Flash设置为内存映射模式，这样外部Flash中的程序就可以像访问内部Flash一样访问，不需要再通过QSPI接口访问。</p>
+<p>这是一段简单的代码，首先初始化了HAL库和系统时钟，然后初始化了QSPI和外部Flash，接着将外部Flash设置为内存映射模式，关闭ICache和DCache，最后设置主堆栈指针，并跳转到外部Flash的程序入口地址开始执行。注意，这里需要将外部Flash设置为内存映射模式，这样外部Flash中的程序就可以像访问内部Flash一样访问，不需要再通过QSPI接口访问。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">JumpToApplication = (pFunction) (*(__IO <span class="type">uint32_t</span>*) (W25Qxx_Mem_Addr + <span class="number">4</span>));	<span class="comment">// 设置起始地址</span></span><br><span class="line">__set_MSP(*(__IO <span class="type">uint32_t</span>*) W25Qxx_Mem_Addr);	<span class="comment">// 设置主堆栈指针</span></span><br><span class="line">JumpToApplication();			<span class="comment">// 执行跳转	</span></span><br></pre></td></tr></table></figure>
-
 <p>这段代码分析如下：</p>
-<ul>
-<li><code>(W25Qxx_Mem_Addr + 4)</code> 指针偏移 即0x90000004</li>
-<li><code>(__IO uint32_t*) (W25Qxx_Mem_Addr + 4)</code>进行类型转换，将偏移后的地址转换为32位无符号整型指针，加上<code>__IO</code>表明这个变量直接从ram中读取真实值，防止cache</li>
-<li><code>*(__IO uint32_t*) (W25Qxx_Mem_Addr + 4)</code> 取这个地址上的值，即外部Flash程序入口地址，也即是<code>Reset_Handler</code>的地址</li>
-<li><code>(pFunction) (*(__IO uint32_t*) (W25Qxx_Mem_Addr + 4))</code>将这个值转换为函数指针，即<code>Reset_Handler</code>函数的指针</li>
-<li><code>JumpToApplication = (pFunction) (*(__IO uint32_t*) (W25Qxx_Mem_Addr + 4))</code>将这个函数指针赋值给<code>JumpToApplication</code></li>
-<li><code>__set_MSP(*(__IO uint32_t*) W25Qxx_Mem_Addr);</code>设置主堆栈指针，即外部Flash程序入口地址</li>
-<li><code>JumpToApplication();</code>执行跳转，即跳转到外部Flash的程序入口地址开始执行</li>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><code>(W25Qxx_Mem_Addr + 4)</code> 指针偏移 即0x90000004</p>
+</li>
+<li class="lvl-2">
+<p><code>(__IO uint32_t*) (W25Qxx_Mem_Addr + 4)</code>进行类型转换，将偏移后的地址转换为32位无符号整型指针，加上<code>__IO</code>表明这个变量直接从ram中读取真实值，防止cache</p>
+</li>
+<li class="lvl-2">
+<p><code>*(__IO uint32_t*) (W25Qxx_Mem_Addr + 4)</code> 取这个地址上的值，即外部Flash程序入口地址，也即是<code>Reset_Handler</code>的地址</p>
+</li>
+<li class="lvl-2">
+<p><code>(pFunction) (*(__IO uint32_t*) (W25Qxx_Mem_Addr + 4))</code>将这个值转换为函数指针，即<code>Reset_Handler</code>函数的指针</p>
+</li>
+<li class="lvl-2">
+<p><code>JumpToApplication = (pFunction) (*(__IO uint32_t*) (W25Qxx_Mem_Addr + 4))</code>将这个函数指针赋值给<code>JumpToApplication</code></p>
+</li>
+<li class="lvl-2">
+<p><code>__set_MSP(*(__IO uint32_t*) W25Qxx_Mem_Addr);</code>设置主堆栈指针，即外部Flash程序入口地址</p>
+</li>
+<li class="lvl-2">
+<p><code>JumpToApplication();</code>执行跳转，即跳转到外部Flash的程序入口地址开始执行</p>
+</li>
 </ul>
 <p>然后，将这个BOOT程序烧录到内部Flash中，然后上电，程序就会从内部Flash中执行，执行完BOOT程序后，就会跳转到外部Flash的程序入口地址开始执行，这样就实现了从外部Flash启动程序。</p>
 <p>你可能会有疑问，为什么跳转到那个地址就可以执行外部程序，其实外部程序和内部程序都是一样的存储结构，只是存储的位置不同，因而函数的地址也就相应的发生了偏移，内部程序是从0x80000000开始的，而外部程序是从0x90000000开始的，因此，只需要将内部程序的地址加上0x10000000，就可以得到外部程序的入口地址。</p>
 <p>keil在编译时会生成一个ld文件，即链接文件，这个文件中定义了程序的存储位置，以及各个函数的地址，在编译时，编译器会将这些信息写入到生成的可执行文件中，在程序运行时，这些信息会被加载到内存中，程序就可以根据这些信息找到各个函数的地址，然后执行这些函数。</p>
-<p>编译完成后，还会生成一个map文件，这个文件可以查看程序的存储位置，以及各个函数的地址，这个文件在调试时非常有用，比如查看某个大数组定义的位置，STM32H7有好几个RAM区，而通用DMA并不能访问到所有的RAM区，因此在调试时，需要知道某个大数组定义在哪个RAM区，然后使用相应的DMA通道访问这个数组，否则就会导致DMA访问错误，程序崩溃。<br>以上文件都保存在<code>MDK-ARM/{Project-name}</code>下，你可以在编译完成后查看这些文件，了解程序的存储位置，以及各个函数的地址。</p>
-<p>至于如何修改链接文件，博主再更新文章讲解吧。<br>就这样。</p>
+<p>编译完成后，还会生成一个map文件，这个文件可以查看程序的存储位置，以及各个函数的地址，这个文件在调试时非常有用，比如查看某个大数组定义的位置，STM32H7有好几个RAM区，而通用DMA并不能访问到所有的RAM区，因此在调试时，需要知道某个大数组定义在哪个RAM区，然后使用相应的DMA通道访问这个数组，否则就会导致DMA访问错误，程序崩溃。以上文件都保存在<code>MDK-ARM/{Project-name}</code>下，你可以在编译完成后查看这些文件，了解程序的存储位置，以及各个函数的地址。</p>
+<p>至于如何修改链接文件，博主再更新文章讲解吧。就这样。</p>
 
     </div>
 
@@ -412,13 +426,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">10k</span>
+    <span title="站点总字数">5k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">18 分钟</span>
+    <span title="站点阅读时长">19 分钟</span>
   </span>
 </div>
 <div class="busuanzi-count">
