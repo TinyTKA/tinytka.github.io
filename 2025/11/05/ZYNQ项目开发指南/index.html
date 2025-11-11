@@ -19,15 +19,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"tinytka.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.26.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="ZYNQ 项目开发指南 写在前面 本博客作为">
+    <meta name="description" content="ZYNQ 项目开发指南 写在前面 本博客为博主在项目开发过程中，积累的一些开发经验，以博客的形式记录下来，一是方便自己日后随时查阅，二是分享出来帮助同样遇到问题的同学，少走弯路。共勉！ 如果遇到有问题但是博主没有记录下来的，欢迎关注未定义科研摸鱼手册微信公众号，后台私信我~ Vivado 🚧 复制block design 场景：博主想要直接复制vivado工程到另外一个文件夹进行其他更改时，会发">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ZYNQ项目开发指南">
 <meta property="og:url" content="https://tinytka.github.io/2025/11/05/ZYNQ%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/index.html">
 <meta property="og:site_name" content="TinyTka&#39;s Blog">
-<meta property="og:description" content="ZYNQ 项目开发指南 写在前面 本博客作为">
+<meta property="og:description" content="ZYNQ 项目开发指南 写在前面 本博客为博主在项目开发过程中，积累的一些开发经验，以博客的形式记录下来，一是方便自己日后随时查阅，二是分享出来帮助同样遇到问题的同学，少走弯路。共勉！ 如果遇到有问题但是博主没有记录下来的，欢迎关注未定义科研摸鱼手册微信公众号，后台私信我~ Vivado 🚧 复制block design 场景：博主想要直接复制vivado工程到另外一个文件夹进行其他更改时，会发">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-11-05T11:54:59.000Z">
-<meta property="article:modified_time" content="2025-11-05T11:57:28.504Z">
+<meta property="article:modified_time" content="2025-11-11T07:39:12.916Z">
 <meta property="article:author" content="ptyybb">
 <meta property="article:tag" content="ZYNQ">
 <meta name="twitter:card" content="summary">
@@ -160,7 +160,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">ZYNQ 项目开发指南</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="nav-number">1.1.</span> <span class="nav-text">写在前面</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">ZYNQ 项目开发指南</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="nav-number">1.1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vivado"><span class="nav-number">1.2.</span> <span class="nav-text">Vivado</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E5%88%B6block-design"><span class="nav-number">1.2.1.</span> <span class="nav-text">复制block design</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8ip%E6%A0%B8%E5%B7%A5%E7%A8%8B%E5%86%85%E8%BF%9B%E8%A1%8C%E4%BB%BF%E7%9C%9F%E6%97%B6%E5%87%BA%E7%8E%B0ERROR-XSIM-43-3268-ERROR-XSIM-43-3217"><span class="nav-number">1.2.2.</span> <span class="nav-text">在ip核工程内进行仿真时出现ERROR:[XSIM 43-3268] ERROR :[XSIM 43-3217]</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vitis"><span class="nav-number">1.3.</span> <span class="nav-text">Vitis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PetaLinux"><span class="nav-number">1.4.</span> <span class="nav-text">PetaLinux</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PetaLinux-%E5%AE%89%E8%A3%85-%F0%9F%9A%A7"><span class="nav-number">1.4.1.</span> <span class="nav-text">PetaLinux 安装   🚧</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%8ESD%E5%8D%A1%E5%90%AF%E5%8A%A8PetaLinux"><span class="nav-number">1.4.2.</span> <span class="nav-text">从SD卡启动PetaLinux</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8D%E5%88%87%E6%8D%A2%E5%90%AF%E5%8A%A8%E8%B7%B3%E7%BA%BF%E7%9A%84%E6%83%85%E5%86%B5%E4%B8%8B%E4%BB%8ESD%E5%8D%A1%E5%90%AF%E5%8A%A8%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">不切换启动跳线的情况下从SD卡启动的方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#linux%E5%90%AF%E5%8A%A8%E8%87%AA%E5%8A%A8%E5%8A%A0%E8%BD%BDko%E6%A8%A1%E5%9D%97-%E8%BF%90%E8%A1%8C%E8%84%9A%E6%9C%AC"><span class="nav-number">1.4.3.</span> <span class="nav-text">linux启动自动加载ko模块&#x2F;运行脚本</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -249,9 +249,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2025-11-05 19:54:59 / 修改时间：19:57:28" itemprop="dateCreated datePublished" datetime="2025-11-05T19:54:59+08:00">2025-11-05</time>
+      <time title="创建时间：2025-11-05 19:54:59" itemprop="dateCreated datePublished" datetime="2025-11-05T19:54:59+08:00">2025-11-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-11-11 15:39:12" itemprop="dateModified" datetime="2025-11-11T15:39:12+08:00">2025-11-11</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -281,14 +287,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>19</span>
+      <span>2.5k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
+      <span>5 分钟</span>
     </span>
 </div>
 
@@ -300,7 +306,135 @@
     
     <div class="post-body" itemprop="articleBody"><h1>ZYNQ 项目开发指南</h1>
 <h2 id="写在前面">写在前面</h2>
-<p>本博客作为</p>
+<p>本博客为博主在项目开发过程中，积累的一些开发经验，以博客的形式记录下来，一是方便自己日后随时查阅，二是分享出来帮助同样遇到问题的同学，少走弯路。共勉！</p>
+<p><strong>如果遇到有问题但是博主没有记录下来的，欢迎关注<em>未定义科研摸鱼手册</em>微信公众号，后台私信我~</strong></p>
+<h2 id="Vivado">Vivado</h2>
+<p>🚧</p>
+<h3 id="复制block-design">复制block design</h3>
+<p>场景：博主想要直接复制vivado工程到另外一个文件夹进行其他更改时，会发现在复制工程上修改的部分也出现在原工程，因此直接复制的方法不可行。</p>
+<p>解决方式：</p>
+<ol>
+<li class="lvl-3">
+<p>在原工程TCL控制台使用如下命令：</p>
+</li>
+</ol>
+<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">write_bd_tcl &lt;path/to/new/tclfile&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>根据你的需求修改<code>&lt;path/to/new/tclfile&gt;</code>为你的目标地址。</p>
+<ol start="2">
+<li class="lvl-3">
+<p>然后建立一个新工程，然后在新工程的TCL控制台执行如下命令：</p>
+</li>
+</ol>
+<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">source &lt;path/to/new/tclfile&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>替换<code>&lt;path/to/new/tclfile&gt;</code>为第一步生成的tcl文件。</p>
+<p>即可在新工程创建一个全新的与原block design 相同的设计。</p>
+<h3 id="在ip核工程内进行仿真时出现ERROR-XSIM-43-3268-ERROR-XSIM-43-3217">在ip核工程内进行仿真时出现ERROR:[XSIM 43-3268] ERROR :[XSIM 43-3217]</h3>
+<p>场景:vivado工程内编辑ip核，在ip核临时工程中进行仿真时会出现这个错误。</p>
+<p>解决方法：临时工程内在TCL控制台运行命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">set_property library xil_defaultlib [get_files]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>猜测是临时ip核工程，只需要进行一些ip核源代码修改工作，没有添加一些基本库。</p>
+<h2 id="Vitis">Vitis</h2>
+<p>🚧</p>
+<h2 id="PetaLinux">PetaLinux</h2>
+<h3 id="PetaLinux-安装-🚧">PetaLinux 安装   🚧</h3>
+<h3 id="从SD卡启动PetaLinux">从SD卡启动PetaLinux</h3>
+<ol>
+<li class="lvl-3">
+<p>找到一张不小于8G的SD卡或者TF卡</p>
+</li>
+<li class="lvl-3">
+<p>使用读卡器或者其他工具，连接到电脑，使用任意分区工具，将SD卡进行分区</p>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>分区名称</th>
+<th>分区大小</th>
+<th>分区类型</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>boot</td>
+<td>512MB</td>
+<td>FAT32</td>
+<td>存储启动文件、镜像等</td>
+</tr>
+<tr>
+<td>rootfs</td>
+<td>SD卡剩余空间</td>
+<td>EXT4</td>
+<td>挂载文件系统</td>
+</tr>
+</tbody>
+</table>
+<ol start="3">
+<li class="lvl-3">
+<p>将PetaLinux编译得到的BOOT.bin,image.ub,boot.scr文件拷贝到boot分区</p>
+</li>
+</ol>
+<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd ./images/linux   #切换到编译输出文件夹</span><br><span class="line"></span><br><span class="line">sudo cp BOOT.bin image.ub boot.scr /media/&lt;user&gt;/boot  # 拷贝文件</span><br></pre></td></tr></table></figure>
+<p>其中<code>/media/&lt;user&gt;/boot</code>为ubuntu 默认挂载SD卡的位置，<code>&lt;user&gt;</code>为你的ubuntu账户名，根据你的情况修改</p>
+<ol start="4">
+<li class="lvl-3">
+<p>将PetaLinux编译得到的rootfs.tar.gz解压到rootfs分区</p>
+</li>
+</ol>
+<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">在上一步的基础上</span></span><br><span class="line">sudo cp rootfs.tar.gz /media/&lt;user&gt;/rootfs    #拷贝根文件系统到rootfs分区 </span><br><span class="line">sudo tar -zxvf rootfs.tar.gz      #解压</span><br><span class="line"></span><br><span class="line">sudo sync # 同步一下</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li class="lvl-3">
+<p>将SD卡插到开发板的SD卡槽上</p>
+</li>
+<li class="lvl-3">
+<p>切换启动跳线到SD卡</p>
+</li>
+<li class="lvl-3">
+<p>接上串口线，接上电源，启动</p>
+</li>
+</ol>
+<hr>
+<h4 id="不切换启动跳线的情况下从SD卡启动的方法">不切换启动跳线的情况下从SD卡启动的方法</h4>
+<ol>
+<li class="lvl-3">
+<p>前置工作准备完成</p>
+</li>
+<li class="lvl-3">
+<p>打开vitis,<code>File -&gt; new -&gt; Application Projects</code></p>
+</li>
+<li class="lvl-3">
+<p>前置配置都参考正常创建vitis工程即可</p>
+</li>
+<li class="lvl-3">
+<p>选择模板’Template’时,选择<code>Zynq FSBL</code>,然后<code>Finish</code></p>
+</li>
+</ol>
+<p>这一步创建了一个ZYNQ的FSBL即<code>First Stage BootLoader（第一阶段启动加载器）</code>，<br>
+<strong>这个程序会在上电时首先读取启动配置寄存器，简单来说就是启动配置引脚电平，然后识别启动模式，根据对应的启动模式完成后续配置和加载，最后启动正常程序。</strong><br>
+因此可以直接指定启动模式，这样就省去了开发阶段频繁的切换启动跳线。</p>
+<ol start="5">
+<li class="lvl-3">
+<p>打开FSBL工程的<code>main.c</code>文件，找到第357行，或者如下代码，然后按照注释添加一行代码。</p>
+</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* Read bootmode register</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">BootModeRegister = Xil_In32(BOOT_MODE_REG);</span><br><span class="line">BootModeRegister &amp;= BOOT_MODES_MASK;</span><br><span class="line"><span class="comment">// 添加这一行</span></span><br><span class="line">BootModeRegister = SD_MODE;</span><br></pre></td></tr></table></figure>
+<p>添加这行代码直接指定了<code>BootModeRegister</code>这一变量的值，阅读后面的代码即可知道，这个变量控制了程序启动的方式。</p>
+<p>编译，下载，然后就可以发现系统从SD卡正常启动了。</p>
+<p>根据Xilinx官方手册说明，SD卡启动仅支持SD0<br>
+如果你的开发板SD卡使用了SD0，那么到这里可以<strong>结束</strong>了</p>
+<p>但是，如果由于其他设计原因，使用了SD1作为启动SD卡，那么可以继续看下去</p>
+<ol start="6">
+<li class="lvl-3">
+<p>添加SD1作为启动SD卡</p>
+</li>
+</ol>
+<p>还是在<code>main.c</code>文件中找到如下代码(513行左右)：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    * Check for valid flash address</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">if</span> ((FlashReadBaseAddress != XPS_QSPI_LINEAR_BASEADDR) &amp;&amp;</span><br><span class="line">        (FlashReadBaseAddress != XPS_NAND_BASEADDR) &amp;&amp;</span><br><span class="line">        (FlashReadBaseAddress != XPS_NOR_BASEADDR) &amp;&amp;</span><br><span class="line">        (FlashReadBaseAddress != XPS_SDIO0_BASEADDR) &amp;&amp;</span><br><span class="line">        (FlashReadBaseAddress != <span class="number">0xE0101000</span>)) &#123;</span><br><span class="line">    fsbl_printf(DEBUG_GENERAL,<span class="string">&quot;INVALID_FLASH_ADDRESS \r\n&quot;</span>);</span><br><span class="line">    OutputStatus(INVALID_FLASH_ADDRESS);</span><br><span class="line">    FsblFallback();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这段代码检查启动Flash的启动地址，即外设控制器的地址，如果不存在那么启动失败，正常情况下SD1的地址是不在里面的，我们这里直接添加上</p>
+<p>if 判断中添加一项<code>(FlashReadBaseAddress != 0xE0101000)</code>，将SD1也包含进去。</p>
+<p>编译，下载，结束。</p>
+<h3 id="linux启动自动加载ko模块-运行脚本">linux启动自动加载ko模块/运行脚本</h3>
 
     </div>
 
@@ -372,13 +506,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">10k</span>
+    <span title="站点总字数">12k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">36 分钟</span>
+    <span title="站点阅读时长">22 分钟</span>
   </span>
 </div>
 <div class="busuanzi-count">
