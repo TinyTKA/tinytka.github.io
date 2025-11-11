@@ -19,15 +19,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"tinytka.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.26.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="ZYNQ 项目开发指南 写在前面 本博客为博主在项目开发过程中，积累的一些开发经验，以博客的形式记录下来，一是方便自己日后随时查阅，二是分享出来帮助同样遇到问题的同学，少走弯路。共勉！ 如果遇到有问题但是博主没有记录下来的，欢迎关注未定义科研摸鱼手册微信公众号，后台私信我~ Vivado 🚧 复制block design 场景：博主想要直接复制vivado工程到另外一个文件夹进行其他更改时，会发">
+    <meta name="description" content="ZYNQ 项目开发指南 写在前面 本博客为博主在项目开发过程中，积累的一些开发经验，以博客的形式记录下来，一是方便自己日后随时查阅，二是分享出来帮助同样遇到问题的同学，少走弯路。共勉！ 如果遇到有问题但是博主没有记录下来的，欢迎关注未定义科研摸鱼手册微信公众号，后台私信我~">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ZYNQ项目开发指南">
 <meta property="og:url" content="https://tinytka.github.io/2025/11/05/ZYNQ%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/index.html">
 <meta property="og:site_name" content="TinyTka&#39;s Blog">
-<meta property="og:description" content="ZYNQ 项目开发指南 写在前面 本博客为博主在项目开发过程中，积累的一些开发经验，以博客的形式记录下来，一是方便自己日后随时查阅，二是分享出来帮助同样遇到问题的同学，少走弯路。共勉！ 如果遇到有问题但是博主没有记录下来的，欢迎关注未定义科研摸鱼手册微信公众号，后台私信我~ Vivado 🚧 复制block design 场景：博主想要直接复制vivado工程到另外一个文件夹进行其他更改时，会发">
+<meta property="og:description" content="ZYNQ 项目开发指南 写在前面 本博客为博主在项目开发过程中，积累的一些开发经验，以博客的形式记录下来，一是方便自己日后随时查阅，二是分享出来帮助同样遇到问题的同学，少走弯路。共勉！ 如果遇到有问题但是博主没有记录下来的，欢迎关注未定义科研摸鱼手册微信公众号，后台私信我~">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-11-05T11:54:59.000Z">
-<meta property="article:modified_time" content="2025-11-11T07:39:12.916Z">
+<meta property="article:modified_time" content="2025-11-11T07:46:51.845Z">
 <meta property="article:author" content="ptyybb">
 <meta property="article:tag" content="ZYNQ">
 <meta name="twitter:card" content="summary">
@@ -257,7 +257,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-11-11 15:39:12" itemprop="dateModified" datetime="2025-11-11T15:39:12+08:00">2025-11-11</time>
+      <time title="修改时间：2025-11-11 15:46:51" itemprop="dateModified" datetime="2025-11-11T15:46:51+08:00">2025-11-11</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -287,14 +287,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>2.5k</span>
+      <span>1.2k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>5 分钟</span>
+      <span>4 分钟</span>
     </span>
 </div>
 
@@ -308,6 +308,7 @@
 <h2 id="写在前面">写在前面</h2>
 <p>本博客为博主在项目开发过程中，积累的一些开发经验，以博客的形式记录下来，一是方便自己日后随时查阅，二是分享出来帮助同样遇到问题的同学，少走弯路。共勉！</p>
 <p><strong>如果遇到有问题但是博主没有记录下来的，欢迎关注<em>未定义科研摸鱼手册</em>微信公众号，后台私信我~</strong></p>
+<span id="more"></span>
 <h2 id="Vivado">Vivado</h2>
 <p>🚧</p>
 <h3 id="复制block-design">复制block design</h3>
@@ -506,13 +507,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">12k</span>
+    <span title="站点总字数">11k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">22 分钟</span>
+    <span title="站点阅读时长">40 分钟</span>
   </span>
 </div>
 <div class="busuanzi-count">
