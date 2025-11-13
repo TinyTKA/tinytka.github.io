@@ -19,15 +19,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"tinytka.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.26.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="ZYNQ 项目开发指南 写在前面 本博客为博主在项目开发过程中，积累的一些开发经验，以博客的形式记录下来，一是方便自己日后随时查阅，二是分享出来帮助同样遇到问题的同学，少走弯路。共勉！ 如果遇到有问题但是博主没有记录下来的，欢迎关注未定义科研摸鱼手册微信公众号，后台私信我~">
+    <meta name="description" content="ZYNQ 项目开发指南 写在前面 本博客为博主在项目开发过程中，积累的一些开发经验，以博客的形式记录下来，一是方便自己日后随时查阅，二是分享出来帮助同样遇到问题的同学，少走弯路。可以直接Ctrl + F搜索关键词，共勉！ 如果遇到有问题但是博主没有记录下来的，欢迎关注未定义科研摸鱼手册微信公众号，后台私信我~">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ZYNQ项目开发指南">
 <meta property="og:url" content="https://tinytka.github.io/2025/11/05/ZYNQ%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/index.html">
 <meta property="og:site_name" content="TinyTka&#39;s Blog">
-<meta property="og:description" content="ZYNQ 项目开发指南 写在前面 本博客为博主在项目开发过程中，积累的一些开发经验，以博客的形式记录下来，一是方便自己日后随时查阅，二是分享出来帮助同样遇到问题的同学，少走弯路。共勉！ 如果遇到有问题但是博主没有记录下来的，欢迎关注未定义科研摸鱼手册微信公众号，后台私信我~">
+<meta property="og:description" content="ZYNQ 项目开发指南 写在前面 本博客为博主在项目开发过程中，积累的一些开发经验，以博客的形式记录下来，一是方便自己日后随时查阅，二是分享出来帮助同样遇到问题的同学，少走弯路。可以直接Ctrl + F搜索关键词，共勉！ 如果遇到有问题但是博主没有记录下来的，欢迎关注未定义科研摸鱼手册微信公众号，后台私信我~">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-11-05T11:54:59.000Z">
-<meta property="article:modified_time" content="2025-11-11T07:46:51.845Z">
+<meta property="article:modified_time" content="2025-11-13T03:41:53.856Z">
 <meta property="article:author" content="ptyybb">
 <meta property="article:tag" content="ZYNQ">
 <meta name="twitter:card" content="summary">
@@ -160,7 +160,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">ZYNQ 项目开发指南</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="nav-number">1.1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vivado"><span class="nav-number">1.2.</span> <span class="nav-text">Vivado</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E5%88%B6block-design"><span class="nav-number">1.2.1.</span> <span class="nav-text">复制block design</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8ip%E6%A0%B8%E5%B7%A5%E7%A8%8B%E5%86%85%E8%BF%9B%E8%A1%8C%E4%BB%BF%E7%9C%9F%E6%97%B6%E5%87%BA%E7%8E%B0ERROR-XSIM-43-3268-ERROR-XSIM-43-3217"><span class="nav-number">1.2.2.</span> <span class="nav-text">在ip核工程内进行仿真时出现ERROR:[XSIM 43-3268] ERROR :[XSIM 43-3217]</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vitis"><span class="nav-number">1.3.</span> <span class="nav-text">Vitis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PetaLinux"><span class="nav-number">1.4.</span> <span class="nav-text">PetaLinux</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PetaLinux-%E5%AE%89%E8%A3%85-%F0%9F%9A%A7"><span class="nav-number">1.4.1.</span> <span class="nav-text">PetaLinux 安装   🚧</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%8ESD%E5%8D%A1%E5%90%AF%E5%8A%A8PetaLinux"><span class="nav-number">1.4.2.</span> <span class="nav-text">从SD卡启动PetaLinux</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8D%E5%88%87%E6%8D%A2%E5%90%AF%E5%8A%A8%E8%B7%B3%E7%BA%BF%E7%9A%84%E6%83%85%E5%86%B5%E4%B8%8B%E4%BB%8ESD%E5%8D%A1%E5%90%AF%E5%8A%A8%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">不切换启动跳线的情况下从SD卡启动的方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#linux%E5%90%AF%E5%8A%A8%E8%87%AA%E5%8A%A8%E5%8A%A0%E8%BD%BDko%E6%A8%A1%E5%9D%97-%E8%BF%90%E8%A1%8C%E8%84%9A%E6%9C%AC"><span class="nav-number">1.4.3.</span> <span class="nav-text">linux启动自动加载ko模块&#x2F;运行脚本</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">ZYNQ 项目开发指南</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="nav-number">1.1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vivado"><span class="nav-number">1.2.</span> <span class="nav-text">Vivado</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E5%88%B6block-design"><span class="nav-number">1.2.1.</span> <span class="nav-text">复制block design</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8ip%E6%A0%B8%E5%B7%A5%E7%A8%8B%E5%86%85%E8%BF%9B%E8%A1%8C%E4%BB%BF%E7%9C%9F%E6%97%B6%E5%87%BA%E7%8E%B0ERROR-XSIM-43-3268-ERROR-XSIM-43-3217"><span class="nav-number">1.2.2.</span> <span class="nav-text">在ip核工程内进行仿真时出现ERROR:[XSIM 43-3268] ERROR :[XSIM 43-3217]</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vitis"><span class="nav-number">1.3.</span> <span class="nav-text">Vitis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PetaLinux"><span class="nav-number">1.4.</span> <span class="nav-text">PetaLinux</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PetaLinux-%E5%AE%89%E8%A3%85-%F0%9F%9A%A7"><span class="nav-number">1.4.1.</span> <span class="nav-text">PetaLinux 安装   🚧</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PetaLinux%E5%90%AF%E5%8A%A8%E5%BF%85%E9%9C%80%E6%96%87%E4%BB%B6%E5%88%86%E6%9E%90"><span class="nav-number">1.4.2.</span> <span class="nav-text">PetaLinux启动必需文件分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-BOOT-bin%F0%9F%9A%A7"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">1.1 BOOT.bin🚧</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-image-ub%F0%9F%9A%A7"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">1.2 image.ub🚧</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-boot-scr%F0%9F%9A%A7"><span class="nav-number">1.4.2.3.</span> <span class="nav-text">1.3 boot.scr🚧</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-%E4%B8%8D%E4%BD%BF%E7%94%A8image-ub%E6%97%B6%F0%9F%9A%A7"><span class="nav-number">1.4.2.4.</span> <span class="nav-text">1.4 不使用image.ub时🚧</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-5-%E6%A0%B9%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F"><span class="nav-number">1.4.2.5.</span> <span class="nav-text">1.5 根文件系统</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%8ESD%E5%8D%A1%E5%90%AF%E5%8A%A8PetaLinux"><span class="nav-number">1.4.3.</span> <span class="nav-text">从SD卡启动PetaLinux</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8D%E5%88%87%E6%8D%A2%E5%90%AF%E5%8A%A8%E8%B7%B3%E7%BA%BF%E7%9A%84%E6%83%85%E5%86%B5%E4%B8%8B%E4%BB%8ESD%E5%8D%A1%E5%90%AF%E5%8A%A8%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">1.4.3.1.</span> <span class="nav-text">不切换启动跳线的情况下从SD卡启动的方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#linux%E5%90%AF%E5%8A%A8%E8%87%AA%E5%8A%A8%E5%8A%A0%E8%BD%BDko%E6%A8%A1%E5%9D%97"><span class="nav-number">1.4.4.</span> <span class="nav-text">linux启动自动加载ko模块</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-%E6%9F%A5%E7%9C%8B%E9%A9%B1%E5%8A%A8%E6%98%AF%E5%90%A6%E5%B7%B2%E5%8A%A0%E8%BD%BD"><span class="nav-number">1.4.4.1.</span> <span class="nav-text">1.1 查看驱动是否已加载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-%E6%89%8B%E5%8A%A8%E5%8A%A0%E8%BD%BD-%E5%8D%B8%E8%BD%BD%E9%A9%B1%E5%8A%A8"><span class="nav-number">1.4.4.2.</span> <span class="nav-text">1.2 手动加载&#x2F;卸载驱动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-%E8%87%AA%E5%8A%A8%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6"><span class="nav-number">1.4.4.3.</span> <span class="nav-text">1.3 自动加载机制</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-%E5%86%85%E6%A0%B8%E8%AE%BE%E5%A4%87%E5%8C%B9%E9%85%8D%EF%BC%88%E4%BC%98%E5%85%88%E6%8E%A8%E8%8D%90%EF%BC%89"><span class="nav-number">1.4.4.3.1.</span> <span class="nav-text">(1) 内核设备匹配（优先推荐）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-%E5%BC%80%E6%9C%BA%E5%8A%A0%E8%BD%BD%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">1.4.4.3.2.</span> <span class="nav-text">(2) 开机加载配置文件</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-%E6%8E%A7%E5%88%B6%E6%98%AF%E5%90%A6%E5%8A%A0%E8%BD%BD"><span class="nav-number">1.4.4.4.</span> <span class="nav-text">1.4 控制是否加载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-5-%E6%8E%A7%E5%88%B6%E5%8A%A0%E8%BD%BD%E9%A1%BA%E5%BA%8F"><span class="nav-number">1.4.4.5.</span> <span class="nav-text">1.5 控制加载顺序</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E5%86%85%E6%A0%B8%E6%BA%90%E7%A0%81"><span class="nav-number">1.4.5.</span> <span class="nav-text">编译内核源码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%B7%A5%E5%85%B7%E9%93%BE%E5%87%86%E5%A4%87"><span class="nav-number">1.4.5.1.</span> <span class="nav-text">1.1 交叉编译工具链准备</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-%E5%88%9B%E5%BB%BA%E8%87%AA%E5%AE%9A%E4%B9%89%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">1.4.5.2.</span> <span class="nav-text">1.2 创建自定义配置文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-%E8%BF%9B%E8%A1%8C%E8%87%AA%E5%AE%9A%E4%B9%89%E9%85%8D%E7%BD%AE"><span class="nav-number">1.4.5.3.</span> <span class="nav-text">1.3 进行自定义配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-%E7%BC%96%E8%AF%91"><span class="nav-number">1.4.5.4.</span> <span class="nav-text">1.4 编译</span></a></li></ol></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -257,7 +257,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-11-11 15:46:51" itemprop="dateModified" datetime="2025-11-11T15:46:51+08:00">2025-11-11</time>
+      <time title="修改时间：2025-11-13 11:41:53" itemprop="dateModified" datetime="2025-11-13T11:41:53+08:00">2025-11-13</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -287,14 +287,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.2k</span>
+      <span>4.9k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>4 分钟</span>
+      <span>9 分钟</span>
     </span>
 </div>
 
@@ -306,7 +306,7 @@
     
     <div class="post-body" itemprop="articleBody"><h1>ZYNQ 项目开发指南</h1>
 <h2 id="写在前面">写在前面</h2>
-<p>本博客为博主在项目开发过程中，积累的一些开发经验，以博客的形式记录下来，一是方便自己日后随时查阅，二是分享出来帮助同样遇到问题的同学，少走弯路。共勉！</p>
+<p>本博客为博主在项目开发过程中，积累的一些开发经验，以博客的形式记录下来，一是方便自己日后随时查阅，二是分享出来帮助同样遇到问题的同学，少走弯路。可以直接<code>Ctrl + F</code>搜索关键词，共勉！</p>
 <p><strong>如果遇到有问题但是博主没有记录下来的，欢迎关注<em>未定义科研摸鱼手册</em>微信公众号，后台私信我~</strong></p>
 <span id="more"></span>
 <h2 id="Vivado">Vivado</h2>
@@ -335,9 +335,17 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">set_property library xil_defaultlib [get_files]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>猜测是临时ip核工程，只需要进行一些ip核源代码修改工作，没有添加一些基本库。</p>
 <h2 id="Vitis">Vitis</h2>
-<p>🚧</p>
+<p>🚧<br>
+待更新中…</p>
 <h2 id="PetaLinux">PetaLinux</h2>
 <h3 id="PetaLinux-安装-🚧">PetaLinux 安装   🚧</h3>
+<p>待更新中…</p>
+<h3 id="PetaLinux启动必需文件分析">PetaLinux启动必需文件分析</h3>
+<h4 id="1-1-BOOT-bin🚧">1.1 BOOT.bin🚧</h4>
+<h4 id="1-2-image-ub🚧">1.2 image.ub🚧</h4>
+<h4 id="1-3-boot-scr🚧">1.3 boot.scr🚧</h4>
+<h4 id="1-4-不使用image-ub时🚧">1.4 不使用image.ub时🚧</h4>
+<h4 id="1-5-根文件系统">1.5 根文件系统</h4>
 <h3 id="从SD卡启动PetaLinux">从SD卡启动PetaLinux</h3>
 <ol>
 <li class="lvl-3">
@@ -435,7 +443,149 @@
 <p>这段代码检查启动Flash的启动地址，即外设控制器的地址，如果不存在那么启动失败，正常情况下SD1的地址是不在里面的，我们这里直接添加上</p>
 <p>if 判断中添加一项<code>(FlashReadBaseAddress != 0xE0101000)</code>，将SD1也包含进去。</p>
 <p>编译，下载，结束。</p>
-<h3 id="linux启动自动加载ko模块-运行脚本">linux启动自动加载ko模块/运行脚本</h3>
+<hr>
+<h3 id="linux启动自动加载ko模块">linux启动自动加载ko模块</h3>
+<h4 id="1-1-查看驱动是否已加载">1.1 查看驱动是否已加载</h4>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong>lsmod</strong></p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsmod | grep your_driver_name    </span><br></pre></td></tr></table></figure>
+<p>可以看到驱动模块是否在内核中、依赖的模块、使用计数。</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong>dmesg / journalctl</strong></p>
+</li>
+</ul>
+<p>内核加载模块时会输出日志：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dmesg | grep your_driver_name</span><br><span class="line">journalctl -k | grep your_driver_name</span><br></pre></td></tr></table></figure>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong>cat /sys/module/</strong> */<br>
+列出已加载模块：</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ls</span> /sys/module/</span><br><span class="line"><span class="built_in">cat</span> /sys/module/your_driver_name/parameters/*</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="1-2-手动加载-卸载驱动">1.2 手动加载/卸载驱动</h4>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>加载：</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">insmod your_driver.ko      <span class="comment"># 绝对路径方式</span></span><br><span class="line">modprobe your_driver       <span class="comment"># 按模块名搜索并加载依赖</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>卸载：</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rmmod your_driver</span><br><span class="line">modprobe -r your_driver</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>建议开发阶段用 insmod，量产/系统集成时用 modprobe。</p>
+</blockquote>
+<hr>
+<h4 id="1-3-自动加载机制">1.3 自动加载机制</h4>
+<p>Linux 驱动通常有两种自动加载方式：</p>
+<h5 id="1-内核设备匹配（优先推荐）">(1) <strong>内核设备匹配</strong>（优先推荐）</h5>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>设备树 / ACPI / PCI / USB / platform device 中的 <code>compatible</code> 或 <code>id_table</code> 与驱动模块声明的表匹配后，内核的 <code>udev</code> 会触发 <code>modprobe</code> 自动加载对应模块。</p>
+</li>
+<li class="lvl-2">
+<p>例如 I2C 驱动：</p>
+</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">static</span> <span class="type">const</span> <span class="class"><span class="keyword">struct</span> <span class="title">of_device_id</span> <span class="title">mychip_of_match</span>[] =</span> &#123;</span><br><span class="line">    &#123; .compatible = <span class="string">&quot;myvendor,mychip&quot;</span> &#125;,</span><br><span class="line">    &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line">MODULE_DEVICE_TABLE(of, mychip_of_match);</span><br></pre></td></tr></table></figure>
+<p>当设备树里有：</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">mychip@50</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">compatible</span> <span class="operator">=</span> <span class="string">&quot;myvendor,mychip&quot;</span><span class="punctuation">;</span></span><br><span class="line">    <span class="attr">reg</span> <span class="operator">=</span> <span class="params">&lt;<span class="number">0x50</span>&gt;</span><span class="punctuation">;</span></span><br><span class="line"><span class="punctuation">&#125;;</span></span><br></pre></td></tr></table></figure>
+<p>内核就会在探测到该设备时，自动 <code>modprobe mychip_driver</code>。</p>
+<h5 id="2-开机加载配置文件">(2) <strong>开机加载配置文件</strong></h5>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong>/etc/modules-load.d/</strong></p>
+</li>
+</ul>
+<p>在这个目录下加一个 <code>.conf</code> 文件，例如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;your_driver&quot;</span> | <span class="built_in">sudo</span> <span class="built_in">tee</span> /etc/modules-load.d/your_driver.conf</span><br></pre></td></tr></table></figure>
+<p>开机时 systemd 会自动加载。</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong>/etc/modules</strong>（旧系统）</p>
+</li>
+</ul>
+<p>直接在这个文件里加模块名。</p>
+<hr>
+<h4 id="1-4-控制是否加载">1.4 控制是否加载</h4>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong>阻止某模块加载</strong>：</p>
+</li>
+</ul>
+<p>在 <code>/etc/modprobe.d/blacklist.conf</code> 中写：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">blacklist your_driver</span><br></pre></td></tr></table></figure>
+<p>这样即使匹配上硬件，udev 也不会加载它。</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong>内核编译时禁用</strong>：</p>
+</li>
+</ul>
+<p>在内核配置里把该驱动改成 <code>n</code> 或者 <code>m</code>。</p>
+<hr>
+<h4 id="1-5-控制加载顺序">1.5 控制加载顺序</h4>
+<p>如果你有多个模块，必须保证依赖顺序，可以用几种方法：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong>modprobe 配置依赖</strong>（优先推荐）</p>
+</li>
+</ul>
+<p><code>/etc/modprobe.d/your_driver.conf</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">softdep your_driver pre: dependency_driver</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>表示加载 <code>your_driver</code> 前先加载 <code>dependency_driver</code>。</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong>systemd service</strong></p>
+</li>
+</ul>
+<p>写一个 service 文件，指定 <code>Before=</code> / <code>After=</code> 依赖关系，开机时按顺序加载。</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong>在 init 脚本里手动 insmod 顺序</strong>（嵌入式常用）</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">insmod dep1.ko</span><br><span class="line">insmod dep2.ko</span><br><span class="line">insmod your_driver.ko</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="编译内核源码">编译内核源码</h3>
+<h4 id="1-1-交叉编译工具链准备">1.1 交叉编译工具链准备</h4>
+<p>目标平台为ARM，因此使用<code>arm-none-linux-gnueabihf</code>这一交叉编译工具链</p>
+<p>下载解压之后，命令行中进入工具根目录，执行如下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> <span class="variable">$CROSS_COMPILE</span>=&lt;path/to/toolchain&gt;/bin/arm-none-linux-gnueabihf-</span><br></pre></td></tr></table></figure>
+<p>指定当前命令行窗口的交叉工具编译链为我们需要的工具链。</p>
+<p>可以通过如下命令输出我们刚刚建立的变量，查看是否成功</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="variable">$CROSS_COMPILE</span></span><br></pre></td></tr></table></figure>
+<p>为了方便每次编译时不用再输入那么长的地址，我们可以直接写一个sh脚本文件来快速完成上述工作或者是编辑<code>~/.bashrc</code>文件，在最后一行添加上述命令，这样每次打开窗口会自动执行上述命令。</p>
+<h4 id="1-2-创建自定义配置文件">1.2 创建自定义配置文件</h4>
+<p>进入下载的xilinx提供的内核源码根目录执行如下命令，将<code>xilinx_zynq_defconfig</code>配置为当前环境默认的编译配置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make ARCH=arm CROSS_COMPILE=<span class="variable">$CROSS_COMPILE</span> xilinx_zynq_defconfig</span><br></pre></td></tr></table></figure>
+<p>其中:</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><code>ARCH=arm</code>：指定了编译目标平台架构为arm</p>
+</li>
+<li class="lvl-2">
+<p><code>CROSS_COMPILE=$CROSS_COMPILE</code>：指定使用的交叉编译工具链</p>
+</li>
+</ul>
+<p>即将<code>xilinx_zynq_defconfig</code>配置复制到源码根目录并重命名为<code>.config</code>，作为默认配置</p>
+<h4 id="1-3-进行自定义配置">1.3 进行自定义配置</h4>
+<p>运行如下命令，进入图形界面配置，其中为了保证使用的是交叉工具链，最好加上<code>ARCH=arm CROSS_COMPILE=$CROSS_COMPILE</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make ARCH=arm CROSS_COMPILE=<span class="variable">$CROSS_COMPILE</span> menuconfig</span><br></pre></td></tr></table></figure>
+<p>根据需求完成配置之后保存</p>
+<h4 id="1-4-编译">1.4 编译</h4>
+<p>执行如下命令,开始编译</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make ARCH=arm CROSS_COMPILE=<span class="variable">$CROSS_COMPILE</span> -j4</span><br></pre></td></tr></table></figure>
+<p><code>-j4</code>指定使用的核心数，数量越大，编译越快，但是不要超过实际的核心数</p>
+<p>编译结果会保存在源码根目录的<code>/arch/arm/boot</code>文件夹下</p>
 
     </div>
 
@@ -507,13 +657,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">11k</span>
+    <span title="站点总字数">15k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">40 分钟</span>
+    <span title="站点阅读时长">27 分钟</span>
   </span>
 </div>
 <div class="busuanzi-count">
