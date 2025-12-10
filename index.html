@@ -172,18 +172,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">20</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -314,6 +314,180 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://tinytka.github.io/2025/12/10/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E9%80%9F%E6%9F%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="ptyybb">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TinyTka's Blog">
+      <meta itemprop="description" content="记录我的研究日常">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | TinyTka's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/12/10/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E9%80%9F%E6%9F%A5/" class="post-title-link" itemprop="url">正则表达式速查</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-12-10 19:09:30 / 修改时间：19:42:02" itemprop="dateCreated datePublished" datetime="2025-12-10T19:09:30+08:00">2025-12-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%9F%A5%E8%AF%86%E9%80%9F%E6%9F%A5/" itemprop="url" rel="index"><span itemprop="name">知识速查</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>486</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1>正则表达式</h1>
+<h2 id="基本表达式">基本表达式</h2>
+<table>
+<thead>
+<tr>
+<th>表达式</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.</code></td>
+<td>匹配任意单个字符(除换行)</td>
+</tr>
+<tr>
+<td><code>\d</code></td>
+<td>匹配数字字符(0~9) <code>decimal</code></td>
+</tr>
+<tr>
+<td><code>\D</code></td>
+<td>匹配非数字字符</td>
+</tr>
+<tr>
+<td><code>\s</code></td>
+<td>匹配空白字符（空格，tab，换行）,<code>space</code></td>
+</tr>
+<tr>
+<td><code>\S</code></td>
+<td>匹配非空白字符</td>
+</tr>
+<tr>
+<td><code>\w</code></td>
+<td>匹配字母，数字，下划线</td>
+</tr>
+<tr>
+<td><code>\W</code></td>
+<td>匹配非字母数字下划线</td>
+</tr>
+<tr>
+<td><code>*</code></td>
+<td>重复0次或多次</td>
+</tr>
+<tr>
+<td><code>+</code></td>
+<td>重复1次或多次</td>
+</tr>
+<tr>
+<td><code>?</code></td>
+<td>重复0次或1次</td>
+</tr>
+<tr>
+<td><code>{n}</code></td>
+<td>重复n次</td>
+</tr>
+<tr>
+<td><code>{n,}</code></td>
+<td>重复至少n次</td>
+</tr>
+<tr>
+<td><code>{n,m}</code></td>
+<td>重复n到m次</td>
+</tr>
+</tbody>
+</table>
+<p>对于特殊字符需要使用<code>\</code>进行转译以避免误匹配如匹配<code>.</code>需要使用<code>\.</code>如匹配<code>*</code>需要使用<code>\*</code></p>
+<h2 id="分组">分组</h2>
+<p>以python为例：</p>
+<h3 id="捕获组">捕获组</h3>
+<p><code>(...)</code> ： <code>...</code>表示想要提取的内容对应的表达式</p>
+<p>如提取<code>120mv</code>中的<code>120</code>,可以写为 <code>(\d+)mv</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"><span class="built_in">str</span> = <span class="string">&quot;120mv&quot;</span></span><br><span class="line">re_str = <span class="string">r&#x27;(\d+)mv&#x27;</span></span><br><span class="line"><span class="keyword">match</span> = re.search(re_str,<span class="built_in">str</span>.lower())  <span class="comment"># 将所有大写转为小写，用以匹配</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">match</span>:</span><br><span class="line">    value = <span class="keyword">match</span>,group(<span class="number">1</span>)  <span class="comment"># 提取匹配</span></span><br><span class="line">    <span class="keyword">pass</span> <span class="comment"># 后续处理</span></span><br></pre></td></tr></table></figure>
+<p>使用<code>re.findall</code>获取所有匹配值或者字符串</p>
+<h2 id="举例">举例</h2>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><code>\d+</code> 匹配至少1个或多个数字</p>
+</li>
+<li class="lvl-2">
+<p><code>\S*</code> 匹配0个或多个非空白字符</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://tinytka.github.io/2025/12/03/%E7%A7%91%E5%AD%A6%E7%BB%98%E5%9B%BE%E6%8C%87%E5%8D%97/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -342,9 +516,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2025-12-03 17:02:16 / 修改时间：17:08:57" itemprop="dateCreated datePublished" datetime="2025-12-03T17:02:16+08:00">2025-12-03</time>
+      <time title="创建时间：2025-12-03 17:02:16" itemprop="dateCreated datePublished" datetime="2025-12-03T17:02:16+08:00">2025-12-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-12-10 19:00:39" itemprop="dateModified" datetime="2025-12-10T19:00:39+08:00">2025-12-10</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1265,137 +1445,6 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://tinytka.github.io/2024/09/13/%E4%BD%BF%E7%94%A8ZYNQ%E8%A7%A3%E7%A0%81%E9%AB%98%E9%80%9FADCLVDS%E8%BE%93%E5%87%BA/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="ptyybb">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="TinyTka's Blog">
-      <meta itemprop="description" content="记录我的研究日常">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | TinyTka's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/09/13/%E4%BD%BF%E7%94%A8ZYNQ%E8%A7%A3%E7%A0%81%E9%AB%98%E9%80%9FADCLVDS%E8%BE%93%E5%87%BA/" class="post-title-link" itemprop="url">使用ZYNQ解码高速ADCLVDS输出</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-09-13 20:41:41" itemprop="dateCreated datePublished" datetime="2024-09-13T20:41:41+08:00">2024-09-13</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-11-12 15:18:07" itemprop="dateModified" datetime="2025-11-12T15:18:07+08:00">2025-11-12</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/" itemprop="url" rel="index"><span itemprop="name">嵌入式</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/FPGA/" itemprop="url" rel="index"><span itemprop="name">FPGA</span></a>
-        </span>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>2.3k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>4 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1>使用ZYNQ解码高速ADCLVDS输出</h1>
-<h2 id="1-LVDS简介">1. LVDS简介</h2>
-<p>LVDS（Low Voltage Differential Signaling）是一种差分信号传输技术，广泛应用于高速数据传输中。如图所示，</p>
-<p><img src="/images/lvds.svg" alt="lvds"></p>
-<p>LVDS信号通过两个差分对进行传输，每个差分对由一个正信号和一个负信号组成。这种信号传输方式具有低功耗、低噪声和高速传输的特点，因此在高速数据传输中得到了广泛应用。</p>
-<h2 id="2-AFE5832简介">2.AFE5832简介</h2>
-<p>AFE5832是一款高性能的模拟前端（AFE）芯片，用于高速ADC（模数转换器）的输出。它支持LVDS接口，可以将模拟信号转换为数字信号，并输出到外部设备。AFE5832具有以下特点：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>高分辨率：支持10位或12位分辨率，可以满足不同应用场景的需求。</p>
-</li>
-<li class="lvl-2">
-<p>高采样率：支持最高100 MSPS的采样率，适用于高速数据采集。</p>
-</li>
-<li class="lvl-2">
-<p>低功耗：采用低功耗设计，可以在低电压下稳定工作。</p>
-</li>
-<li class="lvl-2">
-<p>支持LVDS接口：支持LVDS接口，可以将模拟信号转换为数字信号，并输出到外部设备。</p>
-</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2024/09/13/%E4%BD%BF%E7%94%A8ZYNQ%E8%A7%A3%E7%A0%81%E9%AB%98%E9%80%9FADCLVDS%E8%BE%93%E5%87%BA/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
@@ -1419,13 +1468,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">15k</span>
+    <span title="站点总字数">16k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">27 分钟</span>
+    <span title="站点阅读时长">28 分钟</span>
   </span>
 </div>
 <div class="busuanzi-count">

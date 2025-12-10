@@ -172,18 +172,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">20</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -208,6 +208,137 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://tinytka.github.io/2024/09/13/%E4%BD%BF%E7%94%A8ZYNQ%E8%A7%A3%E7%A0%81%E9%AB%98%E9%80%9FADCLVDS%E8%BE%93%E5%87%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="ptyybb">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TinyTka's Blog">
+      <meta itemprop="description" content="记录我的研究日常">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | TinyTka's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/09/13/%E4%BD%BF%E7%94%A8ZYNQ%E8%A7%A3%E7%A0%81%E9%AB%98%E9%80%9FADCLVDS%E8%BE%93%E5%87%BA/" class="post-title-link" itemprop="url">使用ZYNQ解码高速ADCLVDS输出</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-09-13 20:41:41" itemprop="dateCreated datePublished" datetime="2024-09-13T20:41:41+08:00">2024-09-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-11-12 15:18:07" itemprop="dateModified" datetime="2025-11-12T15:18:07+08:00">2025-11-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/" itemprop="url" rel="index"><span itemprop="name">嵌入式</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/FPGA/" itemprop="url" rel="index"><span itemprop="name">FPGA</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.3k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1>使用ZYNQ解码高速ADCLVDS输出</h1>
+<h2 id="1-LVDS简介">1. LVDS简介</h2>
+<p>LVDS（Low Voltage Differential Signaling）是一种差分信号传输技术，广泛应用于高速数据传输中。如图所示，</p>
+<p><img src="/images/lvds.svg" alt="lvds"></p>
+<p>LVDS信号通过两个差分对进行传输，每个差分对由一个正信号和一个负信号组成。这种信号传输方式具有低功耗、低噪声和高速传输的特点，因此在高速数据传输中得到了广泛应用。</p>
+<h2 id="2-AFE5832简介">2.AFE5832简介</h2>
+<p>AFE5832是一款高性能的模拟前端（AFE）芯片，用于高速ADC（模数转换器）的输出。它支持LVDS接口，可以将模拟信号转换为数字信号，并输出到外部设备。AFE5832具有以下特点：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>高分辨率：支持10位或12位分辨率，可以满足不同应用场景的需求。</p>
+</li>
+<li class="lvl-2">
+<p>高采样率：支持最高100 MSPS的采样率，适用于高速数据采集。</p>
+</li>
+<li class="lvl-2">
+<p>低功耗：采用低功耗设计，可以在低电压下稳定工作。</p>
+</li>
+<li class="lvl-2">
+<p>支持LVDS接口：支持LVDS接口，可以将模拟信号转换为数字信号，并输出到外部设备。</p>
+</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2024/09/13/%E4%BD%BF%E7%94%A8ZYNQ%E8%A7%A3%E7%A0%81%E9%AB%98%E9%80%9FADCLVDS%E8%BE%93%E5%87%BA/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -371,13 +502,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">15k</span>
+    <span title="站点总字数">16k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">27 分钟</span>
+    <span title="站点阅读时长">28 分钟</span>
   </span>
 </div>
 <div class="busuanzi-count">

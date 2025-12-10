@@ -19,25 +19,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"tinytka.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.26.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="记录我的研究日常">
-<meta property="og:type" content="website">
-<meta property="og:title" content="TinyTka&#39;s Blog">
-<meta property="og:url" content="https://tinytka.github.io/tags/scipy/index.html">
+    <meta name="description" content="正则表达式 基本表达式    表达式 含义     . 匹配任意单个字符(除换行)   \d 匹配数字字符(0~9) decimal   \D 匹配非数字字符   \s 匹配空白字符（空格，tab，换行）,space   \S 匹配非空白字符   \w 匹配字母，数字，下划线   \W 匹配非字母数字下划线   * 重复0次或多次   + 重复1次或多次   ? 重复0次或1次   {n} 重复n">
+<meta property="og:type" content="article">
+<meta property="og:title" content="正则表达式速查">
+<meta property="og:url" content="https://tinytka.github.io/2025/12/10/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E9%80%9F%E6%9F%A5/index.html">
 <meta property="og:site_name" content="TinyTka&#39;s Blog">
-<meta property="og:description" content="记录我的研究日常">
+<meta property="og:description" content="正则表达式 基本表达式    表达式 含义     . 匹配任意单个字符(除换行)   \d 匹配数字字符(0~9) decimal   \D 匹配非数字字符   \s 匹配空白字符（空格，tab，换行）,space   \S 匹配非空白字符   \w 匹配字母，数字，下划线   \W 匹配非字母数字下划线   * 重复0次或多次   + 重复1次或多次   ? 重复0次或1次   {n} 重复n">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-12-10T11:09:30.000Z">
+<meta property="article:modified_time" content="2025-12-10T11:42:02.018Z">
 <meta property="article:author" content="ptyybb">
-<meta property="article:tag" content="硬件,嵌入式,Linux,C,Python,全栈">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="正则表达式">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://tinytka.github.io/tags/scipy/">
+<link rel="canonical" href="https://tinytka.github.io/2025/12/10/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E9%80%9F%E6%9F%A5/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"tags/scipy/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://tinytka.github.io/2025/12/10/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E9%80%9F%E6%9F%A5/","path":"2025/12/10/正则表达式速查/","title":"正则表达式速查"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>标签: scipy | TinyTka's Blog</title>
+<title>正则表达式速查 | TinyTka's Blog</title>
   
 
 
@@ -145,7 +148,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -158,6 +161,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">正则表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">1.1.</span> <span class="nav-text">基本表达式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E7%BB%84"><span class="nav-number">1.2.</span> <span class="nav-text">分组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8D%95%E8%8E%B7%E7%BB%84"><span class="nav-number">1.2.1.</span> <span class="nav-text">捕获组</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BE%E4%BE%8B"><span class="nav-number">1.3.</span> <span class="nav-text">举例</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -207,50 +211,220 @@
 
     </div>
 
-    <div class="main-inner tag posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
+
+
+<div class="post-block">
   
   
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <h1 class="collection-header">scipy
-          <small>标签</small>
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://tinytka.github.io/2025/12/10/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E9%80%9F%E6%9F%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="ptyybb">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TinyTka's Blog">
+      <meta itemprop="description" content="记录我的研究日常">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="正则表达式速查 | TinyTka's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          正则表达式速查
         </h1>
-      </div>
 
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
       
-    <div class="collection-year">
-      <span class="collection-header">2025</span>
+
+      <time title="创建时间：2025-12-10 19:09:30 / 修改时间：19:42:02" itemprop="dateCreated datePublished" datetime="2025-12-10T19:09:30+08:00">2025-12-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%9F%A5%E8%AF%86%E9%80%9F%E6%9F%A5/" itemprop="url" rel="index"><span itemprop="name">知识速查</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>486</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1>正则表达式</h1>
+<h2 id="基本表达式">基本表达式</h2>
+<table>
+<thead>
+<tr>
+<th>表达式</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.</code></td>
+<td>匹配任意单个字符(除换行)</td>
+</tr>
+<tr>
+<td><code>\d</code></td>
+<td>匹配数字字符(0~9) <code>decimal</code></td>
+</tr>
+<tr>
+<td><code>\D</code></td>
+<td>匹配非数字字符</td>
+</tr>
+<tr>
+<td><code>\s</code></td>
+<td>匹配空白字符（空格，tab，换行）,<code>space</code></td>
+</tr>
+<tr>
+<td><code>\S</code></td>
+<td>匹配非空白字符</td>
+</tr>
+<tr>
+<td><code>\w</code></td>
+<td>匹配字母，数字，下划线</td>
+</tr>
+<tr>
+<td><code>\W</code></td>
+<td>匹配非字母数字下划线</td>
+</tr>
+<tr>
+<td><code>*</code></td>
+<td>重复0次或多次</td>
+</tr>
+<tr>
+<td><code>+</code></td>
+<td>重复1次或多次</td>
+</tr>
+<tr>
+<td><code>?</code></td>
+<td>重复0次或1次</td>
+</tr>
+<tr>
+<td><code>{n}</code></td>
+<td>重复n次</td>
+</tr>
+<tr>
+<td><code>{n,}</code></td>
+<td>重复至少n次</td>
+</tr>
+<tr>
+<td><code>{n,m}</code></td>
+<td>重复n到m次</td>
+</tr>
+</tbody>
+</table>
+<p>对于特殊字符需要使用<code>\</code>进行转译以避免误匹配如匹配<code>.</code>需要使用<code>\.</code>如匹配<code>*</code>需要使用<code>\*</code></p>
+<h2 id="分组">分组</h2>
+<p>以python为例：</p>
+<h3 id="捕获组">捕获组</h3>
+<p><code>(...)</code> ： <code>...</code>表示想要提取的内容对应的表达式</p>
+<p>如提取<code>120mv</code>中的<code>120</code>,可以写为 <code>(\d+)mv</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"><span class="built_in">str</span> = <span class="string">&quot;120mv&quot;</span></span><br><span class="line">re_str = <span class="string">r&#x27;(\d+)mv&#x27;</span></span><br><span class="line"><span class="keyword">match</span> = re.search(re_str,<span class="built_in">str</span>.lower())  <span class="comment"># 将所有大写转为小写，用以匹配</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">match</span>:</span><br><span class="line">    value = <span class="keyword">match</span>,group(<span class="number">1</span>)  <span class="comment"># 提取匹配</span></span><br><span class="line">    <span class="keyword">pass</span> <span class="comment"># 后续处理</span></span><br></pre></td></tr></table></figure>
+<p>使用<code>re.findall</code>获取所有匹配值或者字符串</p>
+<h2 id="举例">举例</h2>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><code>\d+</code> 匹配至少1个或多个数字</p>
+</li>
+<li class="lvl-2">
+<p><code>\S*</code> 匹配0个或多个非空白字符</p>
+</li>
+</ul>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2025-12-03T17:02:16+08:00"
-              content="2025-12-03">
-          12-03
-        </time>
-      </div>
+    
+    
+    
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2025/12/03/%E7%A7%91%E5%AD%A6%E7%BB%98%E5%9B%BE%E6%8C%87%E5%8D%97/" itemprop="url">
-            <span itemprop="name">科学绘图指南</span>
-          </a>
-      </div>
+    <footer class="post-footer">
+          
 
-      
-    </header>
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>ptyybb
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://tinytka.github.io/2025/12/10/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E9%80%9F%E6%9F%A5/" title="正则表达式速查">https://tinytka.github.io/2025/12/10/正则表达式速查/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="tag"># 正则表达式</a>
+              <a href="/tags/python/" rel="tag"># python</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/12/03/%E7%A7%91%E5%AD%A6%E7%BB%98%E5%9B%BE%E6%8C%87%E5%8D%97/" rel="prev" title="科学绘图指南">
+                  <i class="fa fa-angle-left"></i> 科学绘图指南
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
   </article>
+</div>
 
-    </div>
-  </div>
-  
-  
-  
+
+
+
+
 
 </div>
   </main>
