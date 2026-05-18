@@ -172,7 +172,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">14</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -208,6 +208,225 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://tinytka.github.io/2024/09/27/STM32H7%E6%8C%87%E5%AE%9A%E4%BB%8E%E5%A4%96%E9%83%A8Flash%E5%90%AF%E5%8A%A8%E7%A8%8B%E5%BA%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="ptyybb">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TinyTka's Blog">
+      <meta itemprop="description" content="记录我的研究日常">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | TinyTka's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/09/27/STM32H7%E6%8C%87%E5%AE%9A%E4%BB%8E%E5%A4%96%E9%83%A8Flash%E5%90%AF%E5%8A%A8%E7%A8%8B%E5%BA%8F/" class="post-title-link" itemprop="url">STM32H7指定从外部Flash启动程序</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-09-27 21:04:27" itemprop="dateCreated datePublished" datetime="2024-09-27T21:04:27+08:00">2024-09-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-11-04 15:37:24" itemprop="dateModified" datetime="2025-11-04T15:37:24+08:00">2025-11-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/" itemprop="url" rel="index"><span itemprop="name">嵌入式</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/STM32/" itemprop="url" rel="index"><span itemprop="name">STM32</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>3.7k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>13 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1>STM32H7指定从外部Flash启动程序</h1>
+<h2 id="代码启动流程">代码启动流程</h2>
+<p>单片机默认上电之后会从0x80000000处开始执行代码，也就是从内部flash启动。首先我们来看启动流程。</p>
+<p>在开始之前，首先得确保你可以找得到<code>.s</code>文件，比如<code>startup_stm32h7b0xx.s</code>，这个文件是启动文件，在STM32CubeMX生成的代码中，这个文件位于<code>MDK_ARM</code>目录下。</p>
+<p>然后，找到如下代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">__Vectors       DCD     __initial_sp                      ; Top of Stack</span><br><span class="line">                DCD     Reset_Handler                     ; Reset Handler</span><br><span class="line">                DCD     NMI_Handler                       ; NMI Handler</span><br><span class="line">                DCD     HardFault_Handler                 ; Hard Fault Handler</span><br><span class="line">                DCD     MemManage_Handler                 ; MPU Fault Handler</span><br><span class="line">                DCD     BusFault_Handler                  ; Bus Fault Handler</span><br><span class="line">                DCD     UsageFault_Handler                ; Usage Fault Handler</span><br><span class="line">                DCD     0                                 ; Reserved</span><br><span class="line">                DCD     0                                 ; Reserved</span><br><span class="line">                DCD     0                                 ; Reserved</span><br><span class="line">                DCD     0                                 ; Reserved</span><br><span class="line">                DCD     SVC_Handler                       ; SVCall Handler</span><br><span class="line">                DCD     DebugMon_Handler                  ; Debug Monitor Handler</span><br><span class="line">                DCD     0                                 ; Reserved</span><br><span class="line">                DCD     PendSV_Handler                    ; PendSV Handler</span><br><span class="line">                DCD     SysTick_Handler                   ; SysTick Handler</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2024/09/27/STM32H7%E6%8C%87%E5%AE%9A%E4%BB%8E%E5%A4%96%E9%83%A8Flash%E5%90%AF%E5%8A%A8%E7%A8%8B%E5%BA%8F/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://tinytka.github.io/2024/09/26/%E4%BD%BF%E7%94%A8ZYNQ%E8%A7%A3%E7%A0%81%E9%AB%98%E9%80%9FADCLVDS%E8%BE%93%E5%87%BA-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="ptyybb">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TinyTka's Blog">
+      <meta itemprop="description" content="记录我的研究日常">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | TinyTka's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/09/26/%E4%BD%BF%E7%94%A8ZYNQ%E8%A7%A3%E7%A0%81%E9%AB%98%E9%80%9FADCLVDS%E8%BE%93%E5%87%BA-2/" class="post-title-link" itemprop="url">使用ZYNQ解码高速ADCLVDS输出(2) 🚧</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-09-26 21:26:01" itemprop="dateCreated datePublished" datetime="2024-09-26T21:26:01+08:00">2024-09-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-11-05 20:22:26" itemprop="dateModified" datetime="2025-11-05T20:22:26+08:00">2025-11-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/" itemprop="url" rel="index"><span itemprop="name">嵌入式</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/FPGA/" itemprop="url" rel="index"><span itemprop="name">FPGA</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>0</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -283,7 +502,7 @@
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>4 分钟</span>
+      <span>8 分钟</span>
     </span>
 </div>
 
@@ -491,7 +710,7 @@
 
   <div class="copyright">
     &copy; 2024 – 
-    <span itemprop="copyrightYear">2025</span>
+    <span itemprop="copyrightYear">2026</span>
     <span class="with-love">
       <i class="fa fa-heart"></i>
     </span>
@@ -508,7 +727,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">28 分钟</span>
+    <span title="站点阅读时长">58 分钟</span>
   </span>
 </div>
 <div class="busuanzi-count">
