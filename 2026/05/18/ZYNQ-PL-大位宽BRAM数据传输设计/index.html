@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"tinytka.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.26.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="Zynq PL 大位宽 BRAM 设计实践 核心问题  AXI BRAM Controller 与 Block Memory Generator 的位宽与地址映射问题  在 Zynq 的 PL 设计中，使用 AXI BRAM Controller + Block Memory Generator（BMG） 构建片上高速缓存是一种非常常见的方案。在常规 32&#x2F;64&#x2F;128bit 数据宽度下，这套结构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ZYNQ PL 大位宽BRAM数据传输设计">
+<meta property="og:url" content="https://tinytka.github.io/2026/05/18/ZYNQ-PL-%E5%A4%A7%E4%BD%8D%E5%AE%BDBRAM%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93%E8%AE%BE%E8%AE%A1/index.html">
+<meta property="og:site_name" content="TinyTka&#39;s Blog">
+<meta property="og:description" content="Zynq PL 大位宽 BRAM 设计实践 核心问题  AXI BRAM Controller 与 Block Memory Generator 的位宽与地址映射问题  在 Zynq 的 PL 设计中，使用 AXI BRAM Controller + Block Memory Generator（BMG） 构建片上高速缓存是一种非常常见的方案。在常规 32&#x2F;64&#x2F;128bit 数据宽度下，这套结构">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-05-18T04:39:04.000Z">
+<meta property="article:modified_time" content="2026-05-18T04:43:07.827Z">
+<meta property="article:author" content="ptyybb">
+<meta property="article:tag" content="硬件,嵌入式,Linux,C,Python,全栈">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://tinytka.github.io/2026/05/18/ZYNQ-PL-%E5%A4%A7%E4%BD%8D%E5%AE%BDBRAM%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93%E8%AE%BE%E8%AE%A1/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://tinytka.github.io/2026/05/18/ZYNQ-PL-%E5%A4%A7%E4%BD%8D%E5%AE%BDBRAM%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93%E8%AE%BE%E8%AE%A1/","path":"2026/05/18/ZYNQ-PL-大位宽BRAM数据传输设计/","title":"ZYNQ PL 大位宽BRAM数据传输设计"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>ZYNQ PL 大位宽BRAM数据传输设计 | TinyTka's Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">TinyTka's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">力争全栈</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">Zynq PL 大位宽 BRAM 设计实践</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">一、问题现象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-BMG-%E9%85%8D%E7%BD%AE%E4%B8%BA-%E2%80%9CAXI-BRAM-Controller%E2%80%9D-%E6%A8%A1%E5%BC%8F%E6%97%B6%E6%8A%A5%E4%BD%8D%E5%AE%BD%E4%B8%8D%E5%8C%B9%E9%85%8D"><span class="nav-number">2.1.</span> <span class="nav-text">1. BMG 配置为 “AXI BRAM Controller” 模式时报位宽不匹配</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-standalone-%E6%A8%A1%E5%BC%8F%E4%B8%8B%EF%BC%8C%E5%8F%AA%E6%9C%89%E5%89%8D%E5%87%A0%E4%B8%AA%E5%9C%B0%E5%9D%80%E6%9C%89%E6%95%B0%E6%8D%AE"><span class="nav-number">2.2.</span> <span class="nav-text">2. standalone 模式下，只有前几个地址有数据</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">二、AXI 地址的真实含义</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-256bit-BRAM-%E7%9A%84%E5%AD%98%E5%82%A8%E7%B2%92%E5%BA%A6"><span class="nav-number">3.1.</span> <span class="nav-text">1. 256bit BRAM 的存储粒度</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text">三、PS 端 32bit 写入时，AXI 地址如何变化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">5.</span> <span class="nav-text">四、为什么需要地址位宽转换</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E9%94%99%E8%AF%AF%E5%86%99%E6%B3%95"><span class="nav-number">5.1.</span> <span class="nav-text">1. 错误写法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">6.</span> <span class="nav-text">五、正确的地址转换方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E6%A0%B7%E5%86%99"><span class="nav-number">6.1.</span> <span class="nav-text">1. 为什么这样写</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">7.</span> <span class="nav-text">六、容量匹配问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#AXI-%E5%9C%B0%E5%9D%80%E7%A9%BA%E9%97%B4%E4%B8%8E-BRAM-%E5%AE%9E%E9%99%85%E5%AE%B9%E9%87%8F%E5%BF%85%E9%A1%BB%E4%B8%80%E8%87%B4"><span class="nav-number">7.1.</span> <span class="nav-text">AXI 地址空间与 BRAM 实际容量必须一致</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#AXI-BRAM-Controller"><span class="nav-number">7.1.1.</span> <span class="nav-text">AXI BRAM Controller</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BMG"><span class="nav-number">7.1.2.</span> <span class="nav-text">BMG</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">8.</span> <span class="nav-text">七、工程建议</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-BMG-%E4%BD%BF%E7%94%A8-standalone"><span class="nav-number">8.1.</span> <span class="nav-text">1. BMG 使用 standalone</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%98%BE%E5%BC%8F%E5%81%9A-byte-%E2%86%92-word-%E5%9C%B0%E5%9D%80%E8%BD%AC%E6%8D%A2"><span class="nav-number">8.2.</span> <span class="nav-text">2. 显式做 byte → word 地址转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%8F%82%E6%95%B0%E5%8C%96%E5%9C%B0%E5%9D%80%E8%BD%AC%E6%8D%A2%E9%80%BB%E8%BE%91"><span class="nav-number">8.3.</span> <span class="nav-text">3. 参数化地址转换逻辑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E6%A3%80%E6%9F%A5-AXI-%E5%9C%B0%E5%9D%80%E7%A9%BA%E9%97%B4%E4%B8%8E-BRAM-%E6%B7%B1%E5%BA%A6"><span class="nav-number">8.4.</span> <span class="nav-text">4. 检查 AXI 地址空间与 BRAM 深度</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">9.</span> <span class="nav-text">八、总结</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ptyybb"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">ptyybb</p>
+  <div class="site-description" itemprop="description">记录我的研究日常</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/TinyTKA" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;TinyTKA" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://tinytka.github.io/2026/05/18/ZYNQ-PL-%E5%A4%A7%E4%BD%8D%E5%AE%BDBRAM%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93%E8%AE%BE%E8%AE%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="ptyybb">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TinyTka's Blog">
+      <meta itemprop="description" content="记录我的研究日常">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="ZYNQ PL 大位宽BRAM数据传输设计 | TinyTka's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ZYNQ PL 大位宽BRAM数据传输设计
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-05-18 12:39:04 / 修改时间：12:43:07" itemprop="dateCreated datePublished" datetime="2026-05-18T12:39:04+08:00">2026-05-18</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>3.2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>6 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1>Zynq PL 大位宽 BRAM 设计实践</h1>
+<p><strong>核心问题</strong></p>
+<blockquote>
+<p>AXI BRAM Controller 与 Block Memory Generator 的位宽与地址映射问题</p>
+</blockquote>
+<p>在 Zynq 的 PL 设计中，使用 <strong>AXI BRAM Controller + Block Memory Generator（BMG）</strong> 构建片上高速缓存是一种非常常见的方案。在常规 32/64/128bit 数据宽度下，这套结构通常可以直接使用 Vivado Block Design 自动连接完成设计。</p>
+<p>但当系统开始追求更高吞吐，例如：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>FPGA 内部使用 256bit 数据流</p>
+</li>
+<li class="lvl-2">
+<p>AXI HP/HPC 接口进行宽总线搬运</p>
+</li>
+<li class="lvl-2">
+<p>多通道数据聚合后以 256bit 为最小处理单元</p>
+</li>
+<li class="lvl-2">
+<p>图像处理 / DMA 缓冲采用宽位宽流水</p>
+</li>
+</ul>
+<p>这时，AXI BRAM Controller 与 BMG 的组合会暴露出一个非常典型的问题：</p>
+<blockquote>
+<p>AXI BRAM Controller 可以配置为 256bit，但 BMG 在 “AXI BRAM Controller” 模式下不会自动跟随位宽变化，最终导致位宽不匹配，甚至在 standalone 模式下出现 BRAM 地址异常。</p>
+</blockquote>
+<p>本文基于一次完整工程实践，对这个问题的根本原因、AXI 地址语义以及正确的大位宽 BRAM 地址映射方法进行总结。</p>
+<hr>
+<h1>一、问题现象</h1>
+<p>系统结构如下：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>PS 端通过 AXI 访问 BRAM</p>
+</li>
+<li class="lvl-2">
+<p>AXI BRAM Controller 数据宽度配置为 256bit</p>
+</li>
+<li class="lvl-2">
+<p>后端 BRAM 使用 Block Memory Generator</p>
+</li>
+<li class="lvl-2">
+<p>PL 侧通过 Port B 以 256bit 宽度读取数据</p>
+</li>
+</ul>
+<p>在 Vivado 中，首先会遇到：</p>
+<h2 id="1-BMG-配置为-“AXI-BRAM-Controller”-模式时报位宽不匹配">1. BMG 配置为 “AXI BRAM Controller” 模式时报位宽不匹配</h2>
+<p>原因在于：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>AXI BRAM Controller 支持更大的 AXI 数据宽度</p>
+</li>
+<li class="lvl-2">
+<p>但 BMG 的 “axi-bram-ctrl” 模式内部参数推导并不会自动扩展到 256bit</p>
+</li>
+<li class="lvl-2">
+<p>BRAM 位宽仍按默认逻辑生成</p>
+</li>
+<li class="lvl-2">
+<p>最终导致 width mismatch</p>
+</li>
+</ul>
+<p>因此：</p>
+<blockquote>
+<p>在 256bit 场景下，BMG 必须使用 standalone 模式。</p>
+</blockquote>
+<p>随后又会出现第二个问题：</p>
+<h2 id="2-standalone-模式下，只有前几个地址有数据">2. standalone 模式下，只有前几个地址有数据</h2>
+<p>例如：</p>
+<ol>
+<li class="lvl-3">
+<p>PS 连续写入多个 256bit 数据块</p>
+</li>
+<li class="lvl-3">
+<p>Port B 读取时：</p>
+</li>
+</ol>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><code>addr=0</code> 有数据</p>
+</li>
+<li class="lvl-2">
+<p><code>addr=1</code> 有数据</p>
+</li>
+<li class="lvl-2">
+<p>后续地址全部为 0</p>
+</li>
+</ul>
+<p>这个现象来自：</p>
+<blockquote>
+<p>AXI BRAM Controller 输出的是 byte address，而 BMG standalone 使用的是 word address。</p>
+</blockquote>
+<hr>
+<h1>二、AXI 地址的真实含义</h1>
+<p>首先需要明确：</p>
+<blockquote>
+<p>AXI 总线地址永远是“字节地址（byte address）”。</p>
+</blockquote>
+<p>这一点与数据宽度无关。即使 AXI 数据宽度配置为：64bit，128bit，256bit，地址仍然以 Byte 为单位递增。</p>
+<hr>
+<h2 id="1-256bit-BRAM-的存储粒度">1. 256bit BRAM 的存储粒度</h2>
+<p>当前设计中：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DATA_WIDTH = 256bit</span><br></pre></td></tr></table></figure>
+<p>即：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">256bit = 32 Byte</span><br></pre></td></tr></table></figure>
+<p>因此：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>一个 BRAM word = 32 Byte</p>
+</li>
+<li class="lvl-2">
+<p>BRAM word index 每增加 1</p>
+</li>
+<li class="lvl-2">
+<p>实际对应 byte address 增加 32</p>
+</li>
+</ul>
+<p>也就是说：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">word_addr = byte_addr / 32</span><br></pre></td></tr></table></figure>
+<p>等价于：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">word_addr = byte_addr &gt;&gt; 5</span><br></pre></td></tr></table></figure>
+<p>因为：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">log2(32) = 5</span><br></pre></td></tr></table></figure>
+<hr>
+<h1>三、PS 端 32bit 写入时，AXI 地址如何变化</h1>
+<p>PS 端使用：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">XBram_WriteReg(BASE, offset, value);</span><br></pre></td></tr></table></figure>
+<p>每次调用实际上都是：</p>
+<blockquote>
+<p>一次 32bit AXI 写事务</p>
+</blockquote>
+<p>例如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">XBram_WriteReg(BASE, <span class="number">0</span>,  data0);</span><br><span class="line">XBram_WriteReg(BASE, <span class="number">4</span>,  data1);</span><br><span class="line">XBram_WriteReg(BASE, <span class="number">8</span>,  data2);</span><br><span class="line">...</span><br><span class="line">XBram_WriteReg(BASE, <span class="number">28</span>, data7);</span><br></pre></td></tr></table></figure>
+<p>AXI 地址变化如下：</p>
+<table>
+<thead>
+<tr>
+<th>写入</th>
+<th>Byte Address</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>data1</td>
+<td>4</td>
+</tr>
+<tr>
+<td>data2</td>
+<td>8</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr>
+<td>data7</td>
+<td>28</td>
+</tr>
+</tbody>
+</table>
+<p>虽然 AXI BRAM Controller 是 256bit 宽度，但：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>地址仍按 byte 递增</p>
+</li>
+<li class="lvl-2">
+<p>每次只更新 256bit word 中对应的 4 字节 lane</p>
+</li>
+<li class="lvl-2">
+<p>AXI BRAM Controller 内部通过 WSTRB 控制字节写使能</p>
+</li>
+</ul>
+<p>因此：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0~31 Byte</span><br></pre></td></tr></table></figure>
+<p>这一段地址范围实际上都属于：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BRAM word 0</span><br></pre></td></tr></table></figure>
+<p>而：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">32~63 Byte</span><br></pre></td></tr></table></figure>
+<p>属于：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BRAM word 1</span><br></pre></td></tr></table></figure>
+<hr>
+<h1>四、为什么需要地址位宽转换</h1>
+<p>在 standalone 模式下：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>AXI BRAM Controller 输出：</p>
+<ul class="lvl-2">
+<li class="lvl-4">byte address</li>
+</ul>
+</li>
+<li class="lvl-2">
+<p>BMG standalone 输入：</p>
+<ul class="lvl-2">
+<li class="lvl-4">word address</li>
+</ul>
+</li>
+</ul>
+<p>因此必须进行转换。</p>
+<hr>
+<h2 id="1-错误写法">1. 错误写法</h2>
+<p>很多情况下容易直接取高位：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">assign</span> bram_addr = ctrl_bram_addr[<span class="number">15</span>:<span class="number">7</span>];</span><br></pre></td></tr></table></figure>
+<p>这等价于：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">word_addr = byte_addr &gt;&gt; 7</span><br></pre></td></tr></table></figure>
+<p>即：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">按 128 Byte 对齐</span><br></pre></td></tr></table></figure>
+<p>问题在于：</p>
+<p>当前 BRAM word 实际只有：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">32 Byte</span><br></pre></td></tr></table></figure>
+<p>于是：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>0~127 Byte 都映射到 BRAM addr=0</p>
+</li>
+<li class="lvl-2">
+<p>128~255 Byte 映射到 BRAM addr=1</p>
+</li>
+</ul>
+<p>最终表现为：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>只有 addr=0 和 addr=1 有数据</p>
+</li>
+<li class="lvl-2">
+<p>后续地址全为 0</p>
+</li>
+</ul>
+<p>这也是很多“大位宽 BRAM 只有前几个地址有效”的根本原因。</p>
+<hr>
+<h1>五、正确的地址转换方法</h1>
+<p>核心原则：</p>
+<blockquote>
+<p>丢弃低 <code>log2(DATA_WIDTH/8)</code> 位字节偏移。</p>
+</blockquote>
+<p>推荐实现：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">localparam</span> <span class="keyword">integer</span> ADDR_LSB =</span><br><span class="line">    <span class="built_in">$clog2</span>(CONTROLLER_DATA_WIDTH/<span class="number">8</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">assign</span> bram_addr =</span><br><span class="line">    ctrl_bram_addr[</span><br><span class="line">        ADDR_LSB + STANDALONE_ADDR_WIDTH - <span class="number">1</span></span><br><span class="line">        :</span><br><span class="line">        ADDR_LSB</span><br><span class="line">    ];</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="1-为什么这样写">1. 为什么这样写</h2>
+<p>以：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DATA_WIDTH = 256bit</span><br></pre></td></tr></table></figure>
+<p>为例：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">256bit = 32 Byte</span><br><span class="line">log2(32) = 5</span><br></pre></td></tr></table></figure>
+<p>因此：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ADDR_LSB = 5</span><br></pre></td></tr></table></figure>
+<p>即：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctrl_bram_addr[4:0]</span><br></pre></td></tr></table></figure>
+<p>仅表示：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">一个 256bit word 内部的字节偏移</span><br></pre></td></tr></table></figure>
+<p>这些位对于 BMG word 地址没有意义，因此需要丢弃。</p>
+<p>真正的 BRAM word index 是：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctrl_bram_addr &gt;&gt; 5</span><br></pre></td></tr></table></figure>
+<p>而：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ctrl_bram_addr[</span><br><span class="line">    ADDR_LSB + STANDALONE_ADDR_WIDTH - <span class="number">1</span></span><br><span class="line">    :</span><br><span class="line">    ADDR_LSB</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>本质上正是在完成：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(byte_addr &gt;&gt; 5)</span><br></pre></td></tr></table></figure>
+<p>后的低 <code>STANDALONE_ADDR_WIDTH</code> 位截取。</p>
+<hr>
+<h1>六、容量匹配问题</h1>
+<p>另一个容易忽略的问题是：</p>
+<h2 id="AXI-地址空间与-BRAM-实际容量必须一致">AXI 地址空间与 BRAM 实际容量必须一致</h2>
+<p>例如：</p>
+<h3 id="AXI-BRAM-Controller">AXI BRAM Controller</h3>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Address Space = 64KB</span><br></pre></td></tr></table></figure>
+<h3 id="BMG">BMG</h3>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Width = 256bit</span><br><span class="line">Depth = 512</span><br></pre></td></tr></table></figure>
+<p>实际容量：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">512 × 32B = 16KB</span><br></pre></td></tr></table></figure>
+<p>因此：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>只有最低 16KB 有真实 BRAM</p>
+</li>
+<li class="lvl-2">
+<p>超过部分地址访问会读到 0</p>
+</li>
+<li class="lvl-2">
+<p>若需要完整 64KB：</p>
+<ul class="lvl-2">
+<li class="lvl-4">depth 应为：</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">64KB / 32B = 2048</span><br></pre></td></tr></table></figure>
+<hr>
+<h1>七、工程建议</h1>
+<p>对于 256bit 及以上的大位宽 BRAM 设计，建议：</p>
+<h2 id="1-BMG-使用-standalone">1. BMG 使用 standalone</h2>
+<p>不要依赖：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AXI BRAM Controller mode</span><br></pre></td></tr></table></figure>
+<p>进行自动位宽推导。</p>
+<hr>
+<h2 id="2-显式做-byte-→-word-地址转换">2. 显式做 byte → word 地址转换</h2>
+<p>牢记：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">word_addr = byte_addr &gt;&gt; log2(DATA_WIDTH/8)</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="3-参数化地址转换逻辑">3. 参数化地址转换逻辑</h2>
+<p>不要写死：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">15</span>:<span class="number">5</span>]</span><br></pre></td></tr></table></figure>
+<p>而应使用：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">$clog2</span>(DATA_WIDTH/<span class="number">8</span>)</span><br></pre></td></tr></table></figure>
+<p>自动适配不同位宽。</p>
+<hr>
+<h2 id="4-检查-AXI-地址空间与-BRAM-深度">4. 检查 AXI 地址空间与 BRAM 深度</h2>
+<p>确保：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BRAM容量 = Depth × DataWidth/8</span><br></pre></td></tr></table></figure>
+<p>与 AXI 地址范围一致。</p>
+<hr>
+<h1>八、总结</h1>
+<p>AXI BRAM Controller 与 BMG 在大位宽场景下的问题，本质上来自：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>AXI 地址使用 byte address</p>
+</li>
+<li class="lvl-2">
+<p>BMG standalone 使用 word address</p>
+</li>
+<li class="lvl-2">
+<p>Vivado 不会自动完成两者之间的语义转换</p>
+</li>
+</ul>
+<p>因此：</p>
+<blockquote>
+<p>大位宽 BRAM 设计中，地址适配层是功能正确性的必要部分，而不仅仅是接口封装。</p>
+</blockquote>
+<p>对于：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>256bit 数据流</p>
+</li>
+<li class="lvl-2">
+<p>高吞吐缓存</p>
+</li>
+<li class="lvl-2">
+<p>FPGA 图像处理</p>
+</li>
+<li class="lvl-2">
+<p>DAS / DMA 缓冲</p>
+</li>
+<li class="lvl-2">
+<p>多通道聚合存储</p>
+</li>
+</ul>
+<p>这些系统，正确理解：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">byte address → word address</span><br></pre></td></tr></table></figure>
+<p>的转换关系，是保证 BRAM 数据布局正确的关键。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>ptyybb
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://tinytka.github.io/2026/05/18/ZYNQ-PL-%E5%A4%A7%E4%BD%8D%E5%AE%BDBRAM%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93%E8%AE%BE%E8%AE%A1/" title="ZYNQ PL 大位宽BRAM数据传输设计">https://tinytka.github.io/2026/05/18/ZYNQ-PL-大位宽BRAM数据传输设计/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/05/18/bash%E7%BB%88%E7%AB%AF%E8%84%9A%E6%9C%AC%E5%86%85export%E5%8F%98%E9%87%8F%E6%97%A0%E6%95%88%E9%97%AE%E9%A2%98/" rel="prev" title="bash终端脚本内export变量无效问题">
+                  <i class="fa fa-angle-left"></i> bash终端脚本内export变量无效问题
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/06/01/%E6%96%87%E7%8C%AE%E8%B0%83%E7%A0%94%E4%B8%93%E9%A2%98/" rel="next" title="文献调研专题">
+                  文献调研专题 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2024 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">ptyybb</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">32k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">58 分钟</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("03/01/2023 10:00:00"); //此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒.";
+    }
+setInterval("createtime()",250);
+</script>
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

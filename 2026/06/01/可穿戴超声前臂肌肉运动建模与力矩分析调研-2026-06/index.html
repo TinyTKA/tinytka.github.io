@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"tinytka.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.26.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="可穿戴超声在前臂肌肉运动、建模与力矩分析中的研究进展 写在前面 这篇文章整理一下截至 2026-06-01，可穿戴超声在前臂肌肉运动感知、建模、抓握力&#x2F;手指力估计、关节力矩分析方面的主要研究进展。 这次调研重点看的是近几年的代表工作，时间上主要覆盖 2023-2026。 文章目标比较明确，主要回答下面几个问题：   前臂方向的可穿戴超声现在主要在做什么   相关研究已经从手势识别推进到了什么程度">
+<meta property="og:type" content="article">
+<meta property="og:title" content="可穿戴超声在前臂肌肉运动、建模与力矩分析中的研究进展">
+<meta property="og:url" content="https://tinytka.github.io/2026/06/01/%E5%8F%AF%E7%A9%BF%E6%88%B4%E8%B6%85%E5%A3%B0%E5%89%8D%E8%87%82%E8%82%8C%E8%82%89%E8%BF%90%E5%8A%A8%E5%BB%BA%E6%A8%A1%E4%B8%8E%E5%8A%9B%E7%9F%A9%E5%88%86%E6%9E%90%E8%B0%83%E7%A0%94-2026-06/index.html">
+<meta property="og:site_name" content="TinyTka&#39;s Blog">
+<meta property="og:description" content="可穿戴超声在前臂肌肉运动、建模与力矩分析中的研究进展 写在前面 这篇文章整理一下截至 2026-06-01，可穿戴超声在前臂肌肉运动感知、建模、抓握力&#x2F;手指力估计、关节力矩分析方面的主要研究进展。 这次调研重点看的是近几年的代表工作，时间上主要覆盖 2023-2026。 文章目标比较明确，主要回答下面几个问题：   前臂方向的可穿戴超声现在主要在做什么   相关研究已经从手势识别推进到了什么程度">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-06-01T12:55:00.000Z">
+<meta property="article:modified_time" content="2026-06-01T07:21:05.233Z">
+<meta property="article:author" content="ptyybb">
+<meta property="article:tag" content="人机交互">
+<meta property="article:tag" content="力矩分析">
+<meta property="article:tag" content="可穿戴超声">
+<meta property="article:tag" content="文献调研">
+<meta property="article:tag" content="肌肉运动">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://tinytka.github.io/2026/06/01/%E5%8F%AF%E7%A9%BF%E6%88%B4%E8%B6%85%E5%A3%B0%E5%89%8D%E8%87%82%E8%82%8C%E8%82%89%E8%BF%90%E5%8A%A8%E5%BB%BA%E6%A8%A1%E4%B8%8E%E5%8A%9B%E7%9F%A9%E5%88%86%E6%9E%90%E8%B0%83%E7%A0%94-2026-06/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://tinytka.github.io/2026/06/01/%E5%8F%AF%E7%A9%BF%E6%88%B4%E8%B6%85%E5%A3%B0%E5%89%8D%E8%87%82%E8%82%8C%E8%82%89%E8%BF%90%E5%8A%A8%E5%BB%BA%E6%A8%A1%E4%B8%8E%E5%8A%9B%E7%9F%A9%E5%88%86%E6%9E%90%E8%B0%83%E7%A0%94-2026-06/","path":"2026/06/01/可穿戴超声前臂肌肉运动建模与力矩分析调研-2026-06/","title":"可穿戴超声在前臂肌肉运动、建模与力矩分析中的研究进展"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>可穿戴超声在前臂肌肉运动、建模与力矩分析中的研究进展 | TinyTka's Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">TinyTka's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">力争全栈</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">可穿戴超声在前臂肌肉运动、建模与力矩分析中的研究进展</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="nav-number">1.1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E8%BF%99%E5%87%A0%E5%B9%B4%E6%95%B4%E4%BD%93%E5%8F%91%E5%B1%95%E5%88%B0%E4%BA%86%E5%93%AA%E4%B8%80%E6%AD%A5"><span class="nav-number">1.2.</span> <span class="nav-text">1. 这几年整体发展到了哪一步</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E6%97%A9%E6%9C%9F%E9%87%8D%E7%82%B9%E5%9C%A8%E6%89%8B%E5%8A%BF%E8%AF%86%E5%88%AB%E5%92%8C%E5%8A%A8%E4%BD%9C%E8%A7%A3%E7%A0%81"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.1 早期重点在手势识别和动作解码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-%E8%BF%91%E5%87%A0%E5%B9%B4%E5%BC%80%E5%A7%8B%E8%BD%AC%E5%90%91%E8%BF%9E%E7%BB%AD%E8%BF%90%E5%8A%A8%E5%AD%A6%E8%BE%93%E5%87%BA"><span class="nav-number">1.2.2.</span> <span class="nav-text">1.2 近几年开始转向连续运动学输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-%E5%90%8C%E6%97%B6%E5%BC%80%E5%A7%8B%E8%BF%9B%E5%85%A5%E5%8A%9B%E5%92%8C%E5%8A%A8%E5%8A%9B%E5%AD%A6%E9%87%8F%E4%BC%B0%E8%AE%A1"><span class="nav-number">1.2.3.</span> <span class="nav-text">1.3 同时开始进入力和动力学量估计</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E8%BF%90%E5%8A%A8%E6%84%9F%E7%9F%A5%E6%96%B9%E5%90%91%EF%BC%9A%E4%BB%8E%E6%89%8B%E5%8A%BF%E5%88%86%E7%B1%BB%E8%B5%B0%E5%90%91%E8%BF%9E%E7%BB%AD%E8%B7%9F%E8%B8%AA"><span class="nav-number">1.3.</span> <span class="nav-text">2. 运动感知方向：从手势分类走向连续跟踪</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-wrist-hand-kinematics-tracking-%E5%B7%B2%E7%BB%8F%E6%88%90%E4%B8%BA%E4%B8%BB%E7%BA%BF%E4%B9%8B%E4%B8%80"><span class="nav-number">1.4.</span> <span class="nav-text">2.1 wrist &#x2F; hand kinematics tracking 已经成为主线之一</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-2025-%E5%B9%B4%E5%BC%80%E5%A7%8B%E5%BC%BA%E8%B0%83%E8%B7%A8%E4%BA%BA%E5%92%8C%E8%B7%A8%E6%97%B6%E6%AE%B5%E6%B3%9B%E5%8C%96"><span class="nav-number">1.5.</span> <span class="nav-text">2.2 2025 年开始强调跨人和跨时段泛化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-2026-%E5%B9%B4%E5%B7%B2%E7%BB%8F%E8%83%BD%E5%81%9A%E5%88%B0%E9%AB%98%E8%87%AA%E7%94%B1%E5%BA%A6%E8%BF%9E%E7%BB%AD%E6%89%8B%E9%83%A8%E8%B7%9F%E8%B8%AA"><span class="nav-number">1.6.</span> <span class="nav-text">2.3 2026 年已经能做到高自由度连续手部跟踪</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%BB%BA%E6%A8%A1%E6%96%B9%E5%90%91%EF%BC%9A%E7%8E%B0%E5%9C%A8%E4%B8%BB%E8%A6%81%E6%80%8E%E4%B9%88%E5%81%9A"><span class="nav-number">1.7.</span> <span class="nav-text">3. 建模方向：现在主要怎么做</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-%E6%98%BE%E5%BC%8F%E7%89%B9%E5%BE%81%E5%BB%BA%E6%A8%A1"><span class="nav-number">1.8.</span> <span class="nav-text">3.1 显式特征建模</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AB%AF%E5%88%B0%E7%AB%AF%E5%BB%BA%E6%A8%A1"><span class="nav-number">1.9.</span> <span class="nav-text">3.2 深度学习端到端建模</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%B3%9B%E5%8C%96%E5%BB%BA%E6%A8%A1"><span class="nav-number">1.10.</span> <span class="nav-text">3.3 迁移学习与泛化建模</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%8A%9B%E3%80%81%E6%8A%93%E6%8F%A1%E5%8A%9B%E5%92%8C%E5%8A%9B%E7%9F%A9%E5%88%86%E6%9E%90%EF%BC%9A%E7%9B%AE%E5%89%8D%E5%81%9A%E5%88%B0%E5%93%AA%E4%B8%80%E6%AD%A5"><span class="nav-number">1.11.</span> <span class="nav-text">4. 力、抓握力和力矩分析：目前做到哪一步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-finger-force-%E5%92%8C-grip-force-%E5%B7%B2%E7%BB%8F%E5%BC%80%E5%A7%8B%E6%AF%94%E8%BE%83%E7%B3%BB%E7%BB%9F%E5%9C%B0%E5%87%BA%E7%8E%B0"><span class="nav-number">1.12.</span> <span class="nav-text">4.1 finger force 和 grip force 已经开始比较系统地出现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%87%E5%8A%9B%E4%BC%B0%E8%AE%A1"><span class="nav-number">1.12.1.</span> <span class="nav-text">指力估计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%93%E6%8F%A1%E5%8A%9B%E4%B8%8E%E8%85%95%E8%A7%92%E5%90%8C%E6%AD%A5%E4%BC%B0%E8%AE%A1"><span class="nav-number">1.12.2.</span> <span class="nav-text">抓握力与腕角同步估计</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-joint-torque-estimation-%E5%B7%B2%E7%BB%8F%E6%9C%89%E9%87%8C%E7%A8%8B%E7%A2%91%E6%96%B9%E6%B3%95"><span class="nav-number">1.13.</span> <span class="nav-text">4.2 joint torque estimation 已经有里程碑方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-%E5%BD%93%E5%89%8D%E5%89%8D%E8%87%82-torque-%E7%A0%94%E7%A9%B6%E7%9A%84%E7%8A%B6%E6%80%81"><span class="nav-number">1.14.</span> <span class="nav-text">4.3 当前前臂 torque 研究的状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E5%BD%93%E5%89%8D%E4%B8%BB%E8%A6%81%E6%8A%80%E6%9C%AF%E7%93%B6%E9%A2%88"><span class="nav-number">1.15.</span> <span class="nav-text">5. 当前主要技术瓶颈</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-%E8%A7%A3%E5%89%96%E5%92%8C%E7%94%9F%E7%90%86%E5%B1%82%E9%9D%A2%E7%9A%84%E5%A4%8D%E6%9D%82%E6%80%A7"><span class="nav-number">1.16.</span> <span class="nav-text">5.1 解剖和生理层面的复杂性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-%E4%BD%A9%E6%88%B4%E4%B8%8E%E9%87%8D%E6%A0%A1%E5%87%86%E9%97%AE%E9%A2%98"><span class="nav-number">1.17.</span> <span class="nav-text">5.2 佩戴与重校准问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-3-%E5%BB%BA%E6%A8%A1%E5%8F%AF%E8%A7%A3%E9%87%8A%E6%80%A7%E4%B8%8D%E8%B6%B3"><span class="nav-number">1.18.</span> <span class="nav-text">5.3 建模可解释性不足</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E5%90%8E%E7%BB%AD%E5%80%BC%E5%BE%97%E7%BB%A7%E7%BB%AD%E8%B7%9F%E8%B8%AA%E7%9A%84%E5%87%A0%E4%B8%AA%E9%97%AE%E9%A2%98"><span class="nav-number">1.19.</span> <span class="nav-text">6. 后续值得继续跟踪的几个问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-1-wrist-finger-torque-%E7%9A%84%E7%9B%B4%E6%8E%A5%E4%BC%B0%E8%AE%A1"><span class="nav-number">1.20.</span> <span class="nav-text">6.1 wrist &#x2F; finger torque 的直接估计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-2-%E4%BD%8E%E9%80%9A%E9%81%93%E3%80%81%E4%BD%8E%E5%8A%9F%E8%80%97%E5%89%8D%E8%87%82%E7%B3%BB%E7%BB%9F"><span class="nav-number">1.21.</span> <span class="nav-text">6.2 低通道、低功耗前臂系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-3-%E6%9B%B4%E5%8F%AF%E8%A7%A3%E9%87%8A%E7%9A%84%E5%BB%BA%E6%A8%A1%E6%96%B9%E6%B3%95"><span class="nav-number">1.22.</span> <span class="nav-text">6.3 更可解释的建模方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-4-%E8%B7%A8%E6%97%A5%E3%80%81%E9%87%8D%E4%BD%A9%E6%88%B4%E5%92%8C%E7%96%B2%E5%8A%B3%E4%B8%8B%E7%9A%84%E9%B2%81%E6%A3%92%E6%80%A7"><span class="nav-number">1.23.</span> <span class="nav-text">6.4 跨日、重佩戴和疲劳下的鲁棒性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E5%B0%8F%E7%BB%93"><span class="nav-number">1.24.</span> <span class="nav-text">7. 小结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE%E4%B8%8E%E9%93%BE%E6%8E%A5"><span class="nav-number">1.25.</span> <span class="nav-text">8. 参考文献与链接</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ptyybb"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">ptyybb</p>
+  <div class="site-description" itemprop="description">记录我的研究日常</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/TinyTKA" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;TinyTKA" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://tinytka.github.io/2026/06/01/%E5%8F%AF%E7%A9%BF%E6%88%B4%E8%B6%85%E5%A3%B0%E5%89%8D%E8%87%82%E8%82%8C%E8%82%89%E8%BF%90%E5%8A%A8%E5%BB%BA%E6%A8%A1%E4%B8%8E%E5%8A%9B%E7%9F%A9%E5%88%86%E6%9E%90%E8%B0%83%E7%A0%94-2026-06/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="ptyybb">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TinyTka's Blog">
+      <meta itemprop="description" content="记录我的研究日常">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="可穿戴超声在前臂肌肉运动、建模与力矩分析中的研究进展 | TinyTka's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          可穿戴超声在前臂肌肉运动、建模与力矩分析中的研究进展
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-06-01 20:55:00 / 修改时间：15:21:05" itemprop="dateCreated datePublished" datetime="2026-06-01T20:55:00+08:00">2026-06-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95/" itemprop="url" rel="index"><span itemprop="name">科研记录</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95/%E6%96%87%E7%8C%AE%E8%B0%83%E7%A0%94/" itemprop="url" rel="index"><span itemprop="name">文献调研</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95/%E6%96%87%E7%8C%AE%E8%B0%83%E7%A0%94/%E5%8F%AF%E7%A9%BF%E6%88%B4%E8%B6%85%E5%A3%B0/" itemprop="url" rel="index"><span itemprop="name">可穿戴超声</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>7.8k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>14 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1>可穿戴超声在前臂肌肉运动、建模与力矩分析中的研究进展</h1>
+<h2 id="写在前面">写在前面</h2>
+<p>这篇文章整理一下截至 <strong>2026-06-01</strong>，可穿戴超声在<strong>前臂肌肉运动感知、建模、抓握力/手指力估计、关节力矩分析</strong>方面的主要研究进展。</p>
+<p>这次调研重点看的是近几年的代表工作，时间上主要覆盖 <strong>2023-2026</strong>。</p>
+<p>文章目标比较明确，主要回答下面几个问题：</p>
+<ol>
+<li class="lvl-3">
+<p>前臂方向的可穿戴超声现在主要在做什么</p>
+</li>
+<li class="lvl-3">
+<p>相关研究已经从手势识别推进到了什么程度</p>
+</li>
+<li class="lvl-3">
+<p>力、抓握力、关节力矩这一类输出量目前做到哪一步</p>
+</li>
+<li class="lvl-3">
+<p>如果后续继续做这个方向，哪些问题还值得重点跟踪</p>
+</li>
+</ol>
+<p>先给结论：</p>
+<blockquote>
+<p>到 2026 年，前臂方向的可穿戴超声研究已经从“离散手势分类”推进到“连续腕手运动跟踪、抓握力估计和 joint torque estimation 范式建立”，但 wrist/finger torque 的直接 wearable ultrasound 研究还不算多，机制约束建模和长期鲁棒性也还在继续发展。</p>
+</blockquote>
+<span id="more"></span>
+<hr>
+<h2 id="1-这几年整体发展到了哪一步">1. 这几年整体发展到了哪一步</h2>
+<p>如果把前臂方向的研究按时间线简单梳理，可以大致看到下面这个过程：</p>
+<h3 id="1-1-早期重点在手势识别和动作解码">1.1 早期重点在手势识别和动作解码</h3>
+<p>这一阶段的核心问题比较直接：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>前臂超声能不能读到肌肉形变</p>
+</li>
+<li class="lvl-2">
+<p>这些形变能不能区分不同手势或动作</p>
+</li>
+</ul>
+<p>因此评价指标通常也比较简单，主要看：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>分类准确率</p>
+</li>
+<li class="lvl-2">
+<p>实时性</p>
+</li>
+<li class="lvl-2">
+<p>佩戴可行性</p>
+</li>
+</ul>
+<h3 id="1-2-近几年开始转向连续运动学输出">1.2 近几年开始转向连续运动学输出</h3>
+<p>到 2024-2026 年，前臂方向的代表工作已经不再只做离散类别预测，而是进一步做：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>wrist / hand kinematics tracking</p>
+</li>
+<li class="lvl-2">
+<p>多自由度连续控制</p>
+</li>
+<li class="lvl-2">
+<p>VR / robotic hand 控制</p>
+</li>
+<li class="lvl-2">
+<p>跨人、跨时段、重佩戴泛化</p>
+</li>
+</ul>
+<p>这说明研究目标已经从“识别某个动作”转向“持续跟踪肌肉驱动下的运动状态”。</p>
+<h3 id="1-3-同时开始进入力和动力学量估计">1.3 同时开始进入力和动力学量估计</h3>
+<p>除了动作和角度之外，近几年的另一个明显变化是：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>从前臂超声中估计 <strong>isometric force</strong></p>
+</li>
+<li class="lvl-2">
+<p>估计 <strong>finger force / grip force</strong></p>
+</li>
+<li class="lvl-2">
+<p>进一步建立 <strong>joint torque estimation</strong> 路线</p>
+</li>
+</ul>
+<p>这一步很关键，因为它意味着前臂超声开始从“动作识别传感器”向“动力学感知传感器”发展。</p>
+<hr>
+<h2 id="2-运动感知方向：从手势分类走向连续跟踪">2. 运动感知方向：从手势分类走向连续跟踪</h2>
+<h2 id="2-1-wrist-hand-kinematics-tracking-已经成为主线之一">2.1 wrist / hand kinematics tracking 已经成为主线之一</h2>
+<p>一个比较有代表性的工作是：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong>Sgambato et al., IEEE TBME, 2024</strong><br>
+<em>High Performance Wearable Ultrasound as a Human-Machine Interface for Wrist and Hand Kinematic Tracking</em><br>
+链接：<a target="_blank" rel="noopener" href="https://colab.ws/articles/10.1109%2FTBME.2023.3307952">CoLab 条目</a></p>
+</li>
+</ul>
+<p>这类工作的意义在于：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>系统从单探头演示变成了多通道前臂臂环</p>
+</li>
+<li class="lvl-2">
+<p>目标从手势分类变成 wrist/hand movement intention decoding</p>
+</li>
+<li class="lvl-2">
+<p>更接近实际的人机交互和连续控制需求</p>
+</li>
+</ul>
+<p>从系统角度看，这一步的变化其实很重要：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>关注点不再只是“肌肉有没有变化”</p>
+</li>
+<li class="lvl-2">
+<p>而是“整圈前臂形变能不能稳定映射到腕手运动状态”</p>
+</li>
+</ul>
+<h2 id="2-2-2025-年开始强调跨人和跨时段泛化">2.2 2025 年开始强调跨人和跨时段泛化</h2>
+<p>另一篇非常关键的工作是：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong>Sgambato et al., Nature Communications, 2025</strong><br>
+<em>Virtual reality interactions via a user-generic ultrasound human-machine interface for wrist and hand tracking</em><br>
+链接：<a target="_blank" rel="noopener" href="https://www.nature.com/articles/s41467-025-66001-6">Nature Communications 2025</a></p>
+</li>
+</ul>
+<p>从公开页面可确认的要点包括：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>使用 <strong>32 个 A-mode 单元</strong>构成可穿戴 wrist bracelet</p>
+</li>
+<li class="lvl-2">
+<p>使用 <strong>silicone elastomer</strong> 作为干耦合界面</p>
+</li>
+<li class="lvl-2">
+<p>输出包括 <strong>3 个 wrist DoFs + 1 个 hand DoF</strong></p>
+</li>
+<li class="lvl-2">
+<p>重点研究 <strong>cross-session</strong> 和 <strong>cross-participant</strong> 泛化</p>
+</li>
+</ul>
+<p>这篇工作比较重要的地方不只是精度，而是它把前臂超声 HMI 里的几个核心工程问题摆到了台面上：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>重贴附之后还准不准</p>
+</li>
+<li class="lvl-2">
+<p>换一个人之后还准不准</p>
+</li>
+<li class="lvl-2">
+<p>数据增强和参考策略能不能减少重校准</p>
+</li>
+</ul>
+<h2 id="2-3-2026-年已经能做到高自由度连续手部跟踪">2.3 2026 年已经能做到高自由度连续手部跟踪</h2>
+<p>目前公开报道中，前臂/腕部运动解码最强的一类系统之一是：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong>Lu et al., Nature Electronics, 2026</strong><br>
+<em>Hand tracking using wearable wrist imaging</em><br>
+链接：<a target="_blank" rel="noopener" href="https://www.nature.com/articles/s41928-026-01594-4">Nature Electronics 2026</a></p>
+</li>
+</ul>
+<p>根据公开摘要，这项工作已经做到：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong>fully integrated wireless wearable ultrasound imaging wristband</strong></p>
+</li>
+<li class="lvl-2">
+<p>可实时连续跟踪五指和手掌姿态</p>
+</li>
+<li class="lvl-2">
+<p>输出达到 <strong>22 个自由度</strong></p>
+</li>
+<li class="lvl-2">
+<p>系统延迟 <strong>&lt;120 ms</strong></p>
+</li>
+</ul>
+<p>如果把它放在前臂方向的技术脉络里看，这说明：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>前臂可穿戴超声已经进入高自由度连续 tracking 阶段</p>
+</li>
+<li class="lvl-2">
+<p>无线化和一体化系统已经成为主流目标之一</p>
+</li>
+</ul>
+<hr>
+<h2 id="3-建模方向：现在主要怎么做">3. 建模方向：现在主要怎么做</h2>
+<p>当前前臂可穿戴超声的建模，大致可以分成 3 类。</p>
+<h2 id="3-1-显式特征建模">3.1 显式特征建模</h2>
+<p>这一类方法会先从超声信号里抽取人工设计特征，例如：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>echo peak</p>
+</li>
+<li class="lvl-2">
+<p>peak location</p>
+</li>
+<li class="lvl-2">
+<p>thickness change</p>
+</li>
+<li class="lvl-2">
+<p>envelope statistics</p>
+</li>
+<li class="lvl-2">
+<p>sparse scanline morphology</p>
+</li>
+</ul>
+<p>代表工作：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong>Qu et al., Sensors and Actuators A, 2024</strong><br>
+<em>Synchronous gesture recognition and muscle force estimation based on piezoelectric micromachined ultrasound transducer</em><br>
+链接：<a target="_blank" rel="noopener" href="https://www.sciencedirect.com/science/article/abs/pii/S0924424724006812">ScienceDirect 摘要</a></p>
+</li>
+</ul>
+<p>公开摘要可确认：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>手势识别准确率约 <strong>95.84 ± 1.48%</strong></p>
+</li>
+<li class="lvl-2">
+<p>力估计 <strong>R² = 0.919</strong></p>
+</li>
+</ul>
+<p>这类方法的特点是：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>计算负担相对较低</p>
+</li>
+<li class="lvl-2">
+<p>便于做小系统、低功耗系统</p>
+</li>
+<li class="lvl-2">
+<p>可解释性通常比纯深度网络更强</p>
+</li>
+</ul>
+<p>但问题也很明确：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>特征工程比较依赖经验</p>
+</li>
+<li class="lvl-2">
+<p>跨用户泛化通常不够稳定</p>
+</li>
+</ul>
+<h2 id="3-2-深度学习端到端建模">3.2 深度学习端到端建模</h2>
+<p>这条路线近几年增长很快。</p>
+<p>比较有代表性的工作包括：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong>Kamatham et al., 2024</strong><br>
+<em>SonoMyoNet: A Convolutional Neural Network for Predicting Isometric Force from Highly Sparse Ultrasound Images</em><br>
+链接：<a target="_blank" rel="noopener" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11225932/">PMC</a></p>
+</li>
+<li class="lvl-2">
+<p><strong>Lee et al., Scientific Reports, 2025</strong><br>
+<em>A deep learning framework for finger motion recognition using forearm ultrasound imaging</em><br>
+链接：<a target="_blank" rel="noopener" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12612224/">PMC</a></p>
+</li>
+</ul>
+<p>这类工作的共同特点是：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>减少手工特征设计</p>
+</li>
+<li class="lvl-2">
+<p>直接学习时空特征</p>
+</li>
+<li class="lvl-2">
+<p>更适合复杂动态任务</p>
+</li>
+</ul>
+<p>例如 <strong>SonoMyoNet</strong> 的一个关键结论是：</p>
+<blockquote>
+<p>即使只用很少的 scanlines，也仍然可以对 continuous isometric force 做有效回归。</p>
+</blockquote>
+<p>这个结果很有参考意义，因为它直接说明：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>前臂力估计未必一定需要完整 B-mode</p>
+</li>
+<li class="lvl-2">
+<p>稀疏 A-mode / sparse scanline 可能更适合低功耗 wearable 系统</p>
+</li>
+</ul>
+<h2 id="3-3-迁移学习与泛化建模">3.3 迁移学习与泛化建模</h2>
+<p>前臂方向还有一类越来越重要的工作，是围绕：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>cross-subject</p>
+</li>
+<li class="lvl-2">
+<p>cross-time</p>
+</li>
+<li class="lvl-2">
+<p>repositioning robustness</p>
+</li>
+</ul>
+<p>展开的。</p>
+<p>代表工作包括：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong>Yue et al., IEEE Sensors Journal, 2024</strong><br>
+<em>A Transfer Learning Strategy for Cross-Subject and Cross-Time Hand Gesture Recognition Based on A-mode Ultrasound</em><br>
+链接：<a target="_blank" rel="noopener" href="https://colab.ws/articles/10.1109/jsen.2024.3382040">CoLab 条目</a></p>
+</li>
+<li class="lvl-2">
+<p><strong>Sgambato et al., Nature Communications, 2025</strong><br>
+链接：<a target="_blank" rel="noopener" href="https://www.nature.com/articles/s41467-025-66001-6">Nature Communications 2025</a></p>
+</li>
+</ul>
+<p>从研究重心变化上看，这类工作说明一个事实：</p>
+<p>前臂超声建模当前面对的核心问题已经不只是“模型能不能拟合训练集”，而是：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>换一个人之后模型还能不能用</p>
+</li>
+<li class="lvl-2">
+<p>重戴一次之后性能还能不能保持</p>
+</li>
+<li class="lvl-2">
+<p>旋前/旋后、轻微偏移之后还能不能稳定输出</p>
+</li>
+</ul>
+<hr>
+<h2 id="4-力、抓握力和力矩分析：目前做到哪一步">4. 力、抓握力和力矩分析：目前做到哪一步</h2>
+<h2 id="4-1-finger-force-和-grip-force-已经开始比较系统地出现">4.1 finger force 和 grip force 已经开始比较系统地出现</h2>
+<h3 id="指力估计">指力估计</h3>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong>Bimbraw &amp; Zhang, IEEE IUS, 2023</strong><br>
+<em>Estimating Force Exerted by the Fingers Based on Forearm Ultrasound</em><br>
+链接：<a target="_blank" rel="noopener" href="https://bimbraw.github.io/files/2023208571_approved.pdf">PDF</a></p>
+</li>
+</ul>
+<p>公开 PDF 中可以确认：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>使用 wireless ultrasound probe + custom armband</p>
+</li>
+<li class="lvl-2">
+<p>做不同手指的分类和连续力估计</p>
+</li>
+<li class="lvl-2">
+<p>平均分类准确率约 <strong>82%</strong></p>
+</li>
+<li class="lvl-2">
+<p>连续力估计平均 <strong>RMSE = 0.20 N</strong></p>
+</li>
+</ul>
+<p>这说明前臂超声已经能够携带一定程度的<strong>单指级 force information</strong>，但也能看出：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>测试方式一旦更严格</p>
+</li>
+<li class="lvl-2">
+<p>时间相关性一旦被打破</p>
+</li>
+<li class="lvl-2">
+<p>性能会明显下降</p>
+</li>
+</ul>
+<p>这反映出当前模型对时序依赖和泛化问题仍然比较敏感。</p>
+<h3 id="抓握力与腕角同步估计">抓握力与腕角同步估计</h3>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong>Rima et al., IEEE ICORR, 2025</strong><br>
+<em>Miniaturized Wearable Ultrasound System for Simultaneous Prediction of Wrist Angle and Grip Force During Dynamic Reaching</em><br>
+链接：<a target="_blank" rel="noopener" href="https://pubmed.ncbi.nlm.nih.gov/40644083/">PubMed</a></p>
+</li>
+</ul>
+<p>公开摘要可确认：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>4 个前臂单元换能器</p>
+</li>
+<li class="lvl-2">
+<p>输入为 <strong>M-mode</strong></p>
+</li>
+<li class="lvl-2">
+<p>同时预测 <strong>wrist angle + grip force</strong></p>
+</li>
+<li class="lvl-2">
+<p>MLP 在 unseen data 上结果为：</p>
+<ul class="lvl-2">
+<li class="lvl-4">wrist angle：<strong>R² = 0.85 ± 0.06</strong></li>
+<li class="lvl-4">grip force：<strong>R² = 0.74 ± 0.07</strong></li>
+</ul>
+</li>
+</ul>
+<p>这项工作的关键意义在于：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>不再把“动作”和“力”拆开做</p>
+</li>
+<li class="lvl-2">
+<p>开始向真实上肢控制里更常见的“运动学 + 动力学同时输出”靠近</p>
+</li>
+</ul>
+<h2 id="4-2-joint-torque-estimation-已经有里程碑方法">4.2 joint torque estimation 已经有里程碑方法</h2>
+<p>目前动力学方向最关键的代表作之一是：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong>Jin et al., Nature Communications, 2024</strong><br>
+<em>Estimation of joint torque in dynamic activities using wearable A-mode ultrasound</em><br>
+链接：<a target="_blank" rel="noopener" href="https://www.nature.com/articles/s41467-024-50038-0">Nature Communications 2024</a></p>
+</li>
+</ul>
+<p>根据公开摘要，这篇工作的核心结果包括：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>在 dynamic activities 中估计 joint torque</p>
+</li>
+<li class="lvl-2">
+<p>使用 wearable A-mode ultrasound 跟踪 muscle thickness changes</p>
+</li>
+<li class="lvl-2">
+<p>在 controlled isokinetic contractions 中：</p>
+<ul class="lvl-2">
+<li class="lvl-4"><strong>elbow and knee torque errors &lt; 7.6%</strong></li>
+<li class="lvl-4"><strong>R² &gt; 0.92</strong></li>
+</ul>
+</li>
+</ul>
+<p>虽然这篇工作并不是专门针对前臂，但它给出了一个非常重要的方法学参考：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>可穿戴超声可以从肌肉厚度变化进一步走向关节力矩估计</p>
+</li>
+<li class="lvl-2">
+<p>这一套路线后续完全可以向 wrist / finger torque 延伸</p>
+</li>
+</ul>
+<h2 id="4-3-当前前臂-torque-研究的状态">4.3 当前前臂 torque 研究的状态</h2>
+<p>截至 2026-06-01，从公开文献分布来看：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong>前臂动作识别</strong>：已经很多</p>
+</li>
+<li class="lvl-2">
+<p><strong>前臂连续运动学跟踪</strong>：已经比较成熟</p>
+</li>
+<li class="lvl-2">
+<p><strong>前臂 finger force / grip force 估计</strong>：已有代表作</p>
+</li>
+<li class="lvl-2">
+<p><strong>前臂 wrist / finger torque 的直接 wearable ultrasound 估计</strong>：仍然相对少</p>
+</li>
+</ul>
+<p>因此当前阶段更准确的描述是：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>前臂方向已经具备继续做 torque 分析的系统基础和方法参考</p>
+</li>
+<li class="lvl-2">
+<p>但 wrist/finger torque 本身仍然是一个相对空缺的细分问题</p>
+</li>
+</ul>
+<hr>
+<h2 id="5-当前主要技术瓶颈">5. 当前主要技术瓶颈</h2>
+<h2 id="5-1-解剖和生理层面的复杂性">5.1 解剖和生理层面的复杂性</h2>
+<p>前臂比很多大肌肉部位更难做，原因很直接：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>肌群密集</p>
+</li>
+<li class="lvl-2">
+<p>浅层和深层结构交叠明显</p>
+</li>
+<li class="lvl-2">
+<p>手指动作存在明显的肌腱和肌群耦合</p>
+</li>
+<li class="lvl-2">
+<p>旋前/旋后会改变截面结构关系</p>
+</li>
+</ul>
+<p>这会导致一个问题：</p>
+<blockquote>
+<p>同样的输出动作，在不同个体、不同姿态下，对应的超声形态变化不一定完全一致。</p>
+</blockquote>
+<h2 id="5-2-佩戴与重校准问题">5.2 佩戴与重校准问题</h2>
+<p>当前文献已经反复说明下面这些问题很关键：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>重贴附之后 imaging plane 会漂移</p>
+</li>
+<li class="lvl-2">
+<p>长时间佩戴后耦合条件会变化</p>
+</li>
+<li class="lvl-2">
+<p>疲劳会改变肌肉形态和输出之间的映射</p>
+</li>
+<li class="lvl-2">
+<p>前臂旋转会带来更明显的截面失配</p>
+</li>
+</ul>
+<p>这也是为什么 2025-2026 的很多工作都开始强调：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>cross-session</p>
+</li>
+<li class="lvl-2">
+<p>user-generic</p>
+</li>
+<li class="lvl-2">
+<p>repositioning robustness</p>
+</li>
+</ul>
+<h2 id="5-3-建模可解释性不足">5.3 建模可解释性不足</h2>
+<p>现在大部分模型仍然是从超声数据直接回归：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>动作类别</p>
+</li>
+<li class="lvl-2">
+<p>角度</p>
+</li>
+<li class="lvl-2">
+<p>力</p>
+</li>
+<li class="lvl-2">
+<p>力矩</p>
+</li>
+</ul>
+<p>但仍然缺少更强的机制约束，例如把下面这些量更系统地联合起来：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>muscle morphology</p>
+</li>
+<li class="lvl-2">
+<p>tendon excursion</p>
+</li>
+<li class="lvl-2">
+<p>joint kinematics</p>
+</li>
+<li class="lvl-2">
+<p>joint kinetics</p>
+</li>
+<li class="lvl-2">
+<p>moment arm / musculoskeletal prior</p>
+</li>
+</ul>
+<hr>
+<h2 id="6-后续值得继续跟踪的几个问题">6. 后续值得继续跟踪的几个问题</h2>
+<p>基于当前文献分布，后续比较值得持续跟踪的问题主要有下面几类。</p>
+<h2 id="6-1-wrist-finger-torque-的直接估计">6.1 wrist / finger torque 的直接估计</h2>
+<p>这一块目前公开工作相对少，但和前臂应用场景的联系很强。</p>
+<p>后续可以重点看：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>wrist flexion-extension torque</p>
+</li>
+<li class="lvl-2">
+<p>pronation/supination 对 torque mapping 的影响</p>
+</li>
+<li class="lvl-2">
+<p>finger joint torque 的可估计性</p>
+</li>
+</ul>
+<h2 id="6-2-低通道、低功耗前臂系统">6.2 低通道、低功耗前臂系统</h2>
+<p>如果目标是 wearable system，后续会持续遇到下面这些问题：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>是否真的需要完整 B-mode</p>
+</li>
+<li class="lvl-2">
+<p>4-8 通道是否已经足够</p>
+</li>
+<li class="lvl-2">
+<p>哪些 scanlines 或 anatomical windows 信息量最高</p>
+</li>
+<li class="lvl-2">
+<p>边缘推理和事件触发能不能把平均功耗降下来</p>
+</li>
+</ul>
+<h2 id="6-3-更可解释的建模方法">6.3 更可解释的建模方法</h2>
+<p>后续一个很自然的方向是把前臂肌骨先验引进来，例如：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>muscle synergy</p>
+</li>
+<li class="lvl-2">
+<p>tendon path</p>
+</li>
+<li class="lvl-2">
+<p>moment arm</p>
+</li>
+<li class="lvl-2">
+<p>physics-informed / hybrid model</p>
+</li>
+</ul>
+<p>这类工作如果做出来，通常会更适合回答：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>为什么模型在不同人身上会失效</p>
+</li>
+<li class="lvl-2">
+<p>为什么某些姿态变化会带来估计偏差</p>
+</li>
+</ul>
+<h2 id="6-4-跨日、重佩戴和疲劳下的鲁棒性">6.4 跨日、重佩戴和疲劳下的鲁棒性</h2>
+<p>如果以后要把前臂超声真正往长期佩戴系统推进，这一块基本绕不开：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>strap shift</p>
+</li>
+<li class="lvl-2">
+<p>coupling drift</p>
+</li>
+<li class="lvl-2">
+<p>fatigue-aware modeling</p>
+</li>
+<li class="lvl-2">
+<p>self-supervised / test-time adaptation</p>
+</li>
+</ul>
+<hr>
+<h2 id="7-小结">7. 小结</h2>
+<p>截至 <strong>2026-06-01</strong>，前臂方向的可穿戴超声研究已经形成了比较清楚的演进路线：</p>
+<ol>
+<li class="lvl-3">
+<p>从离散手势识别走向连续 wrist-hand kinematics tracking</p>
+</li>
+<li class="lvl-3">
+<p>从单一动作输出走向 grip force、finger force、joint torque 等动力学相关量</p>
+</li>
+<li class="lvl-3">
+<p>从单次实验精度走向跨用户、跨时段和重佩戴鲁棒性</p>
+</li>
+<li class="lvl-3">
+<p>从实验室算法走向无线化、一体化和边缘部署</p>
+</li>
+</ol>
+<p>如果只看当前研究分布，前臂方向后续最值得重点盯的并不是“还能不能继续提高动作分类准确率”，而是：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>连续运动学和动力学量的联合输出</p>
+</li>
+<li class="lvl-2">
+<p>wrist/finger torque 的直接 wearable estimation</p>
+</li>
+<li class="lvl-2">
+<p>更可解释的肌骨约束建模</p>
+</li>
+<li class="lvl-2">
+<p>面向真实佩戴条件的鲁棒性和低功耗实现</p>
+</li>
+</ul>
+<hr>
+<h2 id="8-参考文献与链接">8. 参考文献与链接</h2>
+<ol>
+<li class="lvl-3">
+<p>Jin Y, Alvarez JT, Suitor EL, et al. <em>Estimation of joint torque in dynamic activities using wearable A-mode ultrasound</em>. Nature Communications, 2024.<br>
+<a target="_blank" rel="noopener" href="https://www.nature.com/articles/s41467-024-50038-0">https://www.nature.com/articles/s41467-024-50038-0</a></p>
+</li>
+<li class="lvl-3">
+<p>Sgambato BG, Hasbani MH, Barsakcioglu DY, et al. <em>High Performance Wearable Ultrasound as a Human-Machine Interface for Wrist and Hand Kinematic Tracking</em>. IEEE TBME, 2024.<br>
+<a target="_blank" rel="noopener" href="https://colab.ws/articles/10.1109%2FTBME.2023.3307952">https://colab.ws/articles/10.1109%2FTBME.2023.3307952</a></p>
+</li>
+<li class="lvl-3">
+<p>Kamatham AT, Alzamani M, Dockum A, et al. <em>SonoMyoNet: A Convolutional Neural Network for Predicting Isometric Force from Highly Sparse Ultrasound Images</em>. 2024.<br>
+<a target="_blank" rel="noopener" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11225932/">https://pmc.ncbi.nlm.nih.gov/articles/PMC11225932/</a></p>
+</li>
+<li class="lvl-3">
+<p>Qu M, Zhou J, Lv D, et al. <em>Synchronous gesture recognition and muscle force estimation based on piezoelectric micromachined ultrasound transducer</em>. 2024.<br>
+<a target="_blank" rel="noopener" href="https://www.sciencedirect.com/science/article/abs/pii/S0924424724006812">https://www.sciencedirect.com/science/article/abs/pii/S0924424724006812</a></p>
+</li>
+<li class="lvl-3">
+<p>Yue L, Lu ZX, Huang X, et al. <em>A Transfer Learning Strategy for Cross-Subject and Cross-Time Hand Gesture Recognition Based on A-mode Ultrasound</em>. IEEE Sensors Journal, 2024.<br>
+<a target="_blank" rel="noopener" href="https://colab.ws/articles/10.1109/jsen.2024.3382040">https://colab.ws/articles/10.1109/jsen.2024.3382040</a></p>
+</li>
+<li class="lvl-3">
+<p>Bimbraw K, Zhang HK, Islam B. <em>Forearm Ultrasound based Gesture Recognition on Edge</em>. 2024.<br>
+<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2409.09915">https://arxiv.org/abs/2409.09915</a></p>
+</li>
+<li class="lvl-3">
+<p>Rima AH, Taghizadeh Z, Bashatah A, et al. <em>Miniaturized Wearable Ultrasound System for Simultaneous Prediction of Wrist Angle and Grip Force During Dynamic Reaching</em>. IEEE ICORR, 2025.<br>
+<a target="_blank" rel="noopener" href="https://pubmed.ncbi.nlm.nih.gov/40644083/">https://pubmed.ncbi.nlm.nih.gov/40644083/</a></p>
+</li>
+<li class="lvl-3">
+<p>Sgambato BG, Hodossy BK, Barsakcioglu DY, et al. <em>Virtual reality interactions via a user-generic ultrasound human-machine interface for wrist and hand tracking</em>. Nature Communications, 2025.<br>
+<a target="_blank" rel="noopener" href="https://www.nature.com/articles/s41467-025-66001-6">https://www.nature.com/articles/s41467-025-66001-6</a></p>
+</li>
+<li class="lvl-3">
+<p>Lee Y, Ko K, et al. <em>A deep learning framework for finger motion recognition using forearm ultrasound imaging</em>. Scientific Reports, 2025.<br>
+<a target="_blank" rel="noopener" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12612224/">https://pmc.ncbi.nlm.nih.gov/articles/PMC12612224/</a></p>
+</li>
+<li class="lvl-4">
+<p>Lu G, Kim S, Chen X, et al. <em>Hand tracking using wearable wrist imaging</em>. Nature Electronics, 2026.<br>
+<a target="_blank" rel="noopener" href="https://www.nature.com/articles/s41928-026-01594-4">https://www.nature.com/articles/s41928-026-01594-4</a></p>
+</li>
+<li class="lvl-4">
+<p>Bimbraw K, Zhang HK. <em>Estimating Force Exerted by the Fingers Based on Forearm Ultrasound</em>. IEEE IUS, 2023.<br>
+<a target="_blank" rel="noopener" href="https://bimbraw.github.io/files/2023208571_approved.pdf">https://bimbraw.github.io/files/2023208571_approved.pdf</a></p>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>ptyybb
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://tinytka.github.io/2026/06/01/%E5%8F%AF%E7%A9%BF%E6%88%B4%E8%B6%85%E5%A3%B0%E5%89%8D%E8%87%82%E8%82%8C%E8%82%89%E8%BF%90%E5%8A%A8%E5%BB%BA%E6%A8%A1%E4%B8%8E%E5%8A%9B%E7%9F%A9%E5%88%86%E6%9E%90%E8%B0%83%E7%A0%94-2026-06/" title="可穿戴超声在前臂肌肉运动、建模与力矩分析中的研究进展">https://tinytka.github.io/2026/06/01/可穿戴超声前臂肌肉运动建模与力矩分析调研-2026-06/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E6%96%87%E7%8C%AE%E8%B0%83%E7%A0%94/" rel="tag"># 文献调研</a>
+              <a href="/tags/%E5%8F%AF%E7%A9%BF%E6%88%B4%E8%B6%85%E5%A3%B0/" rel="tag"># 可穿戴超声</a>
+              <a href="/tags/%E8%82%8C%E8%82%89%E8%BF%90%E5%8A%A8/" rel="tag"># 肌肉运动</a>
+              <a href="/tags/%E5%8A%9B%E7%9F%A9%E5%88%86%E6%9E%90/" rel="tag"># 力矩分析</a>
+              <a href="/tags/%E4%BA%BA%E6%9C%BA%E4%BA%A4%E4%BA%92/" rel="tag"># 人机交互</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/06/01/%E6%96%87%E7%8C%AE%E8%B0%83%E7%A0%94%E4%B8%93%E9%A2%98/" rel="prev" title="文献调研专题">
+                  <i class="fa fa-angle-left"></i> 文献调研专题
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2024 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">ptyybb</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">32k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">58 分钟</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("03/01/2023 10:00:00"); //此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒.";
+    }
+setInterval("createtime()",250);
+</script>
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>
