@@ -19,15 +19,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"tinytka.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.26.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="可穿戴超声在前臂肌肉运动、建模与力矩分析中的研究进展 写在前面 这篇文章整理一下截至 2026-06-01，可穿戴超声在前臂肌肉运动感知、建模、抓握力&#x2F;手指力估计、关节力矩分析方面的主要研究进展。 这次调研重点看的是近几年的代表工作，时间上主要覆盖 2023-2026。 文章目标比较明确，主要回答下面几个问题：   前臂方向的可穿戴超声现在主要在做什么   相关研究已经从手势识别推进到了什么程度">
+    <meta name="description" content="可穿戴超声在前臂肌肉运动、建模与力矩分析中的研究进展 写在前面 本文整理截至 2026-06-01 可穿戴超声在前臂方向的研究进展，重点关注前臂肌肉运动感知、运动学与动力学建模、抓握力与手指力估计，以及关节力矩分析等几个相互关联的问题。调研范围以 2023-2026 年的代表性工作为主，目的是回答三个具体问题：第一，前臂可穿戴超声目前主要在解决哪些任务；第二，相关研究已经从手势分类推进到了什么程度">
 <meta property="og:type" content="article">
 <meta property="og:title" content="可穿戴超声在前臂肌肉运动、建模与力矩分析中的研究进展">
 <meta property="og:url" content="https://tinytka.github.io/2026/06/01/%E5%8F%AF%E7%A9%BF%E6%88%B4%E8%B6%85%E5%A3%B0%E5%89%8D%E8%87%82%E8%82%8C%E8%82%89%E8%BF%90%E5%8A%A8%E5%BB%BA%E6%A8%A1%E4%B8%8E%E5%8A%9B%E7%9F%A9%E5%88%86%E6%9E%90%E8%B0%83%E7%A0%94-2026-06/index.html">
 <meta property="og:site_name" content="TinyTka&#39;s Blog">
-<meta property="og:description" content="可穿戴超声在前臂肌肉运动、建模与力矩分析中的研究进展 写在前面 这篇文章整理一下截至 2026-06-01，可穿戴超声在前臂肌肉运动感知、建模、抓握力&#x2F;手指力估计、关节力矩分析方面的主要研究进展。 这次调研重点看的是近几年的代表工作，时间上主要覆盖 2023-2026。 文章目标比较明确，主要回答下面几个问题：   前臂方向的可穿戴超声现在主要在做什么   相关研究已经从手势识别推进到了什么程度">
+<meta property="og:description" content="可穿戴超声在前臂肌肉运动、建模与力矩分析中的研究进展 写在前面 本文整理截至 2026-06-01 可穿戴超声在前臂方向的研究进展，重点关注前臂肌肉运动感知、运动学与动力学建模、抓握力与手指力估计，以及关节力矩分析等几个相互关联的问题。调研范围以 2023-2026 年的代表性工作为主，目的是回答三个具体问题：第一，前臂可穿戴超声目前主要在解决哪些任务；第二，相关研究已经从手势分类推进到了什么程度">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-06-01T12:55:00.000Z">
-<meta property="article:modified_time" content="2026-06-01T07:21:05.233Z">
+<meta property="article:modified_time" content="2026-06-01T07:29:31.378Z">
 <meta property="article:author" content="ptyybb">
 <meta property="article:tag" content="人机交互">
 <meta property="article:tag" content="力矩分析">
@@ -164,7 +164,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">可穿戴超声在前臂肌肉运动、建模与力矩分析中的研究进展</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="nav-number">1.1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E8%BF%99%E5%87%A0%E5%B9%B4%E6%95%B4%E4%BD%93%E5%8F%91%E5%B1%95%E5%88%B0%E4%BA%86%E5%93%AA%E4%B8%80%E6%AD%A5"><span class="nav-number">1.2.</span> <span class="nav-text">1. 这几年整体发展到了哪一步</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E6%97%A9%E6%9C%9F%E9%87%8D%E7%82%B9%E5%9C%A8%E6%89%8B%E5%8A%BF%E8%AF%86%E5%88%AB%E5%92%8C%E5%8A%A8%E4%BD%9C%E8%A7%A3%E7%A0%81"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.1 早期重点在手势识别和动作解码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-%E8%BF%91%E5%87%A0%E5%B9%B4%E5%BC%80%E5%A7%8B%E8%BD%AC%E5%90%91%E8%BF%9E%E7%BB%AD%E8%BF%90%E5%8A%A8%E5%AD%A6%E8%BE%93%E5%87%BA"><span class="nav-number">1.2.2.</span> <span class="nav-text">1.2 近几年开始转向连续运动学输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-%E5%90%8C%E6%97%B6%E5%BC%80%E5%A7%8B%E8%BF%9B%E5%85%A5%E5%8A%9B%E5%92%8C%E5%8A%A8%E5%8A%9B%E5%AD%A6%E9%87%8F%E4%BC%B0%E8%AE%A1"><span class="nav-number">1.2.3.</span> <span class="nav-text">1.3 同时开始进入力和动力学量估计</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E8%BF%90%E5%8A%A8%E6%84%9F%E7%9F%A5%E6%96%B9%E5%90%91%EF%BC%9A%E4%BB%8E%E6%89%8B%E5%8A%BF%E5%88%86%E7%B1%BB%E8%B5%B0%E5%90%91%E8%BF%9E%E7%BB%AD%E8%B7%9F%E8%B8%AA"><span class="nav-number">1.3.</span> <span class="nav-text">2. 运动感知方向：从手势分类走向连续跟踪</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-wrist-hand-kinematics-tracking-%E5%B7%B2%E7%BB%8F%E6%88%90%E4%B8%BA%E4%B8%BB%E7%BA%BF%E4%B9%8B%E4%B8%80"><span class="nav-number">1.4.</span> <span class="nav-text">2.1 wrist &#x2F; hand kinematics tracking 已经成为主线之一</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-2025-%E5%B9%B4%E5%BC%80%E5%A7%8B%E5%BC%BA%E8%B0%83%E8%B7%A8%E4%BA%BA%E5%92%8C%E8%B7%A8%E6%97%B6%E6%AE%B5%E6%B3%9B%E5%8C%96"><span class="nav-number">1.5.</span> <span class="nav-text">2.2 2025 年开始强调跨人和跨时段泛化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-2026-%E5%B9%B4%E5%B7%B2%E7%BB%8F%E8%83%BD%E5%81%9A%E5%88%B0%E9%AB%98%E8%87%AA%E7%94%B1%E5%BA%A6%E8%BF%9E%E7%BB%AD%E6%89%8B%E9%83%A8%E8%B7%9F%E8%B8%AA"><span class="nav-number">1.6.</span> <span class="nav-text">2.3 2026 年已经能做到高自由度连续手部跟踪</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%BB%BA%E6%A8%A1%E6%96%B9%E5%90%91%EF%BC%9A%E7%8E%B0%E5%9C%A8%E4%B8%BB%E8%A6%81%E6%80%8E%E4%B9%88%E5%81%9A"><span class="nav-number">1.7.</span> <span class="nav-text">3. 建模方向：现在主要怎么做</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-%E6%98%BE%E5%BC%8F%E7%89%B9%E5%BE%81%E5%BB%BA%E6%A8%A1"><span class="nav-number">1.8.</span> <span class="nav-text">3.1 显式特征建模</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AB%AF%E5%88%B0%E7%AB%AF%E5%BB%BA%E6%A8%A1"><span class="nav-number">1.9.</span> <span class="nav-text">3.2 深度学习端到端建模</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%B3%9B%E5%8C%96%E5%BB%BA%E6%A8%A1"><span class="nav-number">1.10.</span> <span class="nav-text">3.3 迁移学习与泛化建模</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%8A%9B%E3%80%81%E6%8A%93%E6%8F%A1%E5%8A%9B%E5%92%8C%E5%8A%9B%E7%9F%A9%E5%88%86%E6%9E%90%EF%BC%9A%E7%9B%AE%E5%89%8D%E5%81%9A%E5%88%B0%E5%93%AA%E4%B8%80%E6%AD%A5"><span class="nav-number">1.11.</span> <span class="nav-text">4. 力、抓握力和力矩分析：目前做到哪一步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-finger-force-%E5%92%8C-grip-force-%E5%B7%B2%E7%BB%8F%E5%BC%80%E5%A7%8B%E6%AF%94%E8%BE%83%E7%B3%BB%E7%BB%9F%E5%9C%B0%E5%87%BA%E7%8E%B0"><span class="nav-number">1.12.</span> <span class="nav-text">4.1 finger force 和 grip force 已经开始比较系统地出现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%87%E5%8A%9B%E4%BC%B0%E8%AE%A1"><span class="nav-number">1.12.1.</span> <span class="nav-text">指力估计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%93%E6%8F%A1%E5%8A%9B%E4%B8%8E%E8%85%95%E8%A7%92%E5%90%8C%E6%AD%A5%E4%BC%B0%E8%AE%A1"><span class="nav-number">1.12.2.</span> <span class="nav-text">抓握力与腕角同步估计</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-joint-torque-estimation-%E5%B7%B2%E7%BB%8F%E6%9C%89%E9%87%8C%E7%A8%8B%E7%A2%91%E6%96%B9%E6%B3%95"><span class="nav-number">1.13.</span> <span class="nav-text">4.2 joint torque estimation 已经有里程碑方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-%E5%BD%93%E5%89%8D%E5%89%8D%E8%87%82-torque-%E7%A0%94%E7%A9%B6%E7%9A%84%E7%8A%B6%E6%80%81"><span class="nav-number">1.14.</span> <span class="nav-text">4.3 当前前臂 torque 研究的状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E5%BD%93%E5%89%8D%E4%B8%BB%E8%A6%81%E6%8A%80%E6%9C%AF%E7%93%B6%E9%A2%88"><span class="nav-number">1.15.</span> <span class="nav-text">5. 当前主要技术瓶颈</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-%E8%A7%A3%E5%89%96%E5%92%8C%E7%94%9F%E7%90%86%E5%B1%82%E9%9D%A2%E7%9A%84%E5%A4%8D%E6%9D%82%E6%80%A7"><span class="nav-number">1.16.</span> <span class="nav-text">5.1 解剖和生理层面的复杂性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-%E4%BD%A9%E6%88%B4%E4%B8%8E%E9%87%8D%E6%A0%A1%E5%87%86%E9%97%AE%E9%A2%98"><span class="nav-number">1.17.</span> <span class="nav-text">5.2 佩戴与重校准问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-3-%E5%BB%BA%E6%A8%A1%E5%8F%AF%E8%A7%A3%E9%87%8A%E6%80%A7%E4%B8%8D%E8%B6%B3"><span class="nav-number">1.18.</span> <span class="nav-text">5.3 建模可解释性不足</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E5%90%8E%E7%BB%AD%E5%80%BC%E5%BE%97%E7%BB%A7%E7%BB%AD%E8%B7%9F%E8%B8%AA%E7%9A%84%E5%87%A0%E4%B8%AA%E9%97%AE%E9%A2%98"><span class="nav-number">1.19.</span> <span class="nav-text">6. 后续值得继续跟踪的几个问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-1-wrist-finger-torque-%E7%9A%84%E7%9B%B4%E6%8E%A5%E4%BC%B0%E8%AE%A1"><span class="nav-number">1.20.</span> <span class="nav-text">6.1 wrist &#x2F; finger torque 的直接估计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-2-%E4%BD%8E%E9%80%9A%E9%81%93%E3%80%81%E4%BD%8E%E5%8A%9F%E8%80%97%E5%89%8D%E8%87%82%E7%B3%BB%E7%BB%9F"><span class="nav-number">1.21.</span> <span class="nav-text">6.2 低通道、低功耗前臂系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-3-%E6%9B%B4%E5%8F%AF%E8%A7%A3%E9%87%8A%E7%9A%84%E5%BB%BA%E6%A8%A1%E6%96%B9%E6%B3%95"><span class="nav-number">1.22.</span> <span class="nav-text">6.3 更可解释的建模方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-4-%E8%B7%A8%E6%97%A5%E3%80%81%E9%87%8D%E4%BD%A9%E6%88%B4%E5%92%8C%E7%96%B2%E5%8A%B3%E4%B8%8B%E7%9A%84%E9%B2%81%E6%A3%92%E6%80%A7"><span class="nav-number">1.23.</span> <span class="nav-text">6.4 跨日、重佩戴和疲劳下的鲁棒性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E5%B0%8F%E7%BB%93"><span class="nav-number">1.24.</span> <span class="nav-text">7. 小结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE%E4%B8%8E%E9%93%BE%E6%8E%A5"><span class="nav-number">1.25.</span> <span class="nav-text">8. 参考文献与链接</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">可穿戴超声在前臂肌肉运动、建模与力矩分析中的研究进展</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="nav-number">1.1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E7%A0%94%E7%A9%B6%E6%BC%94%E8%BF%9B%E6%A6%82%E5%86%B5"><span class="nav-number">1.2.</span> <span class="nav-text">1. 研究演进概况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%89%8D%E8%87%82%E8%BF%90%E5%8A%A8%E6%84%9F%E7%9F%A5%EF%BC%9A%E4%BB%8E%E6%89%8B%E5%8A%BF%E5%88%86%E7%B1%BB%E5%88%B0%E8%BF%9E%E7%BB%AD%E8%85%95%E6%89%8B%E8%B7%9F%E8%B8%AA"><span class="nav-number">1.3.</span> <span class="nav-text">2. 前臂运动感知：从手势分类到连续腕手跟踪</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%BB%BA%E6%A8%A1%E6%96%B9%E6%B3%95%EF%BC%9A%E4%BB%8E%E6%98%BE%E5%BC%8F%E7%89%B9%E5%BE%81%E5%88%B0%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%8E%E8%BF%81%E7%A7%BB%E6%B3%9B%E5%8C%96"><span class="nav-number">1.4.</span> <span class="nav-text">3. 建模方法：从显式特征到深度学习与迁移泛化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E6%98%BE%E5%BC%8F%E7%89%B9%E5%BE%81%E5%BB%BA%E6%A8%A1"><span class="nav-number">1.4.1.</span> <span class="nav-text">3.1 显式特征建模</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AB%AF%E5%88%B0%E7%AB%AF%E5%BB%BA%E6%A8%A1"><span class="nav-number">1.4.2.</span> <span class="nav-text">3.2 深度学习端到端建模</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%B3%9B%E5%8C%96%E5%BB%BA%E6%A8%A1"><span class="nav-number">1.4.3.</span> <span class="nav-text">3.3 迁移学习与泛化建模</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%8A%9B%E3%80%81%E6%8A%93%E6%8F%A1%E5%8A%9B%E4%B8%8E%E5%8A%9B%E7%9F%A9%E5%88%86%E6%9E%90"><span class="nav-number">1.5.</span> <span class="nav-text">4. 力、抓握力与力矩分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-%E6%8C%87%E5%8A%9B%E5%92%8C%E6%8A%93%E6%8F%A1%E5%8A%9B%E4%BC%B0%E8%AE%A1"><span class="nav-number">1.5.1.</span> <span class="nav-text">4.1 指力和抓握力估计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-joint-torque-estimation-%E7%9A%84%E6%96%B9%E6%B3%95%E5%AD%A6%E8%8A%82%E7%82%B9"><span class="nav-number">1.5.2.</span> <span class="nav-text">4.2 joint torque estimation 的方法学节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-%E5%BD%93%E5%89%8D%E5%89%8D%E8%87%82-torque-%E7%A0%94%E7%A9%B6%E7%9A%84%E8%BE%B9%E7%95%8C"><span class="nav-number">1.5.3.</span> <span class="nav-text">4.3 当前前臂 torque 研究的边界</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E5%BD%93%E5%89%8D%E6%8A%80%E6%9C%AF%E7%93%B6%E9%A2%88"><span class="nav-number">1.6.</span> <span class="nav-text">5. 当前技术瓶颈</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E5%90%8E%E7%BB%AD%E5%80%BC%E5%BE%97%E7%BB%A7%E7%BB%AD%E8%B7%9F%E8%B8%AA%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">1.7.</span> <span class="nav-text">6. 后续值得继续跟踪的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E5%B0%8F%E7%BB%93"><span class="nav-number">1.8.</span> <span class="nav-text">7. 小结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE%E4%B8%8E%E9%93%BE%E6%8E%A5"><span class="nav-number">1.9.</span> <span class="nav-text">8. 参考文献与链接</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -255,7 +255,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2026-06-01 20:55:00 / 修改时间：15:21:05" itemprop="dateCreated datePublished" datetime="2026-06-01T20:55:00+08:00">2026-06-01</time>
+      <time title="创建时间：2026-06-01 20:55:00 / 修改时间：15:29:31" itemprop="dateCreated datePublished" datetime="2026-06-01T20:55:00+08:00">2026-06-01</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -289,14 +289,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>7.8k</span>
+      <span>4.3k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>14 分钟</span>
+      <span>16 分钟</span>
     </span>
 </div>
 
@@ -308,648 +308,57 @@
     
     <div class="post-body" itemprop="articleBody"><h1>可穿戴超声在前臂肌肉运动、建模与力矩分析中的研究进展</h1>
 <h2 id="写在前面">写在前面</h2>
-<p>这篇文章整理一下截至 <strong>2026-06-01</strong>，可穿戴超声在<strong>前臂肌肉运动感知、建模、抓握力/手指力估计、关节力矩分析</strong>方面的主要研究进展。</p>
-<p>这次调研重点看的是近几年的代表工作，时间上主要覆盖 <strong>2023-2026</strong>。</p>
-<p>文章目标比较明确，主要回答下面几个问题：</p>
-<ol>
-<li class="lvl-3">
-<p>前臂方向的可穿戴超声现在主要在做什么</p>
-</li>
-<li class="lvl-3">
-<p>相关研究已经从手势识别推进到了什么程度</p>
-</li>
-<li class="lvl-3">
-<p>力、抓握力、关节力矩这一类输出量目前做到哪一步</p>
-</li>
-<li class="lvl-3">
-<p>如果后续继续做这个方向，哪些问题还值得重点跟踪</p>
-</li>
-</ol>
-<p>先给结论：</p>
-<blockquote>
-<p>到 2026 年，前臂方向的可穿戴超声研究已经从“离散手势分类”推进到“连续腕手运动跟踪、抓握力估计和 joint torque estimation 范式建立”，但 wrist/finger torque 的直接 wearable ultrasound 研究还不算多，机制约束建模和长期鲁棒性也还在继续发展。</p>
-</blockquote>
+<p>本文整理截至 <strong>2026-06-01</strong> 可穿戴超声在前臂方向的研究进展，重点关注前臂肌肉运动感知、运动学与动力学建模、抓握力与手指力估计，以及关节力矩分析等几个相互关联的问题。调研范围以 <strong>2023-2026</strong> 年的代表性工作为主，目的是回答三个具体问题：第一，前臂可穿戴超声目前主要在解决哪些任务；第二，相关研究已经从手势分类推进到了什么程度；第三，在力、抓握力和关节力矩这类动力学输出上，目前的方法边界在哪里。</p>
+<p>从当前公开文献分布看，前臂方向的可穿戴超声已经明显从早期的离散手势识别推进到连续腕手运动跟踪、抓握力估计以及关节力矩估计范式建立阶段。不过，若把研究目标进一步聚焦到 wrist/finger torque 的直接 wearable ultrasound estimation，则现有工作仍然相对有限。同时，围绕机制约束建模、跨时段重佩戴鲁棒性以及低功耗边缘部署的研究仍在持续发展之中。</p>
 <span id="more"></span>
 <hr>
-<h2 id="1-这几年整体发展到了哪一步">1. 这几年整体发展到了哪一步</h2>
-<p>如果把前臂方向的研究按时间线简单梳理，可以大致看到下面这个过程：</p>
-<h3 id="1-1-早期重点在手势识别和动作解码">1.1 早期重点在手势识别和动作解码</h3>
-<p>这一阶段的核心问题比较直接：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>前臂超声能不能读到肌肉形变</p>
-</li>
-<li class="lvl-2">
-<p>这些形变能不能区分不同手势或动作</p>
-</li>
-</ul>
-<p>因此评价指标通常也比较简单，主要看：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>分类准确率</p>
-</li>
-<li class="lvl-2">
-<p>实时性</p>
-</li>
-<li class="lvl-2">
-<p>佩戴可行性</p>
-</li>
-</ul>
-<h3 id="1-2-近几年开始转向连续运动学输出">1.2 近几年开始转向连续运动学输出</h3>
-<p>到 2024-2026 年，前臂方向的代表工作已经不再只做离散类别预测，而是进一步做：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>wrist / hand kinematics tracking</p>
-</li>
-<li class="lvl-2">
-<p>多自由度连续控制</p>
-</li>
-<li class="lvl-2">
-<p>VR / robotic hand 控制</p>
-</li>
-<li class="lvl-2">
-<p>跨人、跨时段、重佩戴泛化</p>
-</li>
-</ul>
-<p>这说明研究目标已经从“识别某个动作”转向“持续跟踪肌肉驱动下的运动状态”。</p>
-<h3 id="1-3-同时开始进入力和动力学量估计">1.3 同时开始进入力和动力学量估计</h3>
-<p>除了动作和角度之外，近几年的另一个明显变化是：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>从前臂超声中估计 <strong>isometric force</strong></p>
-</li>
-<li class="lvl-2">
-<p>估计 <strong>finger force / grip force</strong></p>
-</li>
-<li class="lvl-2">
-<p>进一步建立 <strong>joint torque estimation</strong> 路线</p>
-</li>
-</ul>
-<p>这一步很关键，因为它意味着前臂超声开始从“动作识别传感器”向“动力学感知传感器”发展。</p>
+<h2 id="1-研究演进概况">1. 研究演进概况</h2>
+<p>从技术演进上看，前臂方向的可穿戴超声研究大致经历了三个阶段。第一阶段的重点是验证超声能否稳定读取前臂肌肉形变，并据此区分不同手势或动作。在这一时期，研究关注的主要是分类准确率、实时性以及佩戴可行性。第二阶段的重点逐渐转向连续运动学输出，即不再仅仅判断某个动作属于哪一类，而是尝试连续跟踪 wrist 和 hand 的运动状态。第三阶段则进一步引入了动力学量估计，包括等长力、抓握力、手指力以及 joint torque 等输出。</p>
+<p>这种演进路径说明，前臂可穿戴超声的角色正在从“动作识别传感器”向“连续肌肉状态与动力学感知传感器”转变。对于后续研究而言，这一变化意味着评价标准也在同步变化。当前高水平工作已经不再满足于单一的分类精度，而更关注连续轨迹、多自由度控制、跨用户泛化以及真实佩戴条件下的系统稳定性。</p>
 <hr>
-<h2 id="2-运动感知方向：从手势分类走向连续跟踪">2. 运动感知方向：从手势分类走向连续跟踪</h2>
-<h2 id="2-1-wrist-hand-kinematics-tracking-已经成为主线之一">2.1 wrist / hand kinematics tracking 已经成为主线之一</h2>
-<p>一个比较有代表性的工作是：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p><strong>Sgambato et al., IEEE TBME, 2024</strong><br>
-<em>High Performance Wearable Ultrasound as a Human-Machine Interface for Wrist and Hand Kinematic Tracking</em><br>
-链接：<a target="_blank" rel="noopener" href="https://colab.ws/articles/10.1109%2FTBME.2023.3307952">CoLab 条目</a></p>
-</li>
-</ul>
-<p>这类工作的意义在于：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>系统从单探头演示变成了多通道前臂臂环</p>
-</li>
-<li class="lvl-2">
-<p>目标从手势分类变成 wrist/hand movement intention decoding</p>
-</li>
-<li class="lvl-2">
-<p>更接近实际的人机交互和连续控制需求</p>
-</li>
-</ul>
-<p>从系统角度看，这一步的变化其实很重要：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>关注点不再只是“肌肉有没有变化”</p>
-</li>
-<li class="lvl-2">
-<p>而是“整圈前臂形变能不能稳定映射到腕手运动状态”</p>
-</li>
-</ul>
-<h2 id="2-2-2025-年开始强调跨人和跨时段泛化">2.2 2025 年开始强调跨人和跨时段泛化</h2>
-<p>另一篇非常关键的工作是：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p><strong>Sgambato et al., Nature Communications, 2025</strong><br>
-<em>Virtual reality interactions via a user-generic ultrasound human-machine interface for wrist and hand tracking</em><br>
-链接：<a target="_blank" rel="noopener" href="https://www.nature.com/articles/s41467-025-66001-6">Nature Communications 2025</a></p>
-</li>
-</ul>
-<p>从公开页面可确认的要点包括：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>使用 <strong>32 个 A-mode 单元</strong>构成可穿戴 wrist bracelet</p>
-</li>
-<li class="lvl-2">
-<p>使用 <strong>silicone elastomer</strong> 作为干耦合界面</p>
-</li>
-<li class="lvl-2">
-<p>输出包括 <strong>3 个 wrist DoFs + 1 个 hand DoF</strong></p>
-</li>
-<li class="lvl-2">
-<p>重点研究 <strong>cross-session</strong> 和 <strong>cross-participant</strong> 泛化</p>
-</li>
-</ul>
-<p>这篇工作比较重要的地方不只是精度，而是它把前臂超声 HMI 里的几个核心工程问题摆到了台面上：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>重贴附之后还准不准</p>
-</li>
-<li class="lvl-2">
-<p>换一个人之后还准不准</p>
-</li>
-<li class="lvl-2">
-<p>数据增强和参考策略能不能减少重校准</p>
-</li>
-</ul>
-<h2 id="2-3-2026-年已经能做到高自由度连续手部跟踪">2.3 2026 年已经能做到高自由度连续手部跟踪</h2>
-<p>目前公开报道中，前臂/腕部运动解码最强的一类系统之一是：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p><strong>Lu et al., Nature Electronics, 2026</strong><br>
-<em>Hand tracking using wearable wrist imaging</em><br>
-链接：<a target="_blank" rel="noopener" href="https://www.nature.com/articles/s41928-026-01594-4">Nature Electronics 2026</a></p>
-</li>
-</ul>
-<p>根据公开摘要，这项工作已经做到：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p><strong>fully integrated wireless wearable ultrasound imaging wristband</strong></p>
-</li>
-<li class="lvl-2">
-<p>可实时连续跟踪五指和手掌姿态</p>
-</li>
-<li class="lvl-2">
-<p>输出达到 <strong>22 个自由度</strong></p>
-</li>
-<li class="lvl-2">
-<p>系统延迟 <strong>&lt;120 ms</strong></p>
-</li>
-</ul>
-<p>如果把它放在前臂方向的技术脉络里看，这说明：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>前臂可穿戴超声已经进入高自由度连续 tracking 阶段</p>
-</li>
-<li class="lvl-2">
-<p>无线化和一体化系统已经成为主流目标之一</p>
-</li>
-</ul>
+<h2 id="2-前臂运动感知：从手势分类到连续腕手跟踪">2. 前臂运动感知：从手势分类到连续腕手跟踪</h2>
+<p>前臂方向最成熟的一条研究主线仍然是运动感知，但其技术目标已经发生了明显变化。早期方法多以离散手势分类为主，而 2024 年之后的代表性工作则逐步转向 wrist/hand kinematics tracking、多自由度控制和虚拟现实或机器人手交互。</p>
+<p>一个代表性节点是 <strong>Sgambato 等人在 2024 年发表于 IEEE TBME 的工作</strong>，题为 <em>High Performance Wearable Ultrasound as a Human-Machine Interface for Wrist and Hand Kinematic Tracking</em>。这项研究采用便携式多通道超声臂环进行 wrist/hand movement intention decoding，说明前臂超声系统已经从单探头演示转向整圈前臂的多通道采集结构。它的重要意义在于，研究对象不再是单块肌肉是否发生形变，而是整圈前臂肌肉形态变化是否能够稳定映射到连续的腕手运动状态。<a target="_blank" rel="noopener" href="https://colab.ws/articles/10.1109%2FTBME.2023.3307952">链接</a></p>
+<p>2025 年，<strong>Sgambato 等人在 Nature Communications 发表的用户泛化超声人机接口工作</strong>，进一步把问题推进到更接近真实使用场景的层面。该工作采用 32 个 A-mode 单元构成 wrist bracelet，并使用 silicone elastomer 作为干耦合界面。公开页面显示，其输出包含 3 个 wrist degrees of freedom 与 1 个 hand degree of freedom，同时重点研究 cross-session 与 cross-participant 泛化问题。<a target="_blank" rel="noopener" href="https://www.nature.com/articles/s41467-025-66001-6">链接</a> 这意味着该方向的核心难点已经从“是否能识别动作”扩展到“在重贴附、换人和会话迁移条件下能否维持可用精度”。</p>
+<p>到 2026 年，<strong>Lu 等人在 Nature Electronics 报道的 wearable wrist imaging 系统</strong> 将这一路线进一步推进到高自由度连续跟踪阶段。根据公开摘要，该系统是一种 fully integrated wireless wearable ultrasound imaging wristband，能够实时连续跟踪五指与手掌姿态，输出达到 22 个自由度，系统延迟低于 120 ms。<a target="_blank" rel="noopener" href="https://www.nature.com/articles/s41928-026-01594-4">链接</a> 从研究脉络上看，这说明前臂/腕部可穿戴超声已经进入“高自由度、无线化、连续 tracking”的阶段，后续工作更可能围绕泛化、长期佩戴和系统成本继续展开。</p>
 <hr>
-<h2 id="3-建模方向：现在主要怎么做">3. 建模方向：现在主要怎么做</h2>
-<p>当前前臂可穿戴超声的建模，大致可以分成 3 类。</p>
-<h2 id="3-1-显式特征建模">3.1 显式特征建模</h2>
-<p>这一类方法会先从超声信号里抽取人工设计特征，例如：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>echo peak</p>
-</li>
-<li class="lvl-2">
-<p>peak location</p>
-</li>
-<li class="lvl-2">
-<p>thickness change</p>
-</li>
-<li class="lvl-2">
-<p>envelope statistics</p>
-</li>
-<li class="lvl-2">
-<p>sparse scanline morphology</p>
-</li>
-</ul>
-<p>代表工作：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p><strong>Qu et al., Sensors and Actuators A, 2024</strong><br>
-<em>Synchronous gesture recognition and muscle force estimation based on piezoelectric micromachined ultrasound transducer</em><br>
-链接：<a target="_blank" rel="noopener" href="https://www.sciencedirect.com/science/article/abs/pii/S0924424724006812">ScienceDirect 摘要</a></p>
-</li>
-</ul>
-<p>公开摘要可确认：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>手势识别准确率约 <strong>95.84 ± 1.48%</strong></p>
-</li>
-<li class="lvl-2">
-<p>力估计 <strong>R² = 0.919</strong></p>
-</li>
-</ul>
-<p>这类方法的特点是：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>计算负担相对较低</p>
-</li>
-<li class="lvl-2">
-<p>便于做小系统、低功耗系统</p>
-</li>
-<li class="lvl-2">
-<p>可解释性通常比纯深度网络更强</p>
-</li>
-</ul>
-<p>但问题也很明确：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>特征工程比较依赖经验</p>
-</li>
-<li class="lvl-2">
-<p>跨用户泛化通常不够稳定</p>
-</li>
-</ul>
-<h2 id="3-2-深度学习端到端建模">3.2 深度学习端到端建模</h2>
-<p>这条路线近几年增长很快。</p>
-<p>比较有代表性的工作包括：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p><strong>Kamatham et al., 2024</strong><br>
-<em>SonoMyoNet: A Convolutional Neural Network for Predicting Isometric Force from Highly Sparse Ultrasound Images</em><br>
-链接：<a target="_blank" rel="noopener" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11225932/">PMC</a></p>
-</li>
-<li class="lvl-2">
-<p><strong>Lee et al., Scientific Reports, 2025</strong><br>
-<em>A deep learning framework for finger motion recognition using forearm ultrasound imaging</em><br>
-链接：<a target="_blank" rel="noopener" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12612224/">PMC</a></p>
-</li>
-</ul>
-<p>这类工作的共同特点是：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>减少手工特征设计</p>
-</li>
-<li class="lvl-2">
-<p>直接学习时空特征</p>
-</li>
-<li class="lvl-2">
-<p>更适合复杂动态任务</p>
-</li>
-</ul>
-<p>例如 <strong>SonoMyoNet</strong> 的一个关键结论是：</p>
-<blockquote>
-<p>即使只用很少的 scanlines，也仍然可以对 continuous isometric force 做有效回归。</p>
-</blockquote>
-<p>这个结果很有参考意义，因为它直接说明：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>前臂力估计未必一定需要完整 B-mode</p>
-</li>
-<li class="lvl-2">
-<p>稀疏 A-mode / sparse scanline 可能更适合低功耗 wearable 系统</p>
-</li>
-</ul>
-<h2 id="3-3-迁移学习与泛化建模">3.3 迁移学习与泛化建模</h2>
-<p>前臂方向还有一类越来越重要的工作，是围绕：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>cross-subject</p>
-</li>
-<li class="lvl-2">
-<p>cross-time</p>
-</li>
-<li class="lvl-2">
-<p>repositioning robustness</p>
-</li>
-</ul>
-<p>展开的。</p>
-<p>代表工作包括：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p><strong>Yue et al., IEEE Sensors Journal, 2024</strong><br>
-<em>A Transfer Learning Strategy for Cross-Subject and Cross-Time Hand Gesture Recognition Based on A-mode Ultrasound</em><br>
-链接：<a target="_blank" rel="noopener" href="https://colab.ws/articles/10.1109/jsen.2024.3382040">CoLab 条目</a></p>
-</li>
-<li class="lvl-2">
-<p><strong>Sgambato et al., Nature Communications, 2025</strong><br>
-链接：<a target="_blank" rel="noopener" href="https://www.nature.com/articles/s41467-025-66001-6">Nature Communications 2025</a></p>
-</li>
-</ul>
-<p>从研究重心变化上看，这类工作说明一个事实：</p>
-<p>前臂超声建模当前面对的核心问题已经不只是“模型能不能拟合训练集”，而是：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>换一个人之后模型还能不能用</p>
-</li>
-<li class="lvl-2">
-<p>重戴一次之后性能还能不能保持</p>
-</li>
-<li class="lvl-2">
-<p>旋前/旋后、轻微偏移之后还能不能稳定输出</p>
-</li>
-</ul>
+<h2 id="3-建模方法：从显式特征到深度学习与迁移泛化">3. 建模方法：从显式特征到深度学习与迁移泛化</h2>
+<p>当前前臂可穿戴超声的建模方法可以概括为三类。第一类是显式特征建模，第二类是深度学习端到端建模，第三类是迁移学习与域泛化建模。这三类方法并不是彼此替代关系，而是分别对应不同的系统约束与研究重点。</p>
+<h3 id="3-1-显式特征建模">3.1 显式特征建模</h3>
+<p>显式特征建模通常从超声信号中提取 echo peak、peak location、muscle thickness change、envelope statistics 或 sparse scanline morphology 等人工设计特征，再使用较轻量的回归或分类模型进行解码。<strong>Qu 等人在 2024 年发表于 Sensors and Actuators A 的工作</strong>，即 <em>Synchronous gesture recognition and muscle force estimation based on piezoelectric micromachined ultrasound transducer</em>，属于这一路线的典型代表。<a target="_blank" rel="noopener" href="https://www.sciencedirect.com/science/article/abs/pii/S0924424724006812">链接</a> 根据公开摘要，该工作在手势识别上取得了约 95.84 ± 1.48% 的准确率，在肌力估计上达到了 R² = 0.919。</p>
+<p>这类方法的优势在于计算代价相对较低，可解释性通常也优于纯端到端网络，因此更适合资源受限的 PMUT 或低功耗小系统。但其局限也较明确，即特征工程较依赖经验，且在跨用户、跨姿态和重佩戴场景下往往不够稳定。</p>
+<h3 id="3-2-深度学习端到端建模">3.2 深度学习端到端建模</h3>
+<p>随着数据规模和算力条件的改善，端到端深度学习建模逐渐成为前臂方向的重要方法路线。<strong>Kamatham 等人在 2024 年提出的 SonoMyoNet</strong>，即 <em>A Convolutional Neural Network for Predicting Isometric Force from Highly Sparse Ultrasound Images</em>，展示了利用稀疏 scanlines 直接回归连续等长力的可行性。<a target="_blank" rel="noopener" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11225932/">链接</a> 其核心结论之一是，即使只保留少量 scanlines，仍然可以对 continuous isometric force 做有效预测。这一结果具有明确的方法学意义，因为它表明前臂力估计未必一定依赖完整 B-mode，稀疏 A-mode 或 sparse scanline 路线可能更适合功耗和带宽受限的 wearable system。</p>
+<p>另一篇代表作是 <strong>Lee 等人在 2025 年发表于 Scientific Reports 的 work on finger motion recognition using forearm ultrasound imaging</strong>。<a target="_blank" rel="noopener" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12612224/">链接</a> 该研究利用 forearm ultrasound video clips 进行手指动作识别，说明视频级时空特征学习已经被引入前臂超声建模中。相较于显式特征路线，深度学习方法在复杂动态任务上通常更具表达能力，但对训练数据规模、域泛化设计和可解释性提出了更高要求。</p>
+<h3 id="3-3-迁移学习与泛化建模">3.3 迁移学习与泛化建模</h3>
+<p>前臂超声还有一类越来越重要的工作是迁移学习与域泛化。其背景并不复杂：前臂结构复杂，佩戴位置与姿态变化敏感，单次训练在跨人、跨天和重佩戴场景下很容易退化。<strong>Yue 等人在 2024 年发表于 IEEE Sensors Journal 的工作</strong>，即 <em>A Transfer Learning Strategy for Cross-Subject and Cross-Time Hand Gesture Recognition Based on A-mode Ultrasound</em>，就直接把问题定义为 cross-subject 与 cross-time gesture recognition。<a target="_blank" rel="noopener" href="https://colab.ws/articles/10.1109/jsen.2024.3382040">链接</a></p>
+<p>结合 2025 年 Nature Communications 的用户泛化 wrist-hand tracking 工作可以看出，前臂超声建模当前面对的关键问题已经不只是训练集内拟合精度，而是模型在跨用户、跨会话和轻微位置漂移条件下是否仍然有效。换言之，鲁棒性已经从附加指标变成了系统可用性的核心部分。</p>
 <hr>
-<h2 id="4-力、抓握力和力矩分析：目前做到哪一步">4. 力、抓握力和力矩分析：目前做到哪一步</h2>
-<h2 id="4-1-finger-force-和-grip-force-已经开始比较系统地出现">4.1 finger force 和 grip force 已经开始比较系统地出现</h2>
-<h3 id="指力估计">指力估计</h3>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p><strong>Bimbraw &amp; Zhang, IEEE IUS, 2023</strong><br>
-<em>Estimating Force Exerted by the Fingers Based on Forearm Ultrasound</em><br>
-链接：<a target="_blank" rel="noopener" href="https://bimbraw.github.io/files/2023208571_approved.pdf">PDF</a></p>
-</li>
-</ul>
-<p>公开 PDF 中可以确认：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>使用 wireless ultrasound probe + custom armband</p>
-</li>
-<li class="lvl-2">
-<p>做不同手指的分类和连续力估计</p>
-</li>
-<li class="lvl-2">
-<p>平均分类准确率约 <strong>82%</strong></p>
-</li>
-<li class="lvl-2">
-<p>连续力估计平均 <strong>RMSE = 0.20 N</strong></p>
-</li>
-</ul>
-<p>这说明前臂超声已经能够携带一定程度的<strong>单指级 force information</strong>，但也能看出：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>测试方式一旦更严格</p>
-</li>
-<li class="lvl-2">
-<p>时间相关性一旦被打破</p>
-</li>
-<li class="lvl-2">
-<p>性能会明显下降</p>
-</li>
-</ul>
-<p>这反映出当前模型对时序依赖和泛化问题仍然比较敏感。</p>
-<h3 id="抓握力与腕角同步估计">抓握力与腕角同步估计</h3>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p><strong>Rima et al., IEEE ICORR, 2025</strong><br>
-<em>Miniaturized Wearable Ultrasound System for Simultaneous Prediction of Wrist Angle and Grip Force During Dynamic Reaching</em><br>
-链接：<a target="_blank" rel="noopener" href="https://pubmed.ncbi.nlm.nih.gov/40644083/">PubMed</a></p>
-</li>
-</ul>
-<p>公开摘要可确认：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>4 个前臂单元换能器</p>
-</li>
-<li class="lvl-2">
-<p>输入为 <strong>M-mode</strong></p>
-</li>
-<li class="lvl-2">
-<p>同时预测 <strong>wrist angle + grip force</strong></p>
-</li>
-<li class="lvl-2">
-<p>MLP 在 unseen data 上结果为：</p>
-<ul class="lvl-2">
-<li class="lvl-4">wrist angle：<strong>R² = 0.85 ± 0.06</strong></li>
-<li class="lvl-4">grip force：<strong>R² = 0.74 ± 0.07</strong></li>
-</ul>
-</li>
-</ul>
-<p>这项工作的关键意义在于：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>不再把“动作”和“力”拆开做</p>
-</li>
-<li class="lvl-2">
-<p>开始向真实上肢控制里更常见的“运动学 + 动力学同时输出”靠近</p>
-</li>
-</ul>
-<h2 id="4-2-joint-torque-estimation-已经有里程碑方法">4.2 joint torque estimation 已经有里程碑方法</h2>
-<p>目前动力学方向最关键的代表作之一是：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p><strong>Jin et al., Nature Communications, 2024</strong><br>
-<em>Estimation of joint torque in dynamic activities using wearable A-mode ultrasound</em><br>
-链接：<a target="_blank" rel="noopener" href="https://www.nature.com/articles/s41467-024-50038-0">Nature Communications 2024</a></p>
-</li>
-</ul>
-<p>根据公开摘要，这篇工作的核心结果包括：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>在 dynamic activities 中估计 joint torque</p>
-</li>
-<li class="lvl-2">
-<p>使用 wearable A-mode ultrasound 跟踪 muscle thickness changes</p>
-</li>
-<li class="lvl-2">
-<p>在 controlled isokinetic contractions 中：</p>
-<ul class="lvl-2">
-<li class="lvl-4"><strong>elbow and knee torque errors &lt; 7.6%</strong></li>
-<li class="lvl-4"><strong>R² &gt; 0.92</strong></li>
-</ul>
-</li>
-</ul>
-<p>虽然这篇工作并不是专门针对前臂，但它给出了一个非常重要的方法学参考：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>可穿戴超声可以从肌肉厚度变化进一步走向关节力矩估计</p>
-</li>
-<li class="lvl-2">
-<p>这一套路线后续完全可以向 wrist / finger torque 延伸</p>
-</li>
-</ul>
-<h2 id="4-3-当前前臂-torque-研究的状态">4.3 当前前臂 torque 研究的状态</h2>
-<p>截至 2026-06-01，从公开文献分布来看：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p><strong>前臂动作识别</strong>：已经很多</p>
-</li>
-<li class="lvl-2">
-<p><strong>前臂连续运动学跟踪</strong>：已经比较成熟</p>
-</li>
-<li class="lvl-2">
-<p><strong>前臂 finger force / grip force 估计</strong>：已有代表作</p>
-</li>
-<li class="lvl-2">
-<p><strong>前臂 wrist / finger torque 的直接 wearable ultrasound 估计</strong>：仍然相对少</p>
-</li>
-</ul>
-<p>因此当前阶段更准确的描述是：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>前臂方向已经具备继续做 torque 分析的系统基础和方法参考</p>
-</li>
-<li class="lvl-2">
-<p>但 wrist/finger torque 本身仍然是一个相对空缺的细分问题</p>
-</li>
-</ul>
+<h2 id="4-力、抓握力与力矩分析">4. 力、抓握力与力矩分析</h2>
+<p>与运动学解码并行发展的另一条主线，是从前臂超声中提取动力学相关输出。目前已经较明确出现的输出包括 finger force、grip force、isometric force 以及更高层次的 joint torque。</p>
+<h3 id="4-1-指力和抓握力估计">4.1 指力和抓握力估计</h3>
+<p>在前臂方向，<strong>Bimbraw 与 Zhang 于 2023 年在 IEEE IUS 报告的手指受力估计工作</strong> 是较早的一项代表作。<a target="_blank" rel="noopener" href="https://bimbraw.github.io/files/2023208571_approved.pdf">PDF</a> 该研究使用 wireless ultrasound probe 与 custom armband，对不同手指进行分类和连续力估计。根据公开 PDF，其平均分类准确率约为 82%，连续力估计的平均 RMSE 为 0.20 N。这个结果表明，前臂超声已经能够承载一定程度的单指级 force information，但同时也暴露出对时序相关性和实验条件的依赖，说明泛化仍是主要问题。</p>
+<p>在更接近实际上肢控制任务的层面，<strong>Rima 等人在 2025 年 IEEE ICORR 报道的 simultaneous wrist angle and grip force prediction</strong> 是非常关键的一步。<a target="_blank" rel="noopener" href="https://pubmed.ncbi.nlm.nih.gov/40644083/">PubMed</a> 该工作使用 4 个前臂单元换能器采集 M-mode 数据，并同时回归 wrist angle 与 grip force。公开摘要显示，MLP 在 unseen data 上取得了 wrist angle R² = 0.85 ± 0.06 和 grip force R² = 0.74 ± 0.07 的结果。其方法学意义在于，它不再把“动作”和“力”作为相互独立的问题，而是将二者联合建模，从而更接近真实上肢控制和康复交互场景中的需求。</p>
+<h3 id="4-2-joint-torque-estimation-的方法学节点">4.2 joint torque estimation 的方法学节点</h3>
+<p>在动力学方向，<strong>Jin 等人在 2024 年发表于 Nature Communications 的 <em>Estimation of joint torque in dynamic activities using wearable A-mode ultrasound</em></strong> 是目前最重要的方法学参考之一。<a target="_blank" rel="noopener" href="https://www.nature.com/articles/s41467-024-50038-0">链接</a> 该工作使用 wearable A-mode ultrasound 跟踪 muscle thickness changes，并在动态活动中估计关节力矩。公开摘要表明，在 controlled isokinetic contractions 中，其 elbow and knee torque estimation error 低于 7.6%，R² 高于 0.92。</p>
+<p>虽然这项研究并非专门针对前臂，但其意义在于明确建立了“可穿戴超声形变观测 -&gt; joint torque estimation”的技术范式。对于前臂方向而言，这为后续开展 wrist 或 finger torque 研究提供了直接的方法学基础，包括 A-mode thickness tracking、动态任务验证以及与 inverse dynamics 对齐的实验路径。</p>
+<h3 id="4-3-当前前臂-torque-研究的边界">4.3 当前前臂 torque 研究的边界</h3>
+<p>截至 2026-06-01，从可公开检索到的文献分布来看，前臂动作识别、连续运动学跟踪以及 finger force/grip force 估计已经具备较为明确的代表作；相比之下，面向 wrist/finger torque 的直接 wearable ultrasound estimation 仍然相对较少。因此，当前阶段更准确的描述是，前臂方向已经具备向 torque analysis 推进的系统基础和方法学参考，但具体到 wrist/finger torque 这一层面，仍然存在明显研究空白。</p>
 <hr>
-<h2 id="5-当前主要技术瓶颈">5. 当前主要技术瓶颈</h2>
-<h2 id="5-1-解剖和生理层面的复杂性">5.1 解剖和生理层面的复杂性</h2>
-<p>前臂比很多大肌肉部位更难做，原因很直接：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>肌群密集</p>
-</li>
-<li class="lvl-2">
-<p>浅层和深层结构交叠明显</p>
-</li>
-<li class="lvl-2">
-<p>手指动作存在明显的肌腱和肌群耦合</p>
-</li>
-<li class="lvl-2">
-<p>旋前/旋后会改变截面结构关系</p>
-</li>
-</ul>
-<p>这会导致一个问题：</p>
-<blockquote>
-<p>同样的输出动作，在不同个体、不同姿态下，对应的超声形态变化不一定完全一致。</p>
-</blockquote>
-<h2 id="5-2-佩戴与重校准问题">5.2 佩戴与重校准问题</h2>
-<p>当前文献已经反复说明下面这些问题很关键：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>重贴附之后 imaging plane 会漂移</p>
-</li>
-<li class="lvl-2">
-<p>长时间佩戴后耦合条件会变化</p>
-</li>
-<li class="lvl-2">
-<p>疲劳会改变肌肉形态和输出之间的映射</p>
-</li>
-<li class="lvl-2">
-<p>前臂旋转会带来更明显的截面失配</p>
-</li>
-</ul>
-<p>这也是为什么 2025-2026 的很多工作都开始强调：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>cross-session</p>
-</li>
-<li class="lvl-2">
-<p>user-generic</p>
-</li>
-<li class="lvl-2">
-<p>repositioning robustness</p>
-</li>
-</ul>
-<h2 id="5-3-建模可解释性不足">5.3 建模可解释性不足</h2>
-<p>现在大部分模型仍然是从超声数据直接回归：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>动作类别</p>
-</li>
-<li class="lvl-2">
-<p>角度</p>
-</li>
-<li class="lvl-2">
-<p>力</p>
-</li>
-<li class="lvl-2">
-<p>力矩</p>
-</li>
-</ul>
-<p>但仍然缺少更强的机制约束，例如把下面这些量更系统地联合起来：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>muscle morphology</p>
-</li>
-<li class="lvl-2">
-<p>tendon excursion</p>
-</li>
-<li class="lvl-2">
-<p>joint kinematics</p>
-</li>
-<li class="lvl-2">
-<p>joint kinetics</p>
-</li>
-<li class="lvl-2">
-<p>moment arm / musculoskeletal prior</p>
-</li>
-</ul>
+<h2 id="5-当前技术瓶颈">5. 当前技术瓶颈</h2>
+<p>前臂方向之所以比许多大肌肉部位更难做，并不只是因为系统还不够成熟，更重要的是其解剖结构和任务定义本身就更复杂。前臂肌群密集，浅层与深层结构交叠明显，手指动作又伴随着显著的肌腱和肌群耦合。此外，旋前和旋后会改变截面结构关系，使得同一输出动作在不同个体、不同姿态下不一定对应完全一致的超声形态变化。因此，前臂方向的“可解释性”问题天然比大腿、腓肠肌等单块大肌肉部位更复杂。</p>
+<p>除了生理和解剖复杂性，佩戴与鲁棒性问题也是当前研究的核心约束。重贴附之后 imaging plane 可能发生漂移，长时间佩戴后耦合条件会改变，疲劳还会改变肌肉形态与输出之间的映射关系。这也是为什么 2025-2026 年的多篇工作都将 cross-session、user-generic 和 repositioning robustness 作为核心目标，而不再只是把它们作为附加实验。</p>
+<p>模型层面的问题同样明显。当前多数方法依然是从超声数据直接回归动作类别、角度、力或力矩，真正把 muscle morphology、tendon excursion、joint kinematics、joint kinetics 以及 moment arm 等肌骨先验统一起来的工作还很少。与此同时，系统层面的权衡也没有消失。B-mode 信息丰富但数据量大、功耗高；A-mode 与 sparse scanline 路线更适合低功耗系统，但又会压缩成像信息。带宽、边缘推理、续航能力与校准成本之间的平衡，仍然是未来可穿戴系统需要长期面对的问题。</p>
 <hr>
-<h2 id="6-后续值得继续跟踪的几个问题">6. 后续值得继续跟踪的几个问题</h2>
-<p>基于当前文献分布，后续比较值得持续跟踪的问题主要有下面几类。</p>
-<h2 id="6-1-wrist-finger-torque-的直接估计">6.1 wrist / finger torque 的直接估计</h2>
-<p>这一块目前公开工作相对少，但和前臂应用场景的联系很强。</p>
-<p>后续可以重点看：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>wrist flexion-extension torque</p>
-</li>
-<li class="lvl-2">
-<p>pronation/supination 对 torque mapping 的影响</p>
-</li>
-<li class="lvl-2">
-<p>finger joint torque 的可估计性</p>
-</li>
-</ul>
-<h2 id="6-2-低通道、低功耗前臂系统">6.2 低通道、低功耗前臂系统</h2>
-<p>如果目标是 wearable system，后续会持续遇到下面这些问题：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>是否真的需要完整 B-mode</p>
-</li>
-<li class="lvl-2">
-<p>4-8 通道是否已经足够</p>
-</li>
-<li class="lvl-2">
-<p>哪些 scanlines 或 anatomical windows 信息量最高</p>
-</li>
-<li class="lvl-2">
-<p>边缘推理和事件触发能不能把平均功耗降下来</p>
-</li>
-</ul>
-<h2 id="6-3-更可解释的建模方法">6.3 更可解释的建模方法</h2>
-<p>后续一个很自然的方向是把前臂肌骨先验引进来，例如：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>muscle synergy</p>
-</li>
-<li class="lvl-2">
-<p>tendon path</p>
-</li>
-<li class="lvl-2">
-<p>moment arm</p>
-</li>
-<li class="lvl-2">
-<p>physics-informed / hybrid model</p>
-</li>
-</ul>
-<p>这类工作如果做出来，通常会更适合回答：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>为什么模型在不同人身上会失效</p>
-</li>
-<li class="lvl-2">
-<p>为什么某些姿态变化会带来估计偏差</p>
-</li>
-</ul>
-<h2 id="6-4-跨日、重佩戴和疲劳下的鲁棒性">6.4 跨日、重佩戴和疲劳下的鲁棒性</h2>
-<p>如果以后要把前臂超声真正往长期佩戴系统推进，这一块基本绕不开：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>strap shift</p>
-</li>
-<li class="lvl-2">
-<p>coupling drift</p>
-</li>
-<li class="lvl-2">
-<p>fatigue-aware modeling</p>
-</li>
-<li class="lvl-2">
-<p>self-supervised / test-time adaptation</p>
-</li>
-</ul>
+<h2 id="6-后续值得继续跟踪的问题">6. 后续值得继续跟踪的问题</h2>
+<p>从当前研究分布看，后续最值得继续跟踪的前臂问题主要集中在四个方向。第一，是 wrist/finger torque 的直接 wearable estimation。现有工作已经证明前臂超声可以支持 finger force、grip force 以及 joint torque estimation 范式，但面向 wrist/finger torque 的直接研究仍然较少，因此这一方向具有明确的延展空间。</p>
+<p>第二，是引入肌骨先验约束的可解释建模。前臂方向的难点并不只是数据维度高，而在于输出动作背后存在复杂的解剖耦合关系。将 muscle synergy、tendon path、moment arm 以及 physics-informed 或 hybrid model 引入建模流程，有望提升跨用户与跨姿态场景中的稳定性。</p>
+<p>第三，是低通道、低功耗与边缘可部署系统。SonoMyoNet 以及若干稀疏前臂系统已经表明，某些任务未必需要完整 B-mode。因此，4-8 通道是否足以支持稳定的 wrist torque 或 grip force estimation，哪些 scanlines 或 anatomical windows 信息量最高，以及事件触发和 task-adaptive sampling 是否能够进一步降低平均功耗，都会成为更接近真实系统设计的问题。</p>
+<p>第四，是跨日、重佩戴和疲劳条件下的鲁棒建模。如果系统最终要走向长期佩戴，那么 strap shift、coupling drift、fatigue-aware modeling 以及 self-supervised 或 test-time adaptation 等问题几乎不可回避。这一部分将直接决定前臂可穿戴超声从实验室演示走向稳定使用时的实际门槛。</p>
 <hr>
 <h2 id="7-小结">7. 小结</h2>
-<p>截至 <strong>2026-06-01</strong>，前臂方向的可穿戴超声研究已经形成了比较清楚的演进路线：</p>
-<ol>
-<li class="lvl-3">
-<p>从离散手势识别走向连续 wrist-hand kinematics tracking</p>
-</li>
-<li class="lvl-3">
-<p>从单一动作输出走向 grip force、finger force、joint torque 等动力学相关量</p>
-</li>
-<li class="lvl-3">
-<p>从单次实验精度走向跨用户、跨时段和重佩戴鲁棒性</p>
-</li>
-<li class="lvl-3">
-<p>从实验室算法走向无线化、一体化和边缘部署</p>
-</li>
-</ol>
-<p>如果只看当前研究分布，前臂方向后续最值得重点盯的并不是“还能不能继续提高动作分类准确率”，而是：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>连续运动学和动力学量的联合输出</p>
-</li>
-<li class="lvl-2">
-<p>wrist/finger torque 的直接 wearable estimation</p>
-</li>
-<li class="lvl-2">
-<p>更可解释的肌骨约束建模</p>
-</li>
-<li class="lvl-2">
-<p>面向真实佩戴条件的鲁棒性和低功耗实现</p>
-</li>
-</ul>
+<p>截至 <strong>2026-06-01</strong>，前臂方向的可穿戴超声已经形成了较为清楚的技术演进路径。首先，研究目标已经从离散手势识别发展到连续 wrist-hand kinematics tracking，高自由度手部跟踪系统已经出现。其次，建模方法已经从显式特征回归扩展到深度学习、迁移学习和跨用户泛化建模。再次，动力学相关输出已经从 isometric force 和 finger force 延伸到 grip force 与 joint torque estimation。最后，系统研究的重心正在逐渐转向长期佩戴条件下的鲁棒性、无线化、一体化与边缘部署。</p>
+<p>从当前文献分布看，前臂方向后续最值得关注的问题，不再是简单提高动作分类准确率，而是如何稳定输出连续运动学与动力学变量，如何构建更具可解释性的肌骨约束模型，以及如何在真实佩戴和资源受限条件下实现长期运行。对于后续选题而言，wrist/finger torque estimation、低通道低功耗前臂系统以及鲁棒泛化建模，都是值得持续追踪的具体方向。</p>
 <hr>
 <h2 id="8-参考文献与链接">8. 参考文献与链接</h2>
 <ol>
@@ -1070,13 +479,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">32k</span>
+    <span title="站点总字数">29k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">58 分钟</span>
+    <span title="站点阅读时长">1:44</span>
   </span>
 </div>
 <div class="busuanzi-count">
